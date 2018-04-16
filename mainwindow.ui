@@ -1,0 +1,1809 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2000</width>
+    <height>880</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="GLWidget" name="glWidget"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2000</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menufile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menucontrolls">
+    <property name="title">
+     <string>Controls</string>
+    </property>
+    <addaction name="actionplay"/>
+    <addaction name="actionnext"/>
+    <addaction name="actionprev"/>
+    <addaction name="actionpause"/>
+    <addaction name="actionstop"/>
+    <addaction name="actionreplay"/>
+   </widget>
+   <addaction name="menufile"/>
+   <addaction name="menuView"/>
+   <addaction name="menucontrolls"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QDockWidget" name="cameraDock">
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;errgdfg&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="windowTitle">
+    <string>Camera</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QWidget" name="widget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>240</width>
+         <height>261</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>261</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>horizontal angle: </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="xRotationSpinBox">
+            <property name="maximum">
+             <number>359</number>
+            </property>
+            <property name="singleStep">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSlider" name="xRotationSlider">
+          <property name="maximum">
+           <number>359</number>
+          </property>
+          <property name="singleStep">
+           <number>2</number>
+          </property>
+          <property name="pageStep">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>vertical angle:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="yRotationSpinBox">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>359</number>
+            </property>
+            <property name="singleStep">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSlider" name="yRotationSlider">
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>359</number>
+          </property>
+          <property name="singleStep">
+           <number>2</number>
+          </property>
+          <property name="pageStep">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>distance:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="distanceSpinBox">
+            <property name="minimum">
+             <number>15</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="singleStep">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSlider" name="distanceSlider">
+          <property name="minimum">
+           <number>15</number>
+          </property>
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>2</number>
+          </property>
+          <property name="pageStep">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>angle of view:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="viewAngleSpinBox">
+            <property name="minimum">
+             <number>20</number>
+            </property>
+            <property name="maximum">
+             <number>179</number>
+            </property>
+            <property name="singleStep">
+             <number>5</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSlider" name="viewAngleSlider">
+          <property name="minimum">
+           <number>20</number>
+          </property>
+          <property name="maximum">
+           <number>179</number>
+          </property>
+          <property name="singleStep">
+           <number>2</number>
+          </property>
+          <property name="pageStep">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_2" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="lightsDock">
+   <property name="minimumSize">
+    <size>
+     <width>308</width>
+     <height>483</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Lights</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_4">
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QWidget" name="widget_3" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>280</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>280</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>light position:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>x:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinBox">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>y:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinBox_2">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="maximumSize">
+             <size>
+              <width>20</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>z:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="spinBox_3">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLabel" name="lightPowerLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>light power:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="lightPowerSpinBox">
+            <property name="maximum">
+             <number>300</number>
+            </property>
+            <property name="singleStep">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSlider" name="lightPowerSlider">
+          <property name="maximum">
+           <number>300</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="lightColorLayout">
+          <item>
+           <widget class="QLabel" name="lightColorLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>light color:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ColorButton" name="lightColorButton">
+            <property name="minimumSize">
+             <size>
+              <width>36</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>36</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_5" native="true"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="backgroundColorLayout">
+          <item>
+           <widget class="QLabel" name="backgroundColorLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>background color:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ColorButton" name="backgroundColorButton">
+            <property name="minimumSize">
+             <size>
+              <width>36</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>36</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_6" native="true"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_4" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionprev"/>
+   <addaction name="actionplay"/>
+   <addaction name="actionnext"/>
+   <addaction name="actionpause"/>
+   <addaction name="actionstop"/>
+   <addaction name="actionreplay"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionQuit"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionAbout"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_3">
+   <property name="windowTitle">
+    <string>toolBar_3</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QDockWidget" name="materialDock">
+   <property name="minimumSize">
+    <size>
+     <width>279</width>
+     <height>445</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Material</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout_10">
+     <item>
+      <widget class="QWidget" name="widget_9" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>200</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>200</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="specularPowerLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>specular roll off</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="specularPowerSpinBox">
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="singleStep">
+             <number>5</number>
+            </property>
+            <property name="value">
+             <number>10</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSlider" name="specularPowerSlider">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="smoothnessLayout">
+          <item>
+           <widget class="QLabel" name="smoothnessLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>smotthness</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="smoothnessSpinBox">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>300</number>
+            </property>
+            <property name="singleStep">
+             <number>1</number>
+            </property>
+            <property name="value">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSlider" name="smoothnessSlider">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>300</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="materialColoringLayout">
+          <item>
+           <widget class="QLabel" name="materialColoringLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>material coloring:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="MaterialColoringComboBox" name="materialColoringComboBox"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="solidColorWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>60</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <layout class="QHBoxLayout" name="solidColorLayout">
+          <item>
+           <widget class="QLabel" name="solidColorLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>color:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ColorButton" name="solidColorButton">
+            <property name="minimumSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>36</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_10" native="true"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="startEndColorWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>100</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <layout class="QHBoxLayout" name="startColorLayout">
+          <item>
+           <widget class="QLabel" name="startColorLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>start color:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ColorButton" name="startColorButton">
+            <property name="minimumSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>36</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_7" native="true"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="endColorLayout">
+          <item>
+           <widget class="QLabel" name="endColorLabel">
+            <property name="minimumSize">
+             <size>
+              <width>170</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>170</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>end color:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="ColorButton" name="endColorButton">
+            <property name="minimumSize">
+             <size>
+              <width>36</width>
+              <height>36</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>36</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="widget_8" native="true"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="startColorWidget" native="true">
+       <layout class="QVBoxLayout" name="verticalLayout_7"/>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_13" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionQuit">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/Button-Close-icon.png</normaloff>:/images/images/Button-Close-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="statusTip">
+    <string>Quit from the application</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/help.bmp</normaloff>:/images/images/help.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="statusTip">
+    <string>About this project</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/folder-open-icon.png</normaloff>:/images/images/folder-open-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open file</string>
+   </property>
+  </action>
+  <action name="actionplay">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/play.png</normaloff>:/images/images/play.png</iconset>
+   </property>
+   <property name="text">
+    <string>play</string>
+   </property>
+  </action>
+  <action name="actionstop">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/stop.png</normaloff>:/images/images/stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>stop</string>
+   </property>
+  </action>
+  <action name="actionpause">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/pause.png</normaloff>:/images/images/pause.png</iconset>
+   </property>
+   <property name="text">
+    <string>pause</string>
+   </property>
+  </action>
+  <action name="actionnext">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/next.png</normaloff>:/images/images/next.png</iconset>
+   </property>
+   <property name="text">
+    <string>next</string>
+   </property>
+  </action>
+  <action name="actionprev">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/prev.png</normaloff>:/images/images/prev.png</iconset>
+   </property>
+   <property name="text">
+    <string>previous</string>
+   </property>
+  </action>
+  <action name="actionreplay">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/images/images/replay.png</normaloff>:/images/images/replay.png</iconset>
+   </property>
+   <property name="text">
+    <string>replay</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>GLWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>glwidget.h</header>
+   <slots>
+    <signal>cameraXRotationChanged(int)</signal>
+    <signal>cameraYRotationChanged(int)</signal>
+    <signal>cameraDistanceChanged(int)</signal>
+    <signal>cameraViewAngleChanged(int)</signal>
+    <signal>lightColorChanged(QColor)</signal>
+    <signal>backgroundColorChanged(QColor)</signal>
+    <signal>startColorChanged(QColor)</signal>
+    <signal>endColorChanged(QColor)</signal>
+    <signal>lightXChanged(int)</signal>
+    <signal>lightYChanged(int)</signal>
+    <signal>lightZChanged(int)</signal>
+    <signal>lightPowerChanged(int)</signal>
+    <signal>specularPowerChanged(int)</signal>
+    <signal>solidColorChanged(QColor)</signal>
+    <signal>smoothnessChanged(int)</signal>
+    <signal>colorModeChanged(ColorMode)</signal>
+    <slot>cameraSetXRotation(int)</slot>
+    <slot>cameraSetYRotation(int)</slot>
+    <slot>cameraSetDistance(int)</slot>
+    <slot>cameraSetViewAngle(int)</slot>
+    <slot>setLightColor(QColor)</slot>
+    <slot>setBackgroundColor(QColor)</slot>
+    <slot>setStartColor(QColor)</slot>
+    <slot>setEndColor(QColor)</slot>
+    <slot>setLightX(int)</slot>
+    <slot>setLightY(int)</slot>
+    <slot>setLightZ(int)</slot>
+    <slot>setLightPower(int)</slot>
+    <slot>setSpecularPower(int)</slot>
+    <slot>setSolidColor(QColor)</slot>
+    <slot>setSmoothness(int)</slot>
+    <slot>setColorMode(ColorMode)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>ColorButton</class>
+   <extends>QPushButton</extends>
+   <header location="global">colorbutton.h</header>
+   <slots>
+    <signal>colorChanged(QColor)</signal>
+    <slot>setColor(QColor)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MaterialColoringComboBox</class>
+   <extends>QComboBox</extends>
+   <header>materialcoloringcombobox.h</header>
+   <slots>
+    <signal>colorModeChanged(ColorMode)</signal>
+    <slot>setColorMode(ColorMode)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>xRotationSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetXRotation(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1083</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>575</x>
+     <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraXRotationChanged(int)</signal>
+   <receiver>xRotationSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>304</x>
+     <y>128</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1083</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>xRotationSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetXRotation(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1050</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>579</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraXRotationChanged(int)</signal>
+   <receiver>xRotationSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>573</x>
+     <y>215</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1032</x>
+     <y>152</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>yRotationSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetYRotation(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1083</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>582</x>
+     <y>228</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraYRotationChanged(int)</signal>
+   <receiver>yRotationSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>580</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1083</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>yRotationSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetYRotation(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1059</x>
+     <y>215</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>588</x>
+     <y>260</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraYRotationChanged(int)</signal>
+   <receiver>yRotationSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>582</x>
+     <y>269</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1050</x>
+     <y>215</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>distanceSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetDistance(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1083</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>284</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraDistanceChanged(int)</signal>
+   <receiver>distanceSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>581</x>
+     <y>301</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1083</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>distanceSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetDistance(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1059</x>
+     <y>277</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>596</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraDistanceChanged(int)</signal>
+   <receiver>distanceSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>580</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1053</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewAngleSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetViewAngle(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1083</x>
+     <y>312</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>587</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraViewAngleChanged(int)</signal>
+   <receiver>viewAngleSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>580</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1083</x>
+     <y>312</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewAngleSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>cameraSetViewAngle(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1059</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>375</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>cameraViewAngleChanged(int)</signal>
+   <receiver>viewAngleSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>574</x>
+     <y>383</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1036</x>
+     <y>339</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>lightColorChanged(QColor)</signal>
+   <receiver>lightColorButton</receiver>
+   <slot>setColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>685</x>
+     <y>195</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1025</x>
+     <y>634</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>backgroundColorChanged(QColor)</signal>
+   <receiver>backgroundColorButton</receiver>
+   <slot>setColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>676</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1025</x>
+     <y>669</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lightColorButton</sender>
+   <signal>colorChanged(QColor)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setLightColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1025</x>
+     <y>634</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>677</x>
+     <y>203</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>backgroundColorButton</sender>
+   <signal>colorChanged(QColor)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setBackgroundColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1025</x>
+     <y>669</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>662</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>lightXChanged(int)</signal>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>784</x>
+     <y>284</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>899</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setLightX(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>899</x>
+     <y>472</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>784</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>lightYChanged(int)</signal>
+   <receiver>spinBox_2</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>784</x>
+     <y>309</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>991</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setLightY(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>991</x>
+     <y>472</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setLightZ(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1083</x>
+     <y>472</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>784</x>
+     <y>233</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>lightZChanged(int)</signal>
+   <receiver>spinBox_3</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>784</x>
+     <y>320</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1083</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lightPowerSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setLightPower(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1083</x>
+     <y>543</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>774</x>
+     <y>211</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>lightPowerChanged(int)</signal>
+   <receiver>lightPowerSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>784</x>
+     <y>360</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1083</x>
+     <y>543</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lightPowerSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setLightPower(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1084</x>
+     <y>567</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>784</x>
+     <y>371</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>lightPowerChanged(int)</signal>
+   <receiver>lightPowerSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>784</x>
+     <y>376</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1084</x>
+     <y>567</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>specularPowerChanged(int)</signal>
+   <receiver>specularPowerSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>109</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>specularPowerSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setSpecularPower(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>330</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>specularPowerSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setSpecularPower(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>272</x>
+     <y>151</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>338</x>
+     <y>147</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>specularPowerChanged(int)</signal>
+   <receiver>specularPowerSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>320</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>251</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>solidColorButton</sender>
+   <signal>colorChanged(QColor)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setSolidColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>313</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>322</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>solidColorChanged(QColor)</signal>
+   <receiver>solidColorButton</receiver>
+   <slot>setColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>310</x>
+     <y>326</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>321</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>startColorButton</sender>
+   <signal>colorChanged(QColor)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setStartColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>373</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>328</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>startColorChanged(QColor)</signal>
+   <receiver>startColorButton</receiver>
+   <slot>setColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>308</x>
+     <y>385</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>223</x>
+     <y>384</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>endColorButton</sender>
+   <signal>colorChanged(QColor)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setEndColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>226</x>
+     <y>416</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>337</x>
+     <y>417</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>endColorChanged(QColor)</signal>
+   <receiver>endColorButton</receiver>
+   <slot>setColor(QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>309</x>
+     <y>434</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>211</x>
+     <y>429</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>smoothnessSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setSmoothness(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>264</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>314</x>
+     <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>smoothnessChanged(int)</signal>
+   <receiver>smoothnessSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>313</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>244</x>
+     <y>187</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>smoothnessSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setSmoothness(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>215</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>325</x>
+     <y>212</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>smoothnessChanged(int)</signal>
+   <receiver>smoothnessSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>315</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>240</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

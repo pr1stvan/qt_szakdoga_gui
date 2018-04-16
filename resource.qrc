@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/Button-Close-icon.png</file>
+        <file>images/folder-open-icon.png</file>
+        <file>images/Save-icon.png</file>
+        <file>images/help.bmp</file>
+        <file>images/fast_forward.png</file>
+        <file>images/pause.png</file>
+        <file>images/play.png</file>
+        <file>images/stop.png</file>
+        <file>images/next.png</file>
+        <file>images/prev.png</file>
+        <file>images/replay.png</file>
+    </qresource>
+    <qresource prefix="/shaders">
+        <file>fragshader.frag</file>
+        <file>vertexshader.vert</file>
+    </qresource>
+</RCC>
