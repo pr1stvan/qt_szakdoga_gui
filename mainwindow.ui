@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2000</width>
-    <height>880</height>
+    <width>500</width>
+    <height>739</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2000</width>
+     <width>500</width>
      <height>21</height>
     </rect>
    </property>
@@ -64,489 +64,9 @@
    <addaction name="menucontrolls"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QDockWidget" name="cameraDock">
-   <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;errgdfg&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
+  <widget class="QToolBar" name="mediControlToolBar">
    <property name="windowTitle">
-    <string>Camera</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>2</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2">
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <widget class="QWidget" name="widget" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>240</width>
-         <height>261</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>261</height>
-        </size>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>horizontal angle: </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="xRotationSpinBox">
-            <property name="maximum">
-             <number>359</number>
-            </property>
-            <property name="singleStep">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="xRotationSlider">
-          <property name="maximum">
-           <number>359</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-          <property name="pageStep">
-           <number>2</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>vertical angle:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="yRotationSpinBox">
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>359</number>
-            </property>
-            <property name="singleStep">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="yRotationSlider">
-          <property name="minimum">
-           <number>0</number>
-          </property>
-          <property name="maximum">
-           <number>359</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-          <property name="pageStep">
-           <number>2</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>distance:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="distanceSpinBox">
-            <property name="minimum">
-             <number>15</number>
-            </property>
-            <property name="maximum">
-             <number>100</number>
-            </property>
-            <property name="singleStep">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="distanceSlider">
-          <property name="minimum">
-           <number>15</number>
-          </property>
-          <property name="maximum">
-           <number>100</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-          <property name="pageStep">
-           <number>2</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>angle of view:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="viewAngleSpinBox">
-            <property name="minimum">
-             <number>20</number>
-            </property>
-            <property name="maximum">
-             <number>179</number>
-            </property>
-            <property name="singleStep">
-             <number>5</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="viewAngleSlider">
-          <property name="minimum">
-           <number>20</number>
-          </property>
-          <property name="maximum">
-           <number>179</number>
-          </property>
-          <property name="singleStep">
-           <number>2</number>
-          </property>
-          <property name="pageStep">
-           <number>2</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="widget_2" native="true"/>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QDockWidget" name="lightsDock">
-   <property name="minimumSize">
-    <size>
-     <width>308</width>
-     <height>483</height>
-    </size>
-   </property>
-   <property name="windowTitle">
-    <string>Lights</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>2</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_4">
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <item>
-      <widget class="QWidget" name="widget_3" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>280</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>280</height>
-        </size>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>light position:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="label_7">
-            <property name="maximumSize">
-             <size>
-              <width>20</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>x:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinBox">
-            <property name="minimum">
-             <number>-10000</number>
-            </property>
-            <property name="maximum">
-             <number>10000</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="maximumSize">
-             <size>
-              <width>20</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>y:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinBox_2">
-            <property name="minimum">
-             <number>-10000</number>
-            </property>
-            <property name="maximum">
-             <number>10000</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_9">
-            <property name="maximumSize">
-             <size>
-              <width>20</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>z:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinBox_3">
-            <property name="minimum">
-             <number>-10000</number>
-            </property>
-            <property name="maximum">
-             <number>10000</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLabel" name="lightPowerLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>light power:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="lightPowerSpinBox">
-            <property name="maximum">
-             <number>300</number>
-            </property>
-            <property name="singleStep">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="lightPowerSlider">
-          <property name="maximum">
-           <number>300</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="lightColorLayout">
-          <item>
-           <widget class="QLabel" name="lightColorLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>light color:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="ColorButton" name="lightColorButton">
-            <property name="minimumSize">
-             <size>
-              <width>36</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>36</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_5" native="true"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="backgroundColorLayout">
-          <item>
-           <widget class="QLabel" name="backgroundColorLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>background color:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="ColorButton" name="backgroundColorButton">
-            <property name="minimumSize">
-             <size>
-              <width>36</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>36</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_6" native="true"/>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="widget_4" native="true"/>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
+    <string>media controls</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -561,9 +81,9 @@
    <addaction name="actionstop"/>
    <addaction name="actionreplay"/>
   </widget>
-  <widget class="QToolBar" name="toolBar_2">
+  <widget class="QToolBar" name="loadFileToolbar">
    <property name="windowTitle">
-    <string>toolBar_2</string>
+    <string>file load menu</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -571,13 +91,12 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionQuit"/>
    <addaction name="actionOpen"/>
    <addaction name="actionAbout"/>
   </widget>
-  <widget class="QToolBar" name="toolBar_3">
+  <widget class="QToolBar" name="frameCountToolBar">
    <property name="windowTitle">
-    <string>toolBar_3</string>
+    <string>frames</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -589,8 +108,8 @@
   <widget class="QDockWidget" name="materialDock">
    <property name="minimumSize">
     <size>
-     <width>279</width>
-     <height>445</height>
+     <width>179</width>
+     <height>434</height>
     </size>
    </property>
    <property name="windowTitle">
@@ -599,155 +118,204 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents">
-    <layout class="QVBoxLayout" name="verticalLayout_10">
-     <item>
-      <widget class="QWidget" name="widget_9" native="true">
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
+     <property name="labelAlignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="formAlignment">
+      <set>Qt::AlignJustify|Qt::AlignTop</set>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="specularPowerLabel">
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>200</height>
+         <height>0</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>200</height>
+         <height>16777215</height>
         </size>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_6">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <widget class="QLabel" name="specularPowerLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>specular roll off</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="specularPowerSpinBox">
-            <property name="minimum">
-             <number>0</number>
-            </property>
-            <property name="maximum">
-             <number>100</number>
-            </property>
-            <property name="singleStep">
-             <number>5</number>
-            </property>
-            <property name="value">
-             <number>10</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="specularPowerSlider">
-          <property name="maximum">
-           <number>100</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="smoothnessLayout">
-          <item>
-           <widget class="QLabel" name="smoothnessLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>smotthness</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="smoothnessSpinBox">
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>300</number>
-            </property>
-            <property name="singleStep">
-             <number>1</number>
-            </property>
-            <property name="value">
-             <number>1</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QSlider" name="smoothnessSlider">
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>300</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="materialColoringLayout">
-          <item>
-           <widget class="QLabel" name="materialColoringLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>material coloring:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="MaterialColoringComboBox" name="materialColoringComboBox"/>
-          </item>
-         </layout>
-        </item>
-       </layout>
+       <property name="text">
+        <string>specular roll off:</string>
+       </property>
       </widget>
      </item>
-     <item>
-      <widget class="QWidget" name="solidColorWidget" native="true">
+     <item row="0" column="1">
+      <widget class="QSpinBox" name="specularPowerSpinBox">
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="singleStep">
+        <number>5</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0" colspan="2">
+      <widget class="QSlider" name="specularPowerSlider">
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0" colspan="2">
+      <widget class="QSlider" name="smoothnessSlider">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>300</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="12" column="0">
+      <widget class="QLabel" name="materialColoringLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>material coloring:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="17" column="0">
+      <widget class="QLabel" name="solidColorLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>color:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="23" column="0">
+      <widget class="QLabel" name="startColorLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>start color:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="29" column="0">
+      <widget class="QLabel" name="endColorLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>end color:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="34" column="0">
+      <widget class="QCheckBox" name="preferDrawingPointsCheckBox">
+       <property name="text">
+        <string>Triangles</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QSpinBox" name="smoothnessSpinBox">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>300</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+       <property name="value">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="smoothnessLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>smotthness:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="17" column="1">
+      <widget class="ColorButton" name="solidColorButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -763,60 +331,16 @@
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>60</height>
+         <height>16777215</height>
         </size>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item>
-         <layout class="QHBoxLayout" name="solidColorLayout">
-          <item>
-           <widget class="QLabel" name="solidColorLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>color:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="ColorButton" name="solidColorButton">
-            <property name="minimumSize">
-             <size>
-              <width>36</width>
-              <height>36</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>36</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_10" native="true"/>
-          </item>
-         </layout>
-        </item>
-       </layout>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
      </item>
-     <item>
-      <widget class="QWidget" name="startEndColorWidget" native="true">
+     <item row="23" column="1">
+      <widget class="ColorButton" name="startColorButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -832,110 +356,469 @@
        <property name="maximumSize">
         <size>
          <width>16777215</width>
-         <height>100</height>
+         <height>16777215</height>
         </size>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_9">
-        <item>
-         <layout class="QHBoxLayout" name="startColorLayout">
-          <item>
-           <widget class="QLabel" name="startColorLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>start color:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="ColorButton" name="startColorButton">
-            <property name="minimumSize">
-             <size>
-              <width>36</width>
-              <height>36</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>36</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_7" native="true"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="endColorLayout">
-          <item>
-           <widget class="QLabel" name="endColorLabel">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>170</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>end color:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="ColorButton" name="endColorButton">
-            <property name="minimumSize">
-             <size>
-              <width>36</width>
-              <height>36</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>36</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_8" native="true"/>
-          </item>
-         </layout>
-        </item>
-       </layout>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
      </item>
-     <item>
-      <widget class="QWidget" name="startColorWidget" native="true">
-       <layout class="QVBoxLayout" name="verticalLayout_7"/>
+     <item row="29" column="1">
+      <widget class="ColorButton" name="endColorButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
      </item>
-     <item>
-      <widget class="QWidget" name="widget_13" native="true"/>
+     <item row="12" column="1">
+      <widget class="MaterialColoringComboBox" name="materialColoringComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="cameraDock">
+   <property name="minimumSize">
+    <size>
+     <width>162</width>
+     <height>292</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Camera</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_5">
+    <layout class="QFormLayout" name="formLayout_2">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <item row="1" column="0">
+      <widget class="QLabel" name="xRotationLabel">
+       <property name="text">
+        <string>horizontal angle: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="xRotationSpinBox">
+       <property name="maximum">
+        <number>359</number>
+       </property>
+       <property name="singleStep">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="2">
+      <widget class="QSlider" name="xRotationSlider">
+       <property name="maximum">
+        <number>359</number>
+       </property>
+       <property name="singleStep">
+        <number>2</number>
+       </property>
+       <property name="pageStep">
+        <number>2</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="yRotationLabel">
+       <property name="text">
+        <string>vertical angle:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QSpinBox" name="yRotationSpinBox">
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>359</number>
+       </property>
+       <property name="singleStep">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0" colspan="2">
+      <widget class="QSlider" name="yRotationSlider">
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>359</number>
+       </property>
+       <property name="singleStep">
+        <number>2</number>
+       </property>
+       <property name="pageStep">
+        <number>2</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="distanceLabel">
+       <property name="text">
+        <string>distance:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QSpinBox" name="distanceSpinBox">
+       <property name="minimum">
+        <number>15</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="singleStep">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0" colspan="2">
+      <widget class="QSlider" name="distanceSlider">
+       <property name="minimum">
+        <number>15</number>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="singleStep">
+        <number>2</number>
+       </property>
+       <property name="pageStep">
+        <number>2</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="12" column="0">
+      <widget class="QLabel" name="viewAngleLabel">
+       <property name="text">
+        <string>angle of view:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="12" column="1">
+      <widget class="QSpinBox" name="viewAngleSpinBox">
+       <property name="minimum">
+        <number>20</number>
+       </property>
+       <property name="maximum">
+        <number>179</number>
+       </property>
+       <property name="singleStep">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0" colspan="2">
+      <widget class="QSlider" name="viewAngleSlider">
+       <property name="minimum">
+        <number>20</number>
+       </property>
+       <property name="maximum">
+        <number>179</number>
+       </property>
+       <property name="singleStep">
+        <number>2</number>
+       </property>
+       <property name="pageStep">
+        <number>2</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="lightsDock">
+   <property name="minimumSize">
+    <size>
+     <width>181</width>
+     <height>364</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Ligths</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_6">
+    <layout class="QFormLayout" name="formLayout_3">
+     <property name="fieldGrowthPolicy">
+      <enum>QFormLayout::ExpandingFieldsGrow</enum>
+     </property>
+     <property name="horizontalSpacing">
+      <number>10</number>
+     </property>
+     <item row="1" column="0" colspan="2">
+      <widget class="QLabel" name="lightPosLabel">
+       <property name="minimumSize">
+        <size>
+         <width>10</width>
+         <height>10</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>light position:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>x:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QSpinBox" name="spinBox">
+       <property name="minimum">
+        <number>-10000</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>y:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QSpinBox" name="spinBox_2">
+       <property name="minimum">
+        <number>-10000</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>z:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QSpinBox" name="spinBox_3">
+       <property name="minimum">
+        <number>-10000</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="14" column="0" colspan="2">
+      <widget class="QSlider" name="lightPowerSlider">
+       <property name="maximum">
+        <number>300</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="18" column="0">
+      <widget class="QLabel" name="lightColorLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>170</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>light color:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="18" column="1">
+      <widget class="ColorButton" name="lightColorButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="21" column="0">
+      <widget class="QLabel" name="backgroundColorLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>170</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>background color:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="21" column="1">
+      <widget class="ColorButton" name="backgroundColorButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="17" column="0">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="8" column="0">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="9" column="1">
+      <widget class="QSpinBox" name="lightPowerSpinBox">
+       <property name="maximum">
+        <number>300</number>
+       </property>
+       <property name="singleStep">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="lightPowerLabel">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>170</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>light power:</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -946,7 +829,7 @@
    </property>
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/Button-Close-icon.png</normaloff>:/images/images/Button-Close-icon.png</iconset>
+     <normaloff>:/images/Button-Close-icon.png</normaloff>:/images/Button-Close-icon.png</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -961,7 +844,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/help.bmp</normaloff>:/images/images/help.bmp</iconset>
+     <normaloff>:/images/help.bmp</normaloff>:/images/help.bmp</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -973,7 +856,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/folder-open-icon.png</normaloff>:/images/images/folder-open-icon.png</iconset>
+     <normaloff>:/images/folder-open-icon.png</normaloff>:/images/folder-open-icon.png</iconset>
    </property>
    <property name="text">
     <string>Open file</string>
@@ -982,7 +865,7 @@
   <action name="actionplay">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/play.png</normaloff>:/images/images/play.png</iconset>
+     <normaloff>:/images/play.png</normaloff>:/images/play.png</iconset>
    </property>
    <property name="text">
     <string>play</string>
@@ -991,7 +874,7 @@
   <action name="actionstop">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/stop.png</normaloff>:/images/images/stop.png</iconset>
+     <normaloff>:/images/stop.png</normaloff>:/images/stop.png</iconset>
    </property>
    <property name="text">
     <string>stop</string>
@@ -1000,7 +883,7 @@
   <action name="actionpause">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/pause.png</normaloff>:/images/images/pause.png</iconset>
+     <normaloff>:/images/pause.png</normaloff>:/images/pause.png</iconset>
    </property>
    <property name="text">
     <string>pause</string>
@@ -1009,7 +892,7 @@
   <action name="actionnext">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/next.png</normaloff>:/images/images/next.png</iconset>
+     <normaloff>:/images/next.png</normaloff>:/images/next.png</iconset>
    </property>
    <property name="text">
     <string>next</string>
@@ -1018,7 +901,7 @@
   <action name="actionprev">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/prev.png</normaloff>:/images/images/prev.png</iconset>
+     <normaloff>:/images/prev.png</normaloff>:/images/prev.png</iconset>
    </property>
    <property name="text">
     <string>previous</string>
@@ -1030,7 +913,7 @@
    </property>
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/images/images/replay.png</normaloff>:/images/images/replay.png</iconset>
+     <normaloff>:/images/replay.png</normaloff>:/images/replay.png</iconset>
    </property>
    <property name="text">
     <string>replay</string>
@@ -1060,6 +943,7 @@
     <signal>solidColorChanged(QColor)</signal>
     <signal>smoothnessChanged(int)</signal>
     <signal>colorModeChanged(ColorMode)</signal>
+    <signal>drawingTrianglesChanged(bool)</signal>
     <slot>cameraSetXRotation(int)</slot>
     <slot>cameraSetYRotation(int)</slot>
     <slot>cameraSetDistance(int)</slot>
@@ -1076,6 +960,7 @@
     <slot>setSolidColor(QColor)</slot>
     <slot>setSmoothness(int)</slot>
     <slot>setColorMode(ColorMode)</slot>
+    <slot>setDrawingTriangles(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1108,7 +993,7 @@
    <slot>cameraSetXRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>125</y>
     </hint>
     <hint type="destinationlabel">
@@ -1128,7 +1013,7 @@
      <y>128</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>125</y>
     </hint>
    </hints>
@@ -1140,7 +1025,7 @@
    <slot>cameraSetXRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1050</x>
+     <x>1981</x>
      <y>152</y>
     </hint>
     <hint type="destinationlabel">
@@ -1160,7 +1045,7 @@
      <y>215</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1032</x>
+     <x>1981</x>
      <y>152</y>
     </hint>
    </hints>
@@ -1172,7 +1057,7 @@
    <slot>cameraSetYRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>187</y>
     </hint>
     <hint type="destinationlabel">
@@ -1192,7 +1077,7 @@
      <y>239</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>187</y>
     </hint>
    </hints>
@@ -1204,7 +1089,7 @@
    <slot>cameraSetYRotation(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1059</x>
+     <x>1981</x>
      <y>215</y>
     </hint>
     <hint type="destinationlabel">
@@ -1224,7 +1109,7 @@
      <y>269</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1050</x>
+     <x>1981</x>
      <y>215</y>
     </hint>
    </hints>
@@ -1236,7 +1121,7 @@
    <slot>cameraSetDistance(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>250</y>
     </hint>
     <hint type="destinationlabel">
@@ -1256,7 +1141,7 @@
      <y>301</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>250</y>
     </hint>
    </hints>
@@ -1268,7 +1153,7 @@
    <slot>cameraSetDistance(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1059</x>
+     <x>1981</x>
      <y>277</y>
     </hint>
     <hint type="destinationlabel">
@@ -1288,7 +1173,7 @@
      <y>330</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1053</x>
+     <x>1981</x>
      <y>277</y>
     </hint>
    </hints>
@@ -1300,7 +1185,7 @@
    <slot>cameraSetViewAngle(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>312</y>
     </hint>
     <hint type="destinationlabel">
@@ -1320,7 +1205,7 @@
      <y>358</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>312</y>
     </hint>
    </hints>
@@ -1332,7 +1217,7 @@
    <slot>cameraSetViewAngle(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1059</x>
+     <x>1981</x>
      <y>339</y>
     </hint>
     <hint type="destinationlabel">
@@ -1352,7 +1237,7 @@
      <y>383</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1036</x>
+     <x>1981</x>
      <y>339</y>
     </hint>
    </hints>
@@ -1368,7 +1253,7 @@
      <y>195</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>634</y>
     </hint>
    </hints>
@@ -1384,7 +1269,7 @@
      <y>236</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>669</y>
     </hint>
    </hints>
@@ -1396,7 +1281,7 @@
    <slot>setLightColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>634</y>
     </hint>
     <hint type="destinationlabel">
@@ -1412,7 +1297,7 @@
    <slot>setBackgroundColor(QColor)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1025</x>
+     <x>1922</x>
      <y>669</y>
     </hint>
     <hint type="destinationlabel">
@@ -1432,7 +1317,7 @@
      <y>284</y>
     </hint>
     <hint type="destinationlabel">
-     <x>899</x>
+     <x>1796</x>
      <y>472</y>
     </hint>
    </hints>
@@ -1444,7 +1329,7 @@
    <slot>setLightX(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>899</x>
+     <x>1796</x>
      <y>472</y>
     </hint>
     <hint type="destinationlabel">
@@ -1464,7 +1349,7 @@
      <y>309</y>
     </hint>
     <hint type="destinationlabel">
-     <x>991</x>
+     <x>1888</x>
      <y>472</y>
     </hint>
    </hints>
@@ -1476,7 +1361,7 @@
    <slot>setLightY(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>991</x>
+     <x>1888</x>
      <y>472</y>
     </hint>
     <hint type="destinationlabel">
@@ -1492,7 +1377,7 @@
    <slot>setLightZ(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>472</y>
     </hint>
     <hint type="destinationlabel">
@@ -1512,7 +1397,7 @@
      <y>320</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>472</y>
     </hint>
    </hints>
@@ -1524,7 +1409,7 @@
    <slot>setLightPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>543</y>
     </hint>
     <hint type="destinationlabel">
@@ -1544,7 +1429,7 @@
      <y>360</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1083</x>
+     <x>1980</x>
      <y>543</y>
     </hint>
    </hints>
@@ -1556,7 +1441,7 @@
    <slot>setLightPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1084</x>
+     <x>1981</x>
      <y>567</y>
     </hint>
     <hint type="destinationlabel">
@@ -1576,7 +1461,7 @@
      <y>376</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1084</x>
+     <x>1981</x>
      <y>567</y>
     </hint>
    </hints>
@@ -1604,8 +1489,8 @@
    <slot>setSpecularPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>263</x>
-     <y>119</y>
+     <x>259</x>
+     <y>129</y>
     </hint>
     <hint type="destinationlabel">
      <x>330</x>
@@ -1620,8 +1505,8 @@
    <slot>setSpecularPower(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>272</x>
-     <y>151</y>
+     <x>260</x>
+     <y>160</y>
     </hint>
     <hint type="destinationlabel">
      <x>338</x>
@@ -1748,8 +1633,8 @@
    <slot>setSmoothness(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>264</x>
-     <y>184</y>
+     <x>259</x>
+     <y>198</y>
     </hint>
     <hint type="destinationlabel">
      <x>314</x>
@@ -1780,8 +1665,8 @@
    <slot>setSmoothness(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>263</x>
-     <y>215</y>
+     <x>260</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
      <x>325</x>
@@ -1802,6 +1687,38 @@
     <hint type="destinationlabel">
      <x>240</x>
      <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>glWidget</sender>
+   <signal>drawingTrianglesChanged(bool)</signal>
+   <receiver>preferDrawingPointsCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>302</x>
+     <y>514</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>238</x>
+     <y>507</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>preferDrawingPointsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>glWidget</receiver>
+   <slot>setDrawingTriangles(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>257</x>
+     <y>497</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>305</x>
+     <y>497</y>
     </hint>
    </hints>
   </connection>

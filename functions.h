@@ -5,14 +5,11 @@
 #include <QVector3D>
 
 QVector<QVector3D> toQVector3DArray(const QVector<float> & array);
-
 QVector<float> toFloatArray(const QVector<QVector3D> & array);
-
 QVector3D maxLength(const QVector<QVector3D> & vectors);
-
 QVector3D minLength(const QVector<QVector3D> & vectors);
-
 QVector<float> toLengthArray(const QVector<float> & array);
+float calculateScaleMultiplier(float number, float multiplier);
 
 
 enum ColorMode
@@ -25,4 +22,3 @@ enum ColorMode
 };
 
 #endif // FUNCTIONS_H
-

@@ -72,3 +72,19 @@ QVector<float> toLengthArray(const QVector<float> & array){
     }
     return lengthArray;
 }
+
+float calculateScaleMultiplier(float number,float multiplier)
+{
+    float n=1.0f;
+    while(fabs(number) > 10.0f){
+        number=number/10.0f;
+        n/=10.0f;
+    }
+    while(fabs(number) < 1.0f){
+        number=number*10.0f;
+        n*=10.0f;
+    }
+
+    return multiplier/number;
+
+}

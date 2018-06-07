@@ -11,7 +11,7 @@ MaterialColoringComboBox::MaterialColoringComboBox(QWidget *parent = Q_NULLPTR)
     this -> addItem(QString("projected vertex area"));
     this -> addItem(QString("vertex mass"));
 
-    this -> setCurrentIndex(3);
+    this -> setCurrentIndex(0);
 
 
 
@@ -68,4 +68,19 @@ void MaterialColoringComboBox::changeColorMode(int idx)
     }
 
     emit colorModeChanged(colorMode);
+}
+
+void MaterialColoringComboBox::setAvailableColorModes(bool solid, bool velocity, bool area)
+{
+    this->clear();
+
+    if(solid)this->addItem(QString("solid"));
+    if(velocity)this -> addItem(QString("velocity"));
+    if(area){
+        this -> addItem(QString("vertex area"));
+        this -> addItem(QString("projected vertex area"));
+        this -> addItem(QString("vertex mass"));
+    }
+
+    this -> setCurrentIndex(0);
 }

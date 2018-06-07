@@ -22,6 +22,7 @@ public slots:
     void setColor(const QColor);
     void chooseColor();
     void paintEvent(QPaintEvent *event);
+    void resizeEvent(QResizeEvent *event);
 
 private:
     QColor currentColor;

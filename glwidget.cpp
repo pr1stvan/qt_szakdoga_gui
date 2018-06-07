@@ -53,6 +53,8 @@
 #include <QOpenGLShaderProgram>
 #include <QCoreApplication>
 #include <QTimer>
+#include <QGuiApplication>
+#include <QScreen>
 #include <math.h>
 #include <qDebug>
 
@@ -70,7 +72,8 @@ GLWidget::GLWidget(QWidget *parent)
       autoReplay(false),
       paused(true),
       frameIdx(0),
-      areFramesLoaded(false)
+      areFramesLoaded(false),
+      drawingTriangles(true)
 {
     fps=1;
     elapsed =0;
@@ -92,6 +95,7 @@ GLWidget::GLWidget(QWidget *parent)
     lightPower=50;
     specularPower=100;
     smoothness=5;
+    ambientPower=50;
 
     lightColor=QColor(255,255,255);
     backgroundColor=QColor(130,130,130);
@@ -125,12 +129,22 @@ GLWidget::~GLWidget()
 
 QSize GLWidget::minimumSizeHint() const
 {
-    return QSize(50, 50);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    return QSize(width/8, height/8);
 }
 
 QSize GLWidget::sizeHint() const
 {
-    return QSize(400, 400);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    return QSize(width/8, height/8);
 }
 
 void GLWidget::updateSignal()
@@ -148,26 +162,48 @@ void GLWidget::updateSignal()
     emit solidColorChanged(solidColor);
     emit startColorChanged(startColor);
     emit endColorChanged(endColor);
+
+    emit drawingTrianglesChanged(drawingTriangles);
 }
 
-int GLWidget::loadFrameDirectory(QString directoryName)
+int GLWidget::loadFrameDirectory(QStringList filePaths)
 {
     paused=true;
-    frameSystem.loadDirectory(directoryName);
+
+    frameSystem.loadDirectory(filePaths);
+    setColorMode(frameSystem.getColorMode());
+
 
     if(frameSystem.size()>0){
         areFramesLoaded=true;
+        setDrawingTriangles(!frameSystem.preferDrawingPoints());
         allocateBuffers();
         QVector3D centerPoint=frameSystem.getPointsAvgAfterLoading();
         camera.setLookAtPoint(centerPoint);
-        setLightPosition(centerPoint + QVector3D(0,10,0));
+
+//        int rndx = rand() % 11 - 5;
+//        int rndy= rand() % 11 - 5;
+//        int rndz=rand() % 11 - 5;
+
+        setLightPosition(centerPoint + QVector3D(2,10,-4));
     }
     else {
         areFramesLoaded=false;
         setLightPosition(QVector3D(0,10,0));
     }
-
+//    drawingTriangles=!frameSystem.preferDrawingPoints();
     return frameSystem.size();
+
+}
+
+bool GLWidget::velocityDataExist()
+{
+    return frameSystem.velocityDataExist();
+}
+
+bool GLWidget::areaDataExist()
+{
+    return frameSystem.areaDataExist();
 }
 
 void GLWidget::cameraSetXRotation(int degrees)
@@ -232,6 +268,20 @@ void GLWidget::setSmoothness(int smoothnessValue)
 {
     smoothness=smoothnessValue;
     emit smoothnessChanged(smoothness);
+}
+
+void GLWidget::setDrawingTriangles(bool state)
+{
+
+    if(state==false){
+        drawingTriangles=false;
+        ambientPower=100;
+    }
+    else{
+        drawingTriangles=true;
+        ambientPower=50;
+    }
+    emit drawingTrianglesChanged(state);
 }
 
 
@@ -431,6 +481,7 @@ void GLWidget::initializeGL()
     m_lightPowerLoc= m_program->uniformLocation("LightPower");
     m_specularPowerLoc= m_program->uniformLocation("SpecularPower");
     m_smoothnessLoc= m_program->uniformLocation("Smoothness");
+    m_ambientPowerLoc=m_program->uniformLocation("AmbientPower");
 
     // Create a vertex array object. In OpenGL ES 2.0 and OpenGL 2.x
     // implementations this is optional and support may not be present
@@ -608,14 +659,14 @@ void GLWidget::paintGL()
     m_program->setUniformValue(m_lightPowerLoc,(float)lightPower);
     m_program->setUniformValue(m_specularPowerLoc,(1.0f*((float)specularPower)/100.0f));
     m_program->setUniformValue(m_smoothnessLoc,(float)smoothness);
+    m_program->setUniformValue(m_ambientPowerLoc,(float)ambientPower/100.0f);
     m_program->setUniformValue(m_lightColorLoc, QVector3D((float)lightColor.redF(),
                                                         (float)lightColor.greenF(),
                                                         (float)lightColor.blueF()));
 
 //    glDrawArrays(GL_TRIANGLES, 0, frameSystem.getVertexAllocationSize());
-
     glDrawElements(
-        GL_TRIANGLES,      // mode
+        drawingTriangles? GL_TRIANGLES: GL_POINTS,      // mode
         frameSystem.getIndexAllocationSize(),    // count
         GL_UNSIGNED_INT,            // type
         (void*)0           // element array buffer offset
@@ -642,7 +693,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 
 
     if (event->buttons() & Qt::LeftButton) {
-        camera.rotateHorizontal(dx);
+        camera.rotateHorizontal(-dx);
         camera.rotateVertical(dy);
 
     } else if (event->buttons() & Qt::RightButton) {

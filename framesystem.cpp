@@ -12,7 +12,10 @@ FrameSystem::FrameSystem():
     colorMode(SOLID),
     solidColor(0,0,0),
     startColor(0,0,0),
-    endColor(0,0,0)
+    endColor(0,0,0),
+    prefer_drawing_points(false),
+    velocity_data_exist(false),
+    area_data_exist(false)
 {
 
 }
@@ -24,21 +27,40 @@ QColor vectorTocolor(QVector3D vec){
     return color;
 }
 
-void FrameSystem::loadDirectory(QString directoryPath)
+void FrameSystem::loadDirectory(QStringList filePaths)
 {
    frames.clear();
    frames.squeeze();
-   QStringList files = getDirectoryFiles(directoryPath);
+//   QStringList files = getDirectoryFiles(directoryPath);
 
-   for(int i = 0 ; i< files.size(); i++){
-       Frame frame(files.at(i));
-       frames.push_back(frame);
+   prefer_drawing_points=false;
+   if(filePaths.size() == 0){
+       velocity_data_exist=false;
+       area_data_exist=false;
    }
+   else{
+       Frame frame(filePaths.at(0));
+       frames.push_back(frame);
 
-   setUpFrameColors();
+       velocity_data_exist=frame.getVelocityDataExist();
+       area_data_exist=frame.getAreaDataExist();
+       prefer_drawing_points=frame.preferDrawingPoints();
+
+       for(int i = 1 ; i< filePaths.size(); i++){
+           Frame frame(filePaths.at(i));
+           frames.push_back(frame);
+       }
+       colorMode=SOLID;
+       if(!velocity_data_exist && colorMode==VELOCITY){
+           colorMode=SOLID;
+       }
+       if(!area_data_exist && colorMode!=VELOCITY){
+           colorMode=SOLID;
+       }
+       setUpFrameColors();
+       scalePointsAfterLoading();
+   }
 }
-
-
 
 QVector3D FrameSystem::getPointsAvgAfterLoading()
 {
@@ -70,6 +92,47 @@ QVector3D FrameSystem::getPointsAvgAfterLoading()
     }
 
     return QVector3D(avgX/count,avgY/count,avgZ/count);
+}
+
+void FrameSystem::scalePointsAfterLoading()
+{
+    QVector<float> t;
+    t << getMaxPointCoord(0)-getMinPointCoord(0);
+    t << getMaxPointCoord(1)-getMinPointCoord(1);
+    t << getMaxPointCoord(2)-getMinPointCoord(2);
+
+//    qDebug() << "x:" << t[0];
+//    qDebug() << "y:" << t[1];
+//    qDebug() << "z:" << t[2];
+//    float avg=0;
+//    for(auto e : t){
+//        avg+=e;
+//    }
+//    avg/=3.0f;
+//    qDebug() << "avg:" << avg;
+
+    float maxCoordinateDistance=*std::max_element(t.constBegin(),t.constEnd());
+//    qDebug() << "max distance:" << maxCoordinateDistance;
+    float scale=26.0f/maxCoordinateDistance;
+//    qDebug() << "scale:" << scale;
+    for(int i=0; i<frames.size(); i++){
+        frames[i].scalePointsAfterLoading(scale);
+    }
+
+
+    t.clear();
+    t.squeeze();
+    t << getMaxPointCoord(0)-getMinPointCoord(0);
+    t << getMaxPointCoord(1)-getMinPointCoord(1);
+    t << getMaxPointCoord(2)-getMinPointCoord(2);
+
+//    qDebug() << "new x:" << t[0];
+//    qDebug() << "new y:" << t[1];
+//    qDebug() << "new z:" << t[2];
+
+    maxCoordinateDistance=*std::max_element(t.constBegin(),t.constEnd());
+//    qDebug() <<"new max distance:" << maxCoordinateDistance;
+
 }
 
 float FrameSystem::getMin()
@@ -106,6 +169,36 @@ float FrameSystem::getMax()
     }
 
     return max;
+}
+
+float FrameSystem::getMinPointCoord(int xyz)
+{
+    if(frames.size() == 0)return 0;
+
+    float min=frames[0].getMinPointCoord(xyz);
+    for(int i=1; i<frames.size();i++){
+        float actual=frames[i].getMinPointCoord(xyz);
+        if(actual < min){
+            min=actual;
+        }
+    }
+    return min;
+
+}
+
+float FrameSystem::getMaxPointCoord(int xyz)
+{
+    if(frames.size() == 0)return 0;
+
+    float max=frames[0].getMaxPointCoord(xyz);
+    for(int i=1; i<frames.size();i++){
+        float actual=frames[i].getMaxPointCoord(xyz);
+        if(actual > max){
+            max=actual;
+        }
+    }
+    return max;
+
 }
 
 QStringList FrameSystem::getDirectoryFiles(QString directoryPath)
@@ -151,16 +244,20 @@ void FrameSystem::setUpFrameColors()
                               max);
     }
 
-
 }
 
-QVector<float> FrameSystem::getPoints(int i)
+const QVector<float> &FrameSystem::getPoints(int i)
 {
     return frames[i].getPoints();
 }
-QVector<float> FrameSystem::getVelocities(int i)
+const QVector<float> &FrameSystem::getVelocities(int i)
 {
     return frames[i].getVelocities();
+}
+
+const QVector<float> &FrameSystem::getAreas(int i)
+{
+    return frames[i].getAreas();
 }
 
 const QVector<float> &FrameSystem::getVertexAreas(int i)
@@ -168,30 +265,30 @@ const QVector<float> &FrameSystem::getVertexAreas(int i)
     return frames[i].getVertexAreas();
 }
 
-QVector<float> FrameSystem::getProjectedVertexAreas(int i)
+const QVector<float> &FrameSystem::getProjectedVertexAreas(int i)
 {
     return frames[i].getProjectedVertexAreas();
 }
 
-QVector<float> FrameSystem::getVertexMasses(int i)
+const QVector<float> &FrameSystem::getVertexMasses(int i)
 {
     return frames[i].getVertexMasses();
 }
 
-QVector<unsigned int> FrameSystem::getIndices(int i)
+const QVector<unsigned int> &FrameSystem::getIndices(int i)
 {
     return frames[i].getIndices();
 }
-QVector<float> FrameSystem::getAmbients(int i)
+const QVector<float> &FrameSystem::getAmbients(int i)
 {
     return frames[i].getAmbients();
 }
-QVector<float> FrameSystem::getDiffuses(int i)
+const QVector<float> &FrameSystem::getDiffuses(int i)
 {
     return frames[i].getDiffuses();
 }
 
-QVector<float> FrameSystem::getSpeculars(int i)
+const QVector<float> &FrameSystem::getSpeculars(int i)
 {
     return frames[i].getSpeculars();
 }

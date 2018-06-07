@@ -11,9 +11,13 @@
 class Frame
 {
 private:
+    bool velocity_data_exist,area_data_exist;
+    bool prefer_drawing_points;
+
     QVector<float> points;
     QVector<float> velocities;
 
+    QVector<float> areas;
     QVector<float> vertexAreas;
     QVector<float> projectedVertexAreas;
     QVector<float> vertexMasses;
@@ -30,19 +34,30 @@ public:
     }
     Frame(QString fileName);
 
+    bool getVelocityDataExist(){
+        return velocity_data_exist;
+    }
+    bool getAreaDataExist(){
+        return area_data_exist;
+    }
+
+    float getMinPointCoord(int xyz);
+    float getMaxPointCoord(int xyz);
+
     float getMin(ColorMode mode);
     float getMax(ColorMode mode);
 
-    QVector<float> getPoints()
+    const QVector<float> &getPoints()
     {
         return points;
     }
-    QVector<float> getVelocities()
+     const QVector<float> &getVelocities()
     {
         return velocities;
     }
 
-    const QVector<float> & getVertexAreas();
+    const QVector<float> &getAreas();
+    const QVector<float> &getVertexAreas();
     const QVector<float> &getProjectedVertexAreas();
     const QVector<float> &getVertexMasses();
 
@@ -61,9 +76,10 @@ public:
     }
 
 
-    QVector<unsigned int> getIndices(){
+    const QVector<unsigned int> &getIndices(){
         return indices;
     }
+    void scalePointsAfterLoading(float scale);
 
     int getPointsSize(){
         return points.size();
@@ -71,6 +87,11 @@ public:
     int getIndicesSize(){
         return indices.size();
     }
+
+    bool preferDrawingPoints();
+    bool velocityDataExist();
+    bool areaDataExist();
+    bool indexDataExist();
 
     void setUpColors(ColorMode mode,QVector3D startColor,QVector3D endColor,float min,float max);
     void setUpVertexAreaColors(QVector3D startColor);

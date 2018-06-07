@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSpinBox>
+#include "openfiledialog.h"
 #include "functions.h"
 
 namespace Ui {

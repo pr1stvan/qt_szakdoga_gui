@@ -22,6 +22,10 @@ public:
     int getIndexSize();
 
     int loadFile(QString fileName);
+
+    bool velocityDataExist();
+    bool areaDataExist();
+    bool indexDataExist();
 };
 
 #endif // FRAMEREADER_H

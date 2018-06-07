@@ -1,8 +1,14 @@
 #include "mainwindow.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "openfiledialog.h"
+
+
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QGuiApplication>
+#include <QScreen>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,13 +36,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     frameLabel->setText(QString("Frame: "));
     speedLabel->setText(QString("Fps: "));
-    ui->toolBar_3->addWidget(frameLabel);
-    ui->toolBar_3->addWidget(frameIdxSpinBox);
+    ui->frameCountToolBar->addWidget(frameLabel);
+    ui->frameCountToolBar->addWidget(frameIdxSpinBox);
 
-    ui->toolBar_3->addSeparator();
+    ui->frameCountToolBar->addSeparator();
 
-    ui->toolBar_3->addWidget(speedLabel);
-    ui->toolBar_3->addWidget(fpsSpinBox);
+    ui->frameCountToolBar->addWidget(speedLabel);
+    ui->frameCountToolBar->addWidget(fpsSpinBox);
 
     connect(frameIdxSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),  ui->glWidget, &GLWidget::setFrameIdx);
     connect(ui->glWidget, &GLWidget::frameIdxChanged, frameIdxSpinBox,&QSpinBox::setValue);
@@ -49,12 +55,30 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuView->addAction(ui->cameraDock->toggleViewAction());
     ui->menuView->addAction(ui->lightsDock->toggleViewAction());
     ui->menuView->addAction(ui->materialDock->toggleViewAction());
+    ui->menuView->addSeparator();
+    ui->menuView->addAction(ui->loadFileToolbar->toggleViewAction());
+    ui->menuView->addAction(ui->frameCountToolBar->toggleViewAction());
+    ui->menuView->addAction(ui->mediControlToolBar->toggleViewAction());
 
+    ui->solidColorButton->setVisible(true);
+    ui->solidColorLabel->setVisible(true);
+    ui->startColorLabel->setVisible(false);
+    ui->startColorButton->setVisible(false);
+    ui->endColorButton->setVisible(false);
+    ui->endColorLabel->setVisible(false);
 
-    ui->solidColorWidget->setVisible(true);
-    ui->startEndColorWidget->setVisible(false);
-
+    ui->materialColoringComboBox->setAvailableColorModes(true,
+                                                         ui->glWidget->velocityDataExist(),
+                                                         ui->glWidget->areaDataExist()
+                                                         );
     ui->glWidget->updateSignal();
+
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int h = screenGeometry.height();
+    int w = screenGeometry.width();
+
+    this->resize(5*w/8,h/2);
 }
 
 
@@ -74,32 +98,71 @@ void MainWindow::on_actionAbout_triggered()
                        tr("It's an OpenGL sample application."));
 }
 
+QString getDesktopLocation(){
+    QString desktopPath= QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).first();
+
+    if(desktopPath.at(desktopPath.size() -1) != QChar('/')){
+        return desktopPath + QChar('/');
+    }
+    return desktopPath;
+}
 void MainWindow::on_actionOpen_triggered()
 {
+//    OpenFilesDialog fileDialog(0,Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
+//    fileDialog.setModal(false);
+
+//    int res=fileDialog.exec();
+//    if(res== QDialog::Accepted){
+//        QString name=fileDialog.getDirectoryName();
+//        qDebug() << name.toLatin1().data();
+//    }
+//    else{
+//        qDebug() << "rejected";
+//    }
+    //fileDialog.exec();
 //    QString directoryName =
 //        QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Directory"), QDir::rootPath()));
 
-       QString directoryName =
-            QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Directory"),QString("C:/Users/THe_KinG/Desktop/")));
+    QStringList extensions;
+    extensions << QString("*.vtp");
 
-    int framesCount = ui->glWidget->loadFrameDirectory(directoryName);
+    QStringList filePaths=OpenFileDialog::getFiles(extensions,getDesktopLocation());
 
-    if(framesCount){
-        frameIdxSpinBox->setEnabled(true);
-        frameIdxSpinBox->setMinimum(0);
-        frameIdxSpinBox->setMaximum(framesCount-1);
-        frameIdxSpinBox->setValue(0);
 
-        fpsSpinBox->setEnabled(true);
-        fpsSpinBox->setValue(60);
-    }
-    else{
-        frameIdxSpinBox->setEnabled(false);
-        frameIdxSpinBox->setMinimum(0);
-        frameIdxSpinBox->setValue(0);
+//    QString directoryName =
+//            QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Directory"),QString("C:/Users/THe_KinG/Desktop/000"),
+//                                                                       QFileDialog::ShowDirsOnly|
+//                                                                       QFileDialog::DontResolveSymlinks |
+//                                                                       QFileDialog::DontUseNativeDialog));
+    if(!filePaths.isEmpty()){
+        int framesCount = ui->glWidget->loadFrameDirectory(filePaths);
 
-        fpsSpinBox->setEnabled(false);
-        fpsSpinBox->setValue(60);
+        ui->materialColoringComboBox->setCurrentIndex(0);
+
+        ui->materialColoringComboBox->setAvailableColorModes(true,
+                                                             ui->glWidget->velocityDataExist(),
+                                                             ui->glWidget->areaDataExist()
+                                                             );
+        ui->materialColoringComboBox->setCurrentIndex(0);
+
+
+        if(framesCount){
+            frameIdxSpinBox->setEnabled(true);
+            frameIdxSpinBox->setMinimum(0);
+            frameIdxSpinBox->setMaximum(framesCount-1);
+            frameIdxSpinBox->setValue(0);
+
+            fpsSpinBox->setEnabled(true);
+            fpsSpinBox->setValue(60);
+        }
+        else{
+            frameIdxSpinBox->setEnabled(false);
+            frameIdxSpinBox->setMinimum(0);
+            frameIdxSpinBox->setValue(0);
+
+            fpsSpinBox->setEnabled(false);
+            fpsSpinBox->setValue(60);
+        }
     }
 
 }
@@ -141,12 +204,22 @@ void MainWindow::on_actionreplay_triggered()
 void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
 {
     if(mode == SOLID){
-        ui->solidColorWidget->setVisible(true);
-        ui->startEndColorWidget->setVisible(false);
+        ui->solidColorButton->setVisible(true);
+        ui->solidColorLabel->setVisible(true);
+        ui->startColorLabel->setVisible(false);
+        ui->startColorButton->setVisible(false);
+        ui->endColorButton->setVisible(false);
+        ui->endColorLabel->setVisible(false);
+
     }
     else{
-         ui->solidColorWidget->setVisible(false);
-         ui->startEndColorWidget->setVisible(true);
+        ui->solidColorButton->setVisible(false);
+        ui->solidColorLabel->setVisible(false);
+        ui->startColorLabel->setVisible(true);
+        ui->startColorButton->setVisible(true);
+        ui->endColorButton->setVisible(true);
+        ui->endColorLabel->setVisible(true);
+
     }
     ui->glWidget->setColorMode(mode);
 }
@@ -154,12 +227,20 @@ void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
 void MainWindow::on_glWidget_colorModeChanged(ColorMode mode)
 {
     if(mode == SOLID){
-        ui->solidColorWidget->setVisible(true);
-        ui->startEndColorWidget->setVisible(false);
+        ui->solidColorButton->setVisible(true);
+        ui->solidColorLabel->setVisible(true);
+        ui->startColorLabel->setVisible(false);
+        ui->startColorButton->setVisible(false);
+        ui->endColorButton->setVisible(false);
+        ui->endColorLabel->setVisible(false);
     }
     else{
-         ui->solidColorWidget->setVisible(false);
-         ui->startEndColorWidget->setVisible(true);
+        ui->solidColorButton->setVisible(false);
+        ui->solidColorLabel->setVisible(false);
+        ui->startColorLabel->setVisible(true);
+        ui->startColorButton->setVisible(true);
+        ui->endColorButton->setVisible(true);
+        ui->endColorLabel->setVisible(true);
     }
 
     ui->materialColoringComboBox->setColorMode(mode);

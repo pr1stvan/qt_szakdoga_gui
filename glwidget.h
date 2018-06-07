@@ -78,7 +78,9 @@ public:
     QSize sizeHint() const override;
 
     void updateSignal();
-    int loadFrameDirectory(QString directoryName);
+    int loadFrameDirectory(QStringList filePaths);
+    bool velocityDataExist();
+    bool areaDataExist();
 
 public slots:
     void cameraSetXRotation(int degrees);
@@ -92,6 +94,7 @@ public slots:
     void setLightPower(int power);
     void setSpecularPower(int power);
     void setSmoothness(int smoothnessValue);
+    void setDrawingTriangles(bool state);
 
     void setLightColor(QColor color);
     void setBackgroundColor(QColor color);
@@ -138,13 +141,13 @@ signals:
     void startColorChanged(QColor color);
     void endColorChanged(QColor color);
 
-
     void lightXChanged(int x);
     void lightYChanged(int y);
     void lightZChanged(int z);
 
     void frameIdxChanged(int idx);
 
+    void drawingTrianglesChanged(bool state);
 protected:
     void initializeGL() override;
     void paintGL() override;
@@ -182,6 +185,7 @@ private:
     int m_lightPosLoc;
     int m_lightPowerLoc;
     int m_specularPowerLoc;
+    int m_ambientPowerLoc;
     int m_smoothnessLoc;
     int m_lightColorLoc;
     QMatrix4x4 M;
@@ -196,6 +200,7 @@ private:
     int lightPower;
     int specularPower;
     int smoothness;
+    int ambientPower;
 
     ColorMode colorMode;
     QColor lightColor;
@@ -210,6 +215,8 @@ private:
     int frameIdx;
     int fps;
     bool areFramesLoaded;
+
+    bool drawingTriangles;
 
 };
 

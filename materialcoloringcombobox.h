@@ -20,7 +20,9 @@ public slots:
     void setColorMode(ColorMode mode);
 
     void changeColorMode(int idx);
+    void setAvailableColorModes(bool solid, bool velocity, bool area);
 private:
+
     ColorMode colorMode;
 };
 

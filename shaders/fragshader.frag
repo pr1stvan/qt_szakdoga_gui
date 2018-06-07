@@ -2,6 +2,7 @@
 
 // Interpolated values from the vertex shaders
 in vec3 Position_worldspace;
+in vec3 Position_cameraspace;
 in vec3 Normal_cameraspace;
 in vec3 EyeDirection_cameraspace;
 in vec3 LightDirection_cameraspace;
@@ -16,18 +17,15 @@ out vec3 color;
 uniform sampler2D myTextureSampler;
 uniform mat4 MV;
 uniform vec3 LightPosition_worldspace;
+uniform vec3 LightColor;
+uniform float LightPower;
+uniform float SpecularPower;
+uniform float Smoothness;
+uniform float AmbientPower;
 
-void main(){
-
-        // Light emission properties
-        // You probably want to put them as uniforms
-        vec3 LightColor = vec3(1.0,1.0,1.0);
-        float LightPower = 50.0f;
-
-        // Material properties
-        vec3 MaterialDiffuseColor = colour_diffuse;
-        vec3 MaterialAmbientColor = 0.5*colour_ambient;
-        vec3 MaterialSpecularColor = colour_specular;
+void main(){  
+        //normal vector in cameraspace from interpolated position using the partial derivatives method
+        vec3 Normal_cameraspace = normalize(cross(dFdx(Position_cameraspace), dFdy(Position_cameraspace)));
 
         // Distance to the light
         float distance = length( LightPosition_worldspace - Position_worldspace );
@@ -53,14 +51,19 @@ void main(){
         //  - Looking elsewhere -> < 1
         float cosAlpha = clamp( dot( E,R ), 0,1 );
 
-        color =
-                // Ambient : simulates indirect lighting
-                MaterialAmbientColor +
-                // Diffuse : "color" of the object
-                MaterialDiffuseColor * LightColor * LightPower * cosTheta / (distance*distance) +
-                // Specular : reflective highlight, like a mirror
-                MaterialSpecularColor * LightColor * LightPower * pow(cosAlpha,5) / (distance*distance);
+        float cosBeta = dot(n,E);
+
+        // Ambient : simulates indirect lighting
+        vec3 AmbientColor = AmbientPower*colour_ambient;
+         // Diffuse : "color" of the object
+        vec3 DiffuseColor = colour_diffuse * LightColor * LightPower * cosTheta / (distance*distance);
+        //vec3 DiffuseColor = 0.5*clamp(colour_diffuse * LightColor * LightPower * cosTheta / (distance*distance),vec3(0.0, 0.0, 0.0),colour_diffuse);
+        // Specular : reflective highlight, like a mirror
+        vec3 SpecularColor = colour_specular * LightColor * LightPower * SpecularPower * pow(cosAlpha,Smoothness) / (distance*distance);
 
 
-
+        if(cosBeta < 0){
+            DiffuseColor = vec3(0,0,0);
+        }
+        color =  AmbientColor+DiffuseColor + SpecularColor;
 }

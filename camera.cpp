@@ -37,7 +37,7 @@ QMatrix4x4 Camera::P(){
 
     pMatrix.setToIdentity();
 
-    pMatrix.perspective(viewAngle,(float)canvasWidth/(float)canvasHeight,0.1,1000);
+    pMatrix.perspective(viewAngle,(float)canvasWidth/(float)canvasHeight,0.1f,1000);
 
     return pMatrix;
 }

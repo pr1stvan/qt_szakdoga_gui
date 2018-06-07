@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+#CONFIG += c++11 console
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = qt_szakdoga_gui
@@ -27,14 +29,17 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     camera.cpp \
-    camerawidget.cpp \
     glwidget.cpp \
     frame.cpp \
     framereader.cpp \
     framesystem.cpp \
     colorbutton.cpp \
     functions.cpp \
-    materialcoloringcombobox.cpp
+    materialcoloringcombobox.cpp \
+    openfiledialog.cpp \
+    customfilesystemmodel.cpp \
+    treeitem.cpp \
+    fileentry.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,10 +51,15 @@ HEADERS += \
     framesystem.h \
     colorbutton.h \
     functions.h \
-    materialcoloringcombobox.h
+    materialcoloringcombobox.h \
+    openfiledialog.h \
+    customfilesystemmodel.h \
+    treeitem.h \
+    fileentry.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    openfiledialog.ui
 
 RESOURCES += \
     resource.qrc

@@ -6,9 +6,9 @@
 ColorButton::ColorButton(QWidget *parent,const QColor & color) :
     QPushButton(parent)
 {
-    this->setMinimumWidth(50);
     currentColor = color;
     connect(this, SIGNAL(clicked()), this, SLOT(chooseColor()));
+    this->resize(this->height(), this->height());
 }
 
 QColor ColorButton::getColor()
@@ -35,7 +35,8 @@ void ColorButton::paintEvent(QPaintEvent *event)
 {
     QPushButton::paintEvent(event);
 
-    int colorPadding = 5;
+
+    int colorPadding = this->height()/6;
 
     QRect rect = event->rect();
     QPainter painter( this );
@@ -43,4 +44,9 @@ void ColorButton::paintEvent(QPaintEvent *event)
     painter.setPen("#CECECE");
     rect.adjust(colorPadding, colorPadding, -1-colorPadding, -1-colorPadding);
     painter.drawRect(rect);
+}
+
+void ColorButton::resizeEvent(QResizeEvent *)
+{
+    this->resize(this->height(), this->height());
 }
