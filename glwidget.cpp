@@ -56,7 +56,7 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <math.h>
-#include <qDebug>
+#include <QDebug>
 
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent),

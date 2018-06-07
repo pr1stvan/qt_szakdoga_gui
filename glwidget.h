@@ -60,7 +60,7 @@
 #include <QColor>
 
 #include "camera.h"
-#include "frameSystem.h"
+#include "framesystem.h"
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
 

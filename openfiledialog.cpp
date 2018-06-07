@@ -203,10 +203,15 @@ void OpenFileDialog::on_okButton_clicked()
         break;
     }
     case EntryType::directory:
+    {
         QString directoryPath=treeViewModel->getDirectoryPath()+entry.name()+QChar('/');
         openDirectory(directoryPath);
         break;
     }
+    default:
+        break;
+    }
+
 }
 
 void OpenFileDialog::on_pathComboBox_activated(const QString &directoryPath)
@@ -334,15 +339,18 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
             break;
         }
         case EntryType::directory:
+        {
             QString directoryPath=treeViewModel->getDirectoryPath()+entry.name()+QChar('/');
             openDirectory(directoryPath);
             break;
         }
+        default:
+            break;
+        }
 }
 
-void OpenFileDialog::mySelectionChanged(const QModelIndex &index, const QModelIndex &previous)
+void OpenFileDialog::mySelectionChanged(const QModelIndex &index, const QModelIndex &)
 {
-    previous;
     TreeItem * item=static_cast<TreeItem*>(index.internalPointer());
     FileEntry entry=item->getFile();
     ui->textBox1->setText(entry.name());

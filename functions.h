@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QVector3D>
+#include <cmath>
 
 QVector<QVector3D> toQVector3DArray(const QVector<float> & array);
 QVector<float> toFloatArray(const QVector<QVector3D> & array);
