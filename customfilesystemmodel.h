@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QDateTime>
 #include <QtAlgorithms>
+#include <QTreeView>
 
 #include "treeitem.h"
 
@@ -54,6 +55,7 @@ private:
     TreeItem *rootItem;
     QFileIconProvider iconProvider;
     EntryType m_lastClickState;
+
 };
 //! [0]
 

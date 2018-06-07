@@ -28,11 +28,16 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
     QFileInfo file(directoryPath);
     if(file.exists()){
         treeViewModel->setup(directoryPath);
+
+
         setupCombobox(directoryPath);
         addPathToStack(directoryPath);
     }
     else{
         treeViewModel->setup(QDir::rootPath());
+
+
+
         setupCombobox(QDir::rootPath());
         addPathToStack(QDir::rootPath());
     }
@@ -72,7 +77,6 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
          ui->listWidget->addItem(newItem);
     }
 
-
 //    QStringList list=QStandardPaths::standardLocations(QStandardPaths::GenericCacheLocation);
 
 
@@ -86,12 +90,21 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
     ui->nextButton->setDefaultAction(ui->actionNext);
     ui->upDirectoryButton->setDefaultAction(ui->actionUpDirectory);
 
+
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->geometry();
     int h = screenGeometry.height();
     int w = screenGeometry.width();
 
     this->resize(w/3,h/3);
+
+    QItemSelectionModel *selectionModel = ui->treeView->selectionModel();
+
+    if(!QObject::connect(selectionModel, &QItemSelectionModel::currentChanged,
+                          this, &OpenFileDialog::mySelectionChanged)){
+
+        qDebug() << "can't connect slot";
+    }
 }
 
 OpenFileDialog::~OpenFileDialog()
@@ -149,15 +162,10 @@ void OpenFileDialog::openDirectory(QString directoryPath)
     addPathToStack(directoryPath);
 }
 
-void OpenFileDialog::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
-{
-
-}
-
 void OpenFileDialog::on_okButton_clicked()
-{ 
-    QItemSelectionModel * model=ui->treeView->selectionModel();
-    QModelIndexList selectedIndexes=model->selectedIndexes();
+{
+    QItemSelectionModel *selectionModel = ui->treeView->selectionModel();
+    QModelIndexList selectedIndexes=selectionModel->selectedIndexes();
 
     if(selectedIndexes.isEmpty()){
         return;
@@ -222,7 +230,6 @@ void OpenFileDialog::on_actionUpDirectory_triggered()
         setupCombobox(directoryPath);
 
         addPathToStack(directoryPath);
-
     }
 }
 
@@ -253,6 +260,7 @@ void OpenFileDialog::on_actionNext_triggered()
 
         if(pathStackIdx == pathStack.size() -1)ui->actionNext->setEnabled(false);
         ui->actionPrev->setEnabled(true);
+
     }
 }
 
@@ -286,19 +294,13 @@ void OpenFileDialog::on_textBox1_textEdited(const QString &text)
                          QVariant::fromValue(text), -1,
                          Qt::MatchExactly);
 
-
+    QItemSelectionModel *selectionModel = ui->treeView->selectionModel();
     for(int i=0; i<list.size(); i++){
         QModelIndex index=list.at(i);
-        QItemSelectionModel * model=ui->treeView->selectionModel();
-        model->select(index, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+
+        selectionModel->select(index, QItemSelectionModel::Select | QItemSelectionModel::Rows);
     }
 
-}
-void OpenFileDialog::on_treeView_clicked(const QModelIndex &index)
-{
-    TreeItem * item=static_cast<TreeItem*>(index.internalPointer());
-    FileEntry entry=item->getFile();
-    ui->textBox1->setText(entry.name());
 }
 
 void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
@@ -337,3 +339,12 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
             break;
         }
 }
+
+void OpenFileDialog::mySelectionChanged(const QModelIndex &index, const QModelIndex &previous)
+{
+    previous;
+    TreeItem * item=static_cast<TreeItem*>(index.internalPointer());
+    FileEntry entry=item->getFile();
+    ui->textBox1->setText(entry.name());
+}
+

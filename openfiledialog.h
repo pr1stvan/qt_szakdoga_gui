@@ -31,10 +31,6 @@ public:
 private slots:
     void addPathToStack(QString path);
 
-    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
-
-    void on_treeView_clicked(const QModelIndex &index);
-
     void on_okButton_clicked();
 
     void on_pathComboBox_activated(const QString &directoryPath);
@@ -49,14 +45,14 @@ private slots:
 
     void on_cancelButton_clicked();
 
-    QStringList selectedFiles();
-
     void on_textBox1_textEdited(const QString &text);
-
 
     void on_treeView_doubleClicked(const QModelIndex &index);
 
+    void mySelectionChanged(const QModelIndex &index, const QModelIndex &previous);
+
 private:
+    QStringList selectedFiles();
     void setupCombobox(QString path);
     void openDirectory(QString directoryPath);
     Ui::OpenFileDialog *ui;
@@ -68,6 +64,7 @@ private:
     //for the next and prev buttons
     QStringList pathStack;
     int pathStackIdx;
+
 };
 
 #endif // OPENFILEDIALOG_H
