@@ -1,4 +1,6 @@
+#include <algorithm>
 #include "customfilesystemmodel.h"
+
 
 CustomFileSystemModel::CustomFileSystemModel(QObject *parent)
     : QAbstractItemModel(parent)
@@ -77,7 +79,7 @@ void CustomFileSystemModel::setup(QString directoryPath)
                                  EntryType::file);
 
         //Has number at the end, e.g out_001.vtp
-        QRegExp rx(".*_[0-9]*\..*$");
+        QRegExp rx(".*_[0-9]*\\..*$");
 
         if(rx.exactMatch(file.name())){
             //remove numbers from the end
@@ -142,11 +144,7 @@ void CustomFileSystemModel::setup(QString directoryPath)
         }
 
     }
-
-
-
     endResetModel();
-
 }
 
 void CustomFileSystemModel::sort(int column, Qt::SortOrder order)

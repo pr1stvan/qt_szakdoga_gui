@@ -24,38 +24,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += ./headers
+INCLUDEPATH += ./sources
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    camera.cpp \
-    glwidget.cpp \
-    frame.cpp \
-    framereader.cpp \
-    framesystem.cpp \
-    colorbutton.cpp \
-    functions.cpp \
-    materialcoloringcombobox.cpp \
-    openfiledialog.cpp \
-    customfilesystemmodel.cpp \
-    treeitem.cpp \
-    fileentry.cpp
+    sources/main.cpp \
+    sources/mainwindow.cpp \
+    sources/camera.cpp \
+    sources/glwidget.cpp \
+    sources/frame.cpp \
+    sources/framereader.cpp \
+    sources/framesystem.cpp \
+    sources/colorbutton.cpp \
+    sources/functions.cpp \
+    sources/materialcoloringcombobox.cpp \
+    sources/openfiledialog.cpp \
+    sources/customfilesystemmodel.cpp \
+    sources/treeitem.cpp \
+    sources/fileentry.cpp
 
 HEADERS += \
-        mainwindow.h \
-    camera.h \
-    camerawidget.h \
-    glwidget.h \
-    frame.h \
-    framereader.h \
-    framesystem.h \
-    colorbutton.h \
-    functions.h \
-    materialcoloringcombobox.h \
-    openfiledialog.h \
-    customfilesystemmodel.h \
-    treeitem.h \
-    fileentry.h
+    headers/mainwindow.h \
+    headers/camera.h \
+    headers/camerawidget.h \
+    headers/glwidget.h \
+    headers/frame.h \
+    headers/framereader.h \
+    headers/framesystem.h \
+    headers/colorbutton.h \
+    headers/functions.h \
+    headers/materialcoloringcombobox.h \
+    headers/openfiledialog.h \
+    headers/customfilesystemmodel.h \
+    headers/treeitem.h \
+    headers/fileentry.h
+
 
 FORMS += \
         mainwindow.ui \

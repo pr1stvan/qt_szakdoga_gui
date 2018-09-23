@@ -12,17 +12,12 @@ MaterialColoringComboBox::MaterialColoringComboBox(QWidget *parent = Q_NULLPTR)
     this -> addItem(QString("vertex mass"));
 
     this -> setCurrentIndex(0);
-
-
-
     connect(this, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),this, &MaterialColoringComboBox::changeColorMode);
 }
 
 void MaterialColoringComboBox::setColorMode(ColorMode mode)
 {
     colorMode=mode;
-
-
 
     switch(mode){
     case SOLID:

@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     fpsSpinBox->setSingleStep(1);
 
     fpsSpinBox->setMinimum(1);
+
     fpsSpinBox->setMaximum(1000);
     fpsSpinBox->setValue(6000);
 
