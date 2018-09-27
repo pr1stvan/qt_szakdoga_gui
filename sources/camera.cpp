@@ -42,8 +42,6 @@ QMatrix4x4 Camera::P(){
     return pMatrix;
 }
 void Camera::setPosition(QVector3D pos){
-
-
     float cosalphaX=QVector3D::dotProduct(QVector3D(pos.x(),0,pos.z()).normalized(),QVector3D(0,0,1));
 
     float cosalphaY=QVector3D::dotProduct(pos.normalized(),up);

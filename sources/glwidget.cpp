@@ -63,12 +63,12 @@ GLWidget::GLWidget(QWidget *parent)
       m_xRot(0),
       m_yRot(0),
       m_zRot(0),
-      m_vertexBuffer(QOpenGLBuffer::VertexBuffer),
-      m_ambientBuffer(QOpenGLBuffer::VertexBuffer),
-      m_diffuseBuffer(QOpenGLBuffer::VertexBuffer),
-      m_specularBuffer(QOpenGLBuffer::VertexBuffer),
-      m_indexBuffer(QOpenGLBuffer::IndexBuffer),
-      m_program(0),
+      m_vertexBufferID(0),
+      m_ambientBufferID(0),
+      m_diffuseBufferID(0),
+      m_specularBufferID(0),
+      m_indexBufferID(0),
+      m_programID(0),
       autoReplay(false),
       paused(true),
       frameIdx(0),
@@ -436,14 +436,17 @@ void GLWidget::timer_tick()
 void GLWidget::cleanup()
 {
     makeCurrent();
-    m_vertexBuffer.destroy();
-    m_ambientBuffer.destroy();
-    m_diffuseBuffer.destroy();
-    m_specularBuffer.destroy();
-    m_indexBuffer.destroy();
 
-    delete m_program;
-    m_program = 0;
+    glDeleteBuffers(1, &m_vertexBufferID);
+    glDeleteBuffers(1, &m_ambientBufferID);
+    glDeleteBuffers(1, &m_diffuseBufferID);
+    glDeleteBuffers(1, &m_specularBufferID);
+    glDeleteBuffers(1, &m_indexBufferID);
+
+    glDeleteVertexArrays(1, &m_vaoID);
+
+    glDeleteProgram(m_programID);
+    m_programID = 0;
     doneCurrent();
 }
 
@@ -465,60 +468,50 @@ void GLWidget::initializeGL()
     //set the background color
     glClearColor((float)backgroundColor.redF(), (float)backgroundColor.greenF(), (float)backgroundColor.blueF(), m_transparent ? 0 : 1);
 
-    m_program = new QOpenGLShaderProgram;
+    QString vertexSource = loadFile(":/shaders/vertexshader.vert");
+    QString fragmentSource = loadFile(":/shaders/fragshader.frag");
 
-    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex,":/shaders/vertexshader.vert");
-    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/fragshader.frag");
+    m_programID = createShaderProgramFromSource(
+                vertexSource.toLatin1().constData(),
+                fragmentSource.toLatin1().constData());
 
-    m_program->link();
+    glUseProgram(m_programID);
 
-    m_program->bind();
-    m_MVPMatrixLoc = m_program->uniformLocation("MVP");
-    m_VMatrixLoc = m_program->uniformLocation("V");
-    m_MMatrixLoc = m_program->uniformLocation("M");
-    m_lightPosLoc = m_program->uniformLocation("LightPosition_worldspace");
-    m_lightColorLoc = m_program->uniformLocation("LightColor");
-    m_lightPowerLoc= m_program->uniformLocation("LightPower");
-    m_specularPowerLoc= m_program->uniformLocation("SpecularPower");
-    m_smoothnessLoc= m_program->uniformLocation("Smoothness");
-    m_ambientPowerLoc=m_program->uniformLocation("AmbientPower");
+    m_MVPMatrixLoc = glGetUniformLocation(m_programID, "MVP");
+    m_VMatrixLoc = glGetUniformLocation(m_programID, "V");
+    m_MMatrixLoc = glGetUniformLocation(m_programID, "M");
+    m_lightPosLoc = glGetUniformLocation(m_programID, "LightPosition_worldspace");
+    m_lightColorLoc = glGetUniformLocation(m_programID, "LightColor");
+    m_lightPowerLoc = glGetUniformLocation(m_programID, "LightPower");
+    m_specularPowerLoc = glGetUniformLocation(m_programID, "SpecularPower");
+    m_smoothnessLoc = glGetUniformLocation(m_programID, "Smoothness");
+    m_ambientPowerLoc = glGetUniformLocation(m_programID, "AmbientPower");
 
     // Create a vertex array object. In OpenGL ES 2.0 and OpenGL 2.x
     // implementations this is optional and support may not be present
     // at all. Nonetheless the below code works in all cases and makes
     // sure there is a VAO when one is needed.
-    m_vao.create();
-    QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
 
-    // Setup our vertex buffer objects.
-    m_vertexBuffer.create();
-    m_vertexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
+    glGenVertexArrays(1, &m_vaoID);	// create 1 vertex array object
+    glBindVertexArray(m_vaoID);		// make it active
 
-    m_ambientBuffer.create();
-    m_ambientBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-
-    m_diffuseBuffer.create();
-    m_diffuseBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-
-    m_specularBuffer.create();
-    m_specularBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-
-    m_indexBuffer.create();
-    m_indexBuffer.setUsagePattern(QOpenGLBuffer::DynamicDraw);
+    glGenBuffers(1, &m_vertexBufferID);
+    glGenBuffers(1, &m_ambientBufferID);
+    glGenBuffers(1, &m_diffuseBufferID);
+    glGenBuffers(1, &m_specularBufferID);
+    glGenBuffers(1, &m_indexBufferID);
 
     // Store the vertex attribute bindings for the program.
     allocateBuffers();
     setupVertexAttribs();
-
-    m_program->release();
 }
 
 
 void GLWidget::setupVertexAttribs(){
-    m_vertexBuffer.bind();
-    QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
-    f->glEnableVertexAttribArray(0);
-    f->glVertexAttribPointer(
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferID);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(
                 0,                  // attribute
                 3,                  // size
                 GL_FLOAT,           // type
@@ -526,12 +519,11 @@ void GLWidget::setupVertexAttribs(){
                 0,                  // stride
                 (void*)0            // array buffer offset
             );
-    m_vertexBuffer.release();
 
-    m_ambientBuffer.bind();
-    f = QOpenGLContext::currentContext()->functions();
-    f->glEnableVertexAttribArray(1);
-    f->glVertexAttribPointer(
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_ambientBufferID);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(
                 1,                  // attribute
                 3,                  // size
                 GL_FLOAT,           // type
@@ -539,12 +531,10 @@ void GLWidget::setupVertexAttribs(){
                 0,                  // stride
                 (void*)0            // array buffer offset
     );
-    m_ambientBuffer.release();
 
-    m_diffuseBuffer.bind();
-    f = QOpenGLContext::currentContext()->functions();
-    f->glEnableVertexAttribArray(2);
-    f->glVertexAttribPointer(
+    glBindBuffer(GL_ARRAY_BUFFER, m_diffuseBufferID);
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(
                 2,                  // attribute
                 3,                  // size
                 GL_FLOAT,           // type
@@ -552,12 +542,10 @@ void GLWidget::setupVertexAttribs(){
                 0,                  // stride
                 (void*)0            // array buffer offset
     );
-    m_diffuseBuffer.release();
 
-    m_specularBuffer.bind();
-    f = QOpenGLContext::currentContext()->functions();
-    f->glEnableVertexAttribArray(3);
-    f->glVertexAttribPointer(
+    glBindBuffer(GL_ARRAY_BUFFER, m_specularBufferID);
+    glEnableVertexAttribArray(3);
+    glVertexAttribPointer(
                 3,                  // attribute
                 3,                  // size
                 GL_FLOAT,           // type
@@ -565,30 +553,10 @@ void GLWidget::setupVertexAttribs(){
                 0,                  // stride
                 (void*)0            // array buffer offset
     );
-    m_specularBuffer.release();
 }
 
 void GLWidget::allocateBuffers()
 {
-    m_vertexBuffer.bind();
-    m_vertexBuffer.allocate(frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_vertexBuffer.release();
-
-    m_ambientBuffer.bind();
-    m_ambientBuffer.allocate(frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_ambientBuffer.release();
-
-    m_diffuseBuffer.bind();
-    m_diffuseBuffer.allocate(frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_diffuseBuffer.release();
-
-    m_specularBuffer.bind();
-    m_specularBuffer.allocate(frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_specularBuffer.release();
-
-    m_indexBuffer.bind();
-    m_indexBuffer.allocate(frameSystem.getIndexAllocationSize()*sizeof(int));
-    m_indexBuffer.release();
 
 }
 
@@ -609,28 +577,101 @@ void GLWidget::animate(int frameCount)
         loadFrameToBuffers();
     }
 }
+
+void GLWidget::getErrorInfo(unsigned int handle)
+{
+    int logLen;
+    glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &logLen);
+    if (logLen > 0) {
+        char * log = new char[logLen];
+        int written;
+        glGetShaderInfoLog(handle, logLen, &written, log);
+        printf("Shader log:\n%s", log);
+        delete[] log;
+    }
+}
+
+void GLWidget::checkShader(unsigned int shader, const char *message)
+{
+    int OK;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &OK);
+    if (!OK) {
+        printf("%s!\n", message);
+        getErrorInfo(shader);
+    }
+}
+
+void GLWidget::checkLinking(unsigned int program)
+{
+    int OK;
+    glGetProgramiv(program, GL_LINK_STATUS, &OK);
+    if (!OK) {
+        printf("Failed to link shader program!\n");
+        getErrorInfo(program);
+    }
+}
+
+unsigned int GLWidget::createShaderProgramFromSource(const char *vertexSource, const char *fragmentSource)
+{
+    // Create vertex shader from string
+    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    if (!vertexShader) {
+        printf("Error in vertex shader creation\n");
+        exit(1);
+    }
+    glShaderSource(vertexShader, 1, &vertexSource, NULL);
+    glCompileShader(vertexShader);
+    checkShader(vertexShader, "Vertex shader error");
+
+    // Create fragment shader from string
+    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    if (!fragmentShader) {
+        printf("Error in fragment shader creation\n");
+        exit(1);
+    }
+    glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
+    glCompileShader(fragmentShader);
+    checkShader(fragmentShader, "Fragment shader error");
+
+    // Attach shaders to a single program
+    unsigned int programID = glCreateProgram();
+    if (!programID) {
+        printf("Error in shader program creation\n");
+        exit(1);
+    }
+
+    glAttachShader(programID, vertexShader);
+    glAttachShader(programID, fragmentShader);
+
+    glLinkProgram(programID);
+    checkLinking(programID);
+
+    glDetachShader(programID, vertexShader);
+    glDetachShader(programID, fragmentShader);
+
+    glDeleteShader(fragmentShader);
+    glDeleteShader(fragmentShader);
+
+    return programID;
+}
+
+
 void GLWidget::loadFrameToBuffers()
 {
-    m_vertexBuffer.bind();
-    m_vertexBuffer.write(0,frameSystem.getPoints(frameIdx).constData(),frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_vertexBuffer.release();
+    glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferID);
+    glBufferData(GL_ARRAY_BUFFER, frameSystem.getVertexAllocationSize()*sizeof(float), frameSystem.getPoints(frameIdx).constData(), GL_DYNAMIC_DRAW);
 
-    m_ambientBuffer.bind();
-    m_ambientBuffer.write(0, frameSystem.getAmbients(frameIdx).constData(),frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_ambientBuffer.release();
+    glBindBuffer(GL_ARRAY_BUFFER, m_ambientBufferID);
+    glBufferData(GL_ARRAY_BUFFER, frameSystem.getVertexAllocationSize()*sizeof(float),frameSystem.getAmbients(frameIdx).constData(), GL_DYNAMIC_DRAW);
 
-    m_diffuseBuffer.bind();
-    m_diffuseBuffer.write(0,frameSystem.getDiffuses(frameIdx).constData(),frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_diffuseBuffer.release();
+    glBindBuffer(GL_ARRAY_BUFFER, m_diffuseBufferID);
+    glBufferData(GL_ARRAY_BUFFER, frameSystem.getVertexAllocationSize()*sizeof(float), frameSystem.getDiffuses(frameIdx).constData(), GL_DYNAMIC_DRAW);
 
-    m_specularBuffer.bind();
-    m_specularBuffer.write(0,frameSystem.getSpeculars(frameIdx).constData(),frameSystem.getVertexAllocationSize()*sizeof(float));
-    m_specularBuffer.release();
+    glBindBuffer(GL_ARRAY_BUFFER, m_specularBufferID);
+    glBufferData(GL_ARRAY_BUFFER,frameSystem.getVertexAllocationSize()*sizeof(float), frameSystem.getSpeculars(frameIdx).constData(), GL_DYNAMIC_DRAW);
 
-    m_indexBuffer.bind();
-    m_indexBuffer.write(0,frameSystem.getIndices(frameIdx).constData(),frameSystem.getIndexAllocationSize()*sizeof(int));
-    m_indexBuffer.release();
-
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferID);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, frameSystem.getIndexAllocationSize()*sizeof(int), frameSystem.getIndices(frameIdx).constData(), GL_DYNAMIC_DRAW);
 }
 
 void GLWidget::paintGL()
@@ -642,27 +683,27 @@ void GLWidget::paintGL()
     glEnable(GL_DEPTH_TEST);
     //glEnable(GL_CULL_FACE);
 
-    QOpenGLVertexArrayObject::Binder vaoBinder(&m_vao);
-
-    m_program->bind();
-    m_indexBuffer.bind();
+    glUseProgram(m_programID);
+    glBindVertexArray(m_vaoID);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_indexBufferID);
 
     QMatrix4x4 P=camera.P();
     QMatrix4x4 V=camera.V();
     M.setToIdentity();
+    QMatrix4x4 PVM = P*V*M;
 
-    m_program->setUniformValue(m_MVPMatrixLoc,P*V*M);
-    m_program->setUniformValue(m_VMatrixLoc, V);
-    m_program->setUniformValue(m_MMatrixLoc, M);
+    glUniformMatrix4fv(m_MVPMatrixLoc,1,GL_FALSE,PVM.constData());
+    glUniformMatrix4fv(m_VMatrixLoc,1,GL_FALSE,V.constData());
+    glUniformMatrix4fv(m_MMatrixLoc,1,GL_FALSE,M.constData());
 
-    m_program->setUniformValue(m_lightPosLoc, lightPosition);
-    m_program->setUniformValue(m_lightPowerLoc,(float)lightPower);
-    m_program->setUniformValue(m_specularPowerLoc,(1.0f*((float)specularPower)/100.0f));
-    m_program->setUniformValue(m_smoothnessLoc,(float)smoothness);
-    m_program->setUniformValue(m_ambientPowerLoc,(float)ambientPower/100.0f);
-    m_program->setUniformValue(m_lightColorLoc, QVector3D((float)lightColor.redF(),
-                                                        (float)lightColor.greenF(),
-                                                        (float)lightColor.blueF()));
+    glUniform3fv(m_lightPosLoc,1,&lightPosition[0]);
+    glUniform1f(m_lightPowerLoc,(float)lightPower);
+    glUniform1f(m_specularPowerLoc,specularPower/100.0f);
+    glUniform1f(m_smoothnessLoc,(float)smoothness);
+    glUniform1f(m_ambientPowerLoc,ambientPower/100.0f);
+    glUniform3f(m_lightColorLoc,(float)lightColor.redF(),
+                (float)lightColor.greenF(),
+                (float)lightColor.blueF());
 
 //    glDrawArrays(GL_TRIANGLES, 0, frameSystem.getVertexAllocationSize());
     glDrawElements(
@@ -671,9 +712,6 @@ void GLWidget::paintGL()
         GL_UNSIGNED_INT,            // type
         (void*)0           // element array buffer offset
                 );
-    m_indexBuffer.release();
-
-    m_program->release();
 }
 
 void GLWidget::resizeGL(int w, int h)
@@ -709,6 +747,16 @@ void GLWidget::wheelEvent(QWheelEvent *event){
      float degrees=-numDegrees.y();
      camera.increaseDistance(nearbyint(degrees));
 
+}
+
+QString GLWidget::loadFile(QString path)
+{
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        return QString("file not found");
+    }
+    QTextStream in(&file);
+    return in.readAll();
 }
 
 void GLWidget::lightPositionChanged()

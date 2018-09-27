@@ -52,7 +52,7 @@
 #define GLWIDGET_H
 
 #include <QOpenGLWidget>
-#include <QOpenGLFunctions>
+#include <QOpenGLExtraFunctions>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
 #include <QMatrix4x4>
@@ -66,7 +66,7 @@ QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
 
 
 
-class GLWidget : public QOpenGLWidget, protected QOpenGLFunctions
+class GLWidget : public QOpenGLWidget, protected QOpenGLExtraFunctions
 {
     Q_OBJECT
 
@@ -157,11 +157,17 @@ protected:
     void wheelEvent(QWheelEvent *event) override;
 
 private:
+    QString loadFile(QString path);
     void lightPositionChanged();
     void loadFrameToBuffers();
     void setupVertexAttribs();
     void allocateBuffers();
     void animate(int frameCount);
+
+    void getErrorInfo(unsigned int handle);
+    void checkShader(unsigned int shader, const char *message);
+    void checkLinking(unsigned int program);
+    unsigned int createShaderProgramFromSource(const char * vertexSource, const char* fragmentSource);
 
     int elapsed;
     bool m_core;
@@ -170,15 +176,15 @@ private:
     int m_zRot;
     QPoint m_lastPos;
 
-    QOpenGLVertexArrayObject m_vao;
-    QOpenGLBuffer m_vertexBuffer;
-    QOpenGLBuffer m_ambientBuffer;
-    QOpenGLBuffer m_diffuseBuffer;
-    QOpenGLBuffer m_specularBuffer;
-    QOpenGLBuffer m_indexBuffer;
+    unsigned int m_vaoID;
+    unsigned int m_vertexBufferID;
+    unsigned int m_ambientBufferID;
+    unsigned int m_diffuseBufferID;
+    unsigned int m_specularBufferID;
+    unsigned int m_indexBufferID;
 
+    unsigned int m_programID;
 
-    QOpenGLShaderProgram *m_program;
     int m_MVPMatrixLoc;
     int m_VMatrixLoc;
     int m_MMatrixLoc;
