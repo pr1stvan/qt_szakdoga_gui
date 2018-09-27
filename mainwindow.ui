@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
+    <width>948</width>
     <height>739</height>
    </rect>
   </property>
@@ -26,7 +26,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>500</width>
+     <width>948</width>
      <height>21</height>
     </rect>
    </property>
@@ -431,7 +431,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QSpinBox" name="xRotationSpinBox">
+      <widget class="QSpinBox" name="horizontalAngleSpinBox">
        <property name="maximum">
         <number>359</number>
        </property>
@@ -441,7 +441,7 @@
       </widget>
      </item>
      <item row="2" column="0" colspan="2">
-      <widget class="QSlider" name="xRotationSlider">
+      <widget class="QSlider" name="horizontalAngleSlider">
        <property name="maximum">
         <number>359</number>
        </property>
@@ -464,7 +464,7 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QSpinBox" name="yRotationSpinBox">
+      <widget class="QSpinBox" name="verticalAngleSlider">
        <property name="minimum">
         <number>0</number>
        </property>
@@ -477,7 +477,7 @@
       </widget>
      </item>
      <item row="6" column="0" colspan="2">
-      <widget class="QSlider" name="yRotationSlider">
+      <widget class="QSlider" name="verticalAngleSpinBox">
        <property name="minimum">
         <number>0</number>
        </property>
@@ -927,8 +927,8 @@
    <extends>QOpenGLWidget</extends>
    <header>glwidget.h</header>
    <slots>
-    <signal>cameraXRotationChanged(int)</signal>
-    <signal>cameraYRotationChanged(int)</signal>
+    <signal>cameraHorizontalAngleChanged(int)</signal>
+    <signal>cameraVerticalAngleChanged(int)</signal>
     <signal>cameraDistanceChanged(int)</signal>
     <signal>cameraViewAngleChanged(int)</signal>
     <signal>lightColorChanged(QColor)</signal>
@@ -944,8 +944,8 @@
     <signal>smoothnessChanged(int)</signal>
     <signal>colorModeChanged(ColorMode)</signal>
     <signal>drawingTrianglesChanged(bool)</signal>
-    <slot>cameraSetXRotation(int)</slot>
-    <slot>cameraSetYRotation(int)</slot>
+    <slot>cameraSetHorizontalAngleDegrees(int)</slot>
+    <slot>cameraSetVerticalAngleDegrees(int)</slot>
     <slot>cameraSetDistance(int)</slot>
     <slot>cameraSetViewAngle(int)</slot>
     <slot>setLightColor(QColor)</slot>
@@ -987,10 +987,10 @@
  </resources>
  <connections>
   <connection>
-   <sender>xRotationSpinBox</sender>
+   <sender>horizontalAngleSpinBox</sender>
    <signal>valueChanged(int)</signal>
    <receiver>glWidget</receiver>
-   <slot>cameraSetXRotation(int)</slot>
+   <slot>cameraSetHorizontalAngleDegrees(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1980</x>
@@ -1004,8 +1004,8 @@
   </connection>
   <connection>
    <sender>glWidget</sender>
-   <signal>cameraXRotationChanged(int)</signal>
-   <receiver>xRotationSpinBox</receiver>
+   <signal>cameraHorizontalAngleChanged(int)</signal>
+   <receiver>horizontalAngleSpinBox</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1019,10 +1019,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>xRotationSlider</sender>
+   <sender>horizontalAngleSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>glWidget</receiver>
-   <slot>cameraSetXRotation(int)</slot>
+   <slot>cameraSetHorizontalAngleDegrees(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1981</x>
@@ -1036,8 +1036,8 @@
   </connection>
   <connection>
    <sender>glWidget</sender>
-   <signal>cameraXRotationChanged(int)</signal>
-   <receiver>xRotationSlider</receiver>
+   <signal>cameraHorizontalAngleChanged(int)</signal>
+   <receiver>horizontalAngleSlider</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1051,10 +1051,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>yRotationSpinBox</sender>
+   <sender>verticalAngleSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>glWidget</receiver>
-   <slot>cameraSetYRotation(int)</slot>
+   <slot>cameraSetVerticalAngleDegrees(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1980</x>
@@ -1068,12 +1068,12 @@
   </connection>
   <connection>
    <sender>glWidget</sender>
-   <signal>cameraYRotationChanged(int)</signal>
-   <receiver>yRotationSpinBox</receiver>
+   <signal>cameraVerticalAngleChanged(int)</signal>
+   <receiver>verticalAngleSlider</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>580</x>
+     <x>50</x>
      <y>239</y>
     </hint>
     <hint type="destinationlabel">
@@ -1083,10 +1083,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>yRotationSlider</sender>
+   <sender>verticalAngleSpinBox</sender>
    <signal>valueChanged(int)</signal>
    <receiver>glWidget</receiver>
-   <slot>cameraSetYRotation(int)</slot>
+   <slot>cameraSetVerticalAngleDegrees(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>1981</x>
@@ -1100,8 +1100,8 @@
   </connection>
   <connection>
    <sender>glWidget</sender>
-   <signal>cameraYRotationChanged(int)</signal>
-   <receiver>yRotationSlider</receiver>
+   <signal>cameraVerticalAngleChanged(int)</signal>
+   <receiver>verticalAngleSpinBox</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">

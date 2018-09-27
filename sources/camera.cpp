@@ -44,11 +44,10 @@ QMatrix4x4 Camera::P(){
 void Camera::setPosition(QVector3D pos){
     float cosalphaX=QVector3D::dotProduct(QVector3D(pos.x(),0,pos.z()).normalized(),QVector3D(0,0,1));
 
-    float cosalphaY=QVector3D::dotProduct(pos.normalized(),up);
+    float cosalphaY=QVector3D::dotProduct(pos.normalized(),QVector3D(0,1,0));
 
-    setXRotation(nearbyint(qRadiansToDegrees(acos(cosalphaX))));
-    setYRotation(nearbyint(qRadiansToDegrees(acos(cosalphaY))));
-
+    setHorizontalAngleDegrees(nearbyint(qRadiansToDegrees(acos(cosalphaX))));
+    setVerticalAngleDegrees(nearbyint(qRadiansToDegrees(acos(cosalphaY))));
 }
 
 void Camera::setLookAtPoint(QVector3D lookAtPoint){
@@ -57,11 +56,11 @@ void Camera::setLookAtPoint(QVector3D lookAtPoint){
 }
 
 void Camera::rotateHorizontal(int dh_degrees){
-    setXRotation(xAngle_degrees + dh_degrees);
+    setHorizontalAngleDegrees(xAngle_degrees + dh_degrees);
 
 }
 void Camera::rotateVertical(int dv_degrees){
-    setYRotation(yAngle_degrees - dv_degrees);
+    setVerticalAngleDegrees(yAngle_degrees - dv_degrees);
 }
 
 void Camera::increaseDistance(int dDistance){
@@ -84,22 +83,20 @@ void Camera::rotateToNewPosition(){
     position += lookAtPoint;
 
 }
-void Camera::setXRotation(int degrees){
+void Camera::setHorizontalAngleDegrees(int degrees){
     if(degrees!=xAngle_degrees){
        xAngle_degrees=normalizeAngle(degrees);
        rotateToNewPosition();
-       emit xRotationChanged(xAngle_degrees);
+       emit horizontalAngleChanged(xAngle_degrees);
     }
 
 }
-
-void Camera::setYRotation(int degrees){
+void Camera::setVerticalAngleDegrees(int degrees){
     if(degrees!=yAngle_degrees){
-
-        yAngle_degrees=normalizeAngle(degrees);
+        yAngle_degrees = normalizeAngle(degrees);
         rotateToNewPosition();
+        emit verticalAngleChanged(yAngle_degrees);
 
-       emit yRotationChanged(yAngle_degrees);
     }
 }
 void Camera::setDistance(int dist){
@@ -128,8 +125,8 @@ void Camera::setViewAngle(int degrees){
 }
 
 void Camera::updateSignal(){
-    emit xRotationChanged(xAngle_degrees);
-    emit yRotationChanged(yAngle_degrees);
+    emit horizontalAngleChanged(xAngle_degrees);
+    emit verticalAngleChanged(yAngle_degrees);
     emit distanceChanged(distance);
     emit viewAngleChanged(viewAngle);
 }

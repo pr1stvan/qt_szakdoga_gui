@@ -49,14 +49,6 @@
 ****************************************************************************/
 
 #include "glwidget.h"
-#include <QMouseEvent>
-#include <QOpenGLShaderProgram>
-#include <QCoreApplication>
-#include <QTimer>
-#include <QGuiApplication>
-#include <QScreen>
-#include <math.h>
-#include <QDebug>
 
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent),
@@ -112,10 +104,10 @@ GLWidget::GLWidget(QWidget *parent)
 
     M.setToIdentity();
 
-    connect(&camera, &Camera::xRotationChanged, this, &GLWidget::cameraSetXRotationEmitter);
-    connect(&camera, &Camera::yRotationChanged, this, &GLWidget::cameraSetYRotationEmitter);
-    connect(&camera, &Camera::distanceChanged, this, &GLWidget::cameraSetDistanceEmitter);
-    connect(&camera, &Camera::viewAngleChanged, this, &GLWidget::cameraSetViewAngleEmitter);
+    connect(&camera, &Camera::horizontalAngleChanged, this, &GLWidget::cameraHorizontalAngleChangedEmitter);
+    connect(&camera, &Camera::verticalAngleChanged, this, &GLWidget::cameraVerticalAngleChangedEmitter);
+    connect(&camera, &Camera::distanceChanged, this, &GLWidget::cameraDistanceChangedEmitter);
+    connect(&camera, &Camera::viewAngleChanged, this, &GLWidget::cameraViewAngleChangedEmitter);
 
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &GLWidget::timer_tick);
@@ -206,14 +198,14 @@ bool GLWidget::areaDataExist()
     return frameSystem.areaDataExist();
 }
 
-void GLWidget::cameraSetXRotation(int degrees)
+void GLWidget::cameraSetHorizontalAngleDegrees(int degrees)
 {
-    camera.setXRotation(degrees);
+    camera.setHorizontalAngleDegrees(degrees);
 }
 
-void GLWidget::cameraSetYRotation(int degrees)
+void GLWidget::cameraSetVerticalAngleDegrees(int degrees)
 {
-    camera.setYRotation(degrees);
+    camera.setVerticalAngleDegrees(degrees);
 }
 
 void GLWidget::cameraSetDistance(int distance)
@@ -401,22 +393,22 @@ void GLWidget::setAutoReplay(bool autoReplay)
     this->autoReplay=autoReplay;
 }
 
-void GLWidget::cameraSetXRotationEmitter(int degrees)
+void GLWidget::cameraHorizontalAngleChangedEmitter(int degrees)
 {
-    emit cameraXRotationChanged(degrees);
+    emit cameraHorizontalAngleChanged(degrees);
 }
 
-void GLWidget::cameraSetYRotationEmitter(int degrees)
+void GLWidget::cameraVerticalAngleChangedEmitter(int degrees)
 {
-    emit cameraYRotationChanged(degrees);
+    emit cameraVerticalAngleChanged(degrees);
 }
 
-void GLWidget::cameraSetDistanceEmitter(int distance)
+void GLWidget::cameraDistanceChangedEmitter(int distance)
 {
     emit cameraDistanceChanged(distance);
 }
 
-void GLWidget::cameraSetViewAngleEmitter(int degrees)
+void GLWidget::cameraViewAngleChangedEmitter(int degrees)
 {
     emit cameraViewAngleChanged(degrees);
 }
@@ -681,7 +673,7 @@ void GLWidget::paintGL()
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
-    //glEnable(GL_CULL_FACE);
+//    glEnable(GL_CULL_FACE);
 
     glUseProgram(m_programID);
     glBindVertexArray(m_vaoID);

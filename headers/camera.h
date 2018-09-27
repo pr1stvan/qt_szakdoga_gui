@@ -25,21 +25,19 @@ private:
     int distanceVelocity;
 
 public slots:
-    void setXRotation(int degrees);
-    void setYRotation(int degrees);
+    void setHorizontalAngleDegrees(int degrees);
+    void setVerticalAngleDegrees(int degrees);
     void setDistance(int distance);
     void setViewAngle(int degrees);
 
 
 signals:
-    void xRotationChanged(int degrees);
-    void yRotationChanged(int degrees);
+    void horizontalAngleChanged(int degrees);
+    void verticalAngleChanged(int degrees);
     void distanceChanged(int distance);
     void viewAngleChanged(int degrees);
 
 public:
-
-
     Camera();
 
     QMatrix4x4 V();

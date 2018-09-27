@@ -1,4 +1,4 @@
-#version 330 core
+#version 450 core
 
 // Interpolated values from the vertex shaders
 in vec3 Position_worldspace;
@@ -65,5 +65,5 @@ void main(){
         if(cosBeta < 0){
             DiffuseColor = vec3(0,0,0);
         }
-        color =  AmbientColor+DiffuseColor + SpecularColor;
+        color =  AmbientColor + DiffuseColor + SpecularColor;
 }

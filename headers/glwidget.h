@@ -53,18 +53,20 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLExtraFunctions>
-#include <QOpenGLVertexArrayObject>
-#include <QOpenGLBuffer>
 #include <QMatrix4x4>
-#include <QElapsedTimer>
+#include <QTimer>
 #include <QColor>
+#include <QMouseEvent>
+#include <QCoreApplication>
+#include <QGuiApplication>
+#include <QScreen>
+#include <math.h>
+#include <QDebug>
 
 #include "camera.h"
 #include "framesystem.h"
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
-
-
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLExtraFunctions
 {
@@ -83,8 +85,8 @@ public:
     bool areaDataExist();
 
 public slots:
-    void cameraSetXRotation(int degrees);
-    void cameraSetYRotation(int degrees);
+    void cameraSetHorizontalAngleDegrees(int degrees);
+    void cameraSetVerticalAngleDegrees(int degrees);
     void cameraSetDistance(int distance);
     void cameraSetViewAngle(int degrees);
 
@@ -119,14 +121,14 @@ public slots:
     void timer_tick();
 
 private slots:
-    void cameraSetXRotationEmitter(int degrees);
-    void cameraSetYRotationEmitter(int degrees);
-    void cameraSetDistanceEmitter(int distance);
-    void cameraSetViewAngleEmitter(int degrees);
+    void cameraHorizontalAngleChangedEmitter(int degrees);
+    void cameraVerticalAngleChangedEmitter(int degrees);
+    void cameraDistanceChangedEmitter(int distance);
+    void cameraViewAngleChangedEmitter(int degrees);
 
 signals:
-    void cameraXRotationChanged(int degrees);
-    void cameraYRotationChanged(int degrees);
+    void cameraHorizontalAngleChanged(int degrees);
+    void cameraVerticalAngleChanged(int degrees);
     void cameraDistanceChanged(int distance);
     void cameraViewAngleChanged(int degrees);
 
