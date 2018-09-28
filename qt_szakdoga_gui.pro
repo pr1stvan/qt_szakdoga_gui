@@ -41,7 +41,9 @@ SOURCES += \
     sources/openfiledialog.cpp \
     sources/customfilesystemmodel.cpp \
     sources/treeitem.cpp \
-    sources/fileentry.cpp
+    sources/fileentry.cpp \
+    sources/shaderloader.cpp \
+    sources/openglinterface.cpp
 
 HEADERS += \
     headers/mainwindow.h \
@@ -57,7 +59,9 @@ HEADERS += \
     headers/openfiledialog.h \
     headers/customfilesystemmodel.h \
     headers/treeitem.h \
-    headers/fileentry.h
+    headers/fileentry.h \
+    headers/shaderloader.h \
+    headers/openglinterface.h
 
 
 FORMS += \

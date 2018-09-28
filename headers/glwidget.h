@@ -65,7 +65,10 @@
 
 #include "camera.h"
 #include "framesystem.h"
+#include "openglinterface.h"
+#include "shaderloader.h"
 
+QT_FORWARD_DECLARE_CLASS(OpenGLInterface)
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
 
 class GLWidget : public QOpenGLWidget, protected QOpenGLExtraFunctions
@@ -83,6 +86,18 @@ public:
     int loadFrameDirectory(QStringList filePaths);
     bool velocityDataExist();
     bool areaDataExist();
+
+    void glGetShaderiv(GLuint shader, GLenum pname, GLint* params);
+    void glGetShaderInfoLog(GLuint shader, GLsizei bufsize, GLsizei* length, char* infolog);
+    void glGetProgramiv(GLuint program, GLenum pname, GLint* params);
+    void glShaderSource(GLuint shader, GLsizei count, const char** string, const GLint* length);
+    void glCompileShader(GLuint shader);
+    void glAttachShader(GLuint program, GLuint shader);
+    void glLinkProgram(GLuint program);
+    void glDetachShader(GLuint program, GLuint shader);
+    void glDeleteShader(GLuint shader);
+    GLuint glCreateShader(GLenum type);
+    GLuint glCreateProgram();
 
 public slots:
     void cameraSetHorizontalAngleDegrees(int degrees);
@@ -150,6 +165,7 @@ signals:
     void frameIdxChanged(int idx);
 
     void drawingTrianglesChanged(bool state);
+
 protected:
     void initializeGL() override;
     void paintGL() override;
@@ -166,10 +182,10 @@ private:
     void allocateBuffers();
     void animate(int frameCount);
 
-    void getErrorInfo(unsigned int handle);
-    void checkShader(unsigned int shader, const char *message);
-    void checkLinking(unsigned int program);
-    unsigned int createShaderProgramFromSource(const char * vertexSource, const char* fragmentSource);
+//    void getErrorInfo(unsigned int handle);
+//    void checkShader(unsigned int shader, const char *message);
+//    void checkLinking(unsigned int program);
+//    unsigned int createShaderProgramFromSource(const char * vertexSource, const char* fragmentSource);
 
     int elapsed;
     bool m_core;
@@ -201,7 +217,6 @@ private:
     QMatrix4x4 P;
     bool m_transparent;
 
-
     Camera camera;
 
     QVector3D lightPosition;
@@ -223,9 +238,9 @@ private:
     int frameIdx;
     int fps;
     bool areFramesLoaded;
-
     bool drawingTriangles;
-
+    OpenGLInterface openGLInterface;
+    ShaderLoader loader;
 };
 
 #endif

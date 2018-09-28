@@ -65,7 +65,9 @@ GLWidget::GLWidget(QWidget *parent)
       paused(true),
       frameIdx(0),
       areFramesLoaded(false),
-      drawingTriangles(true)
+      drawingTriangles(true),
+      openGLInterface(this),
+      loader()
 {
     fps=1;
     elapsed =0;
@@ -463,7 +465,7 @@ void GLWidget::initializeGL()
     QString vertexSource = loadFile(":/shaders/vertexshader.vert");
     QString fragmentSource = loadFile(":/shaders/fragshader.frag");
 
-    m_programID = createShaderProgramFromSource(
+    m_programID = loader.createShaderProgramFromSource(
                 vertexSource.toLatin1().constData(),
                 fragmentSource.toLatin1().constData());
 
@@ -569,84 +571,6 @@ void GLWidget::animate(int frameCount)
         loadFrameToBuffers();
     }
 }
-
-void GLWidget::getErrorInfo(unsigned int handle)
-{
-    int logLen;
-    glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &logLen);
-    if (logLen > 0) {
-        char * log = new char[logLen];
-        int written;
-        glGetShaderInfoLog(handle, logLen, &written, log);
-        printf("Shader log:\n%s", log);
-        delete[] log;
-    }
-}
-
-void GLWidget::checkShader(unsigned int shader, const char *message)
-{
-    int OK;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &OK);
-    if (!OK) {
-        printf("%s!\n", message);
-        getErrorInfo(shader);
-    }
-}
-
-void GLWidget::checkLinking(unsigned int program)
-{
-    int OK;
-    glGetProgramiv(program, GL_LINK_STATUS, &OK);
-    if (!OK) {
-        printf("Failed to link shader program!\n");
-        getErrorInfo(program);
-    }
-}
-
-unsigned int GLWidget::createShaderProgramFromSource(const char *vertexSource, const char *fragmentSource)
-{
-    // Create vertex shader from string
-    unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    if (!vertexShader) {
-        printf("Error in vertex shader creation\n");
-        exit(1);
-    }
-    glShaderSource(vertexShader, 1, &vertexSource, NULL);
-    glCompileShader(vertexShader);
-    checkShader(vertexShader, "Vertex shader error");
-
-    // Create fragment shader from string
-    unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    if (!fragmentShader) {
-        printf("Error in fragment shader creation\n");
-        exit(1);
-    }
-    glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-    glCompileShader(fragmentShader);
-    checkShader(fragmentShader, "Fragment shader error");
-
-    // Attach shaders to a single program
-    unsigned int programID = glCreateProgram();
-    if (!programID) {
-        printf("Error in shader program creation\n");
-        exit(1);
-    }
-
-    glAttachShader(programID, vertexShader);
-    glAttachShader(programID, fragmentShader);
-
-    glLinkProgram(programID);
-    checkLinking(programID);
-
-    glDetachShader(programID, vertexShader);
-    glDetachShader(programID, fragmentShader);
-
-    glDeleteShader(fragmentShader);
-    glDeleteShader(fragmentShader);
-
-    return programID;
-}
-
 
 void GLWidget::loadFrameToBuffers()
 {
@@ -760,3 +684,51 @@ void GLWidget::lightPositionChanged()
     emit lightYChanged(y);
     emit lightZChanged(z);
 }
+
+void GLWidget::glGetShaderiv(GLuint shader, GLenum pname, GLint *params)
+{
+    QOpenGLFunctions::glGetShaderiv(shader, pname, params);
+}
+void GLWidget::glGetShaderInfoLog(GLuint shader, GLsizei bufsize, GLsizei* length, char* infolog)
+{
+    QOpenGLFunctions::glGetShaderInfoLog(shader, bufsize, length, infolog);
+}
+void GLWidget::glGetProgramiv(GLuint program, GLenum pname, GLint* params)
+{
+    QOpenGLFunctions::glGetProgramiv(program, pname, params);
+}
+void GLWidget::glShaderSource(GLuint shader, GLsizei count, const char** string, const GLint* length)
+{
+    QOpenGLFunctions::glShaderSource(shader, count, string, length);
+}
+void GLWidget::glCompileShader(GLuint shader)
+{
+    QOpenGLFunctions::glCompileShader(shader);
+}
+void GLWidget::glAttachShader(GLuint program, GLuint shader)
+{
+    QOpenGLFunctions::glAttachShader(program, shader);
+}
+void GLWidget::glLinkProgram(GLuint program)
+{
+    QOpenGLFunctions::glLinkProgram(program);
+}
+
+void GLWidget::glDetachShader(GLuint program, GLuint shader)
+{
+    QOpenGLFunctions::glDetachShader(program, shader);
+}
+void GLWidget::glDeleteShader(GLuint shader)
+{
+    QOpenGLFunctions::glDeleteShader(shader);
+}
+
+GLuint GLWidget::glCreateShader(GLenum type)
+{
+    return QOpenGLFunctions::glCreateShader(type);
+}
+GLuint GLWidget::glCreateProgram()
+{
+    return QOpenGLFunctions::glCreateProgram();
+}
+
