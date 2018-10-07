@@ -1,10 +1,14 @@
 #include "openglinterface.h"
-#include "GLWidget.h"
+#include "glwidget.h"
 
 GLWidget *w;
 OpenGLInterface::OpenGLInterface(GLWidget *widget)
 {
     w = widget;
+}
+void glLinkProgram(GLuint program)
+{
+    w->glLinkProgram(program);
 }
 
 void glGetShaderiv(GLuint shader, GLenum pname, GLint* params)
@@ -32,10 +36,7 @@ void glAttachShader(GLuint program, GLuint shader)
 {
     w->glAttachShader(program, shader);
 }
-void glLinkProgram(GLuint program)
-{
-    w->glLinkProgram(program);
-}
+
 void glDetachShader(GLuint program, GLuint shader)
 {
     w->glDetachShader(program,shader);

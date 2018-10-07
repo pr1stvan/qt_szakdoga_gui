@@ -132,7 +132,6 @@ void TreeItem::setChildsSortingType(SortingType type)
     }
 }
 
-
 template <typename T> bool PComp(const T * const & a, const T * const & b)
 {
    return *a < *b;
@@ -145,8 +144,6 @@ typedef bool (*fvptr)(const TreeItem* const & a,const TreeItem* const & b);
 
 void TreeItem::sort(SortingType sortingType,Qt::SortOrder order)
 {
-
-
     QList<TreeItem*> directories;
     QList<TreeItem*> files;
 
@@ -191,7 +188,6 @@ void TreeItem::sort(SortingType sortingType,Qt::SortOrder order)
     if(order==Qt::DescendingOrder){
         compareFunction=PComp_reverse<TreeItem>;
     }
-
     switch(sortingType){
     case SortingType::name:
         qSort(directories.begin(),directories.end(),compareFunction);
@@ -210,11 +206,7 @@ void TreeItem::sort(SortingType sortingType,Qt::SortOrder order)
         qSort(files.begin(),files.end(),compareFunction);
         break;
     }
-
-
-
     m_childItems=directories + files;
-
 }
 
 QList<TreeItem *> TreeItem::getChildItems()
