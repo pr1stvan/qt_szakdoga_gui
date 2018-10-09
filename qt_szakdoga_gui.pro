@@ -48,7 +48,6 @@ SOURCES += \
 HEADERS += \
     headers/mainwindow.h \
     headers/camera.h \
-    headers/camerawidget.h \
     headers/glwidget.h \
     headers/frame.h \
     headers/framereader.h \

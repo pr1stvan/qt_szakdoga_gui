@@ -30,7 +30,6 @@ public slots:
     void setDistance(int distance);
     void setViewAngle(int degrees);
 
-
 signals:
     void horizontalAngleChanged(int degrees);
     void verticalAngleChanged(int degrees);

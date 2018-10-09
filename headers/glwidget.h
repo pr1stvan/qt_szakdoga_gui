@@ -87,6 +87,7 @@ public:
     bool velocityDataExist();
     bool areaDataExist();
 
+    //OpenGL functions
     void glGetShaderiv(GLuint shader, GLenum pname, GLint* params);
     void glGetShaderInfoLog(GLuint shader, GLsizei bufsize, GLsizei* length, char* infolog);
     void glGetProgramiv(GLuint program, GLenum pname, GLint* params);
