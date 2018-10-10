@@ -35,7 +35,6 @@ void ColorButton::paintEvent(QPaintEvent *event)
 {
     QPushButton::paintEvent(event);
 
-
     int colorPadding = this->height()/6;
 
     QRect rect = event->rect();

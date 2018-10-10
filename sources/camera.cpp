@@ -56,11 +56,11 @@ void Camera::setLookAtPoint(QVector3D lookAtPoint){
 }
 
 void Camera::rotateHorizontal(int dh_degrees){
-    setHorizontalAngleDegrees(xAngle_degrees + dh_degrees);
+    setHorizontalAngleDegrees(horizontalAngle_degrees + dh_degrees);
 
 }
 void Camera::rotateVertical(int dv_degrees){
-    setVerticalAngleDegrees(yAngle_degrees - dv_degrees);
+    setVerticalAngleDegrees(verticalAngle_degrees - dv_degrees);
 }
 
 void Camera::increaseDistance(int dDistance){
@@ -70,13 +70,13 @@ void Camera::increaseDistance(int dDistance){
 void Camera::rotateToNewPosition(){
     QMatrix4x4 rotationMatrix;
     rotationMatrix.setToIdentity();
-    rotationMatrix.rotate((float)xAngle_degrees,QVector3D(0,1,0));
+    rotationMatrix.rotate((float)horizontalAngle_degrees,QVector3D(0,1,0));
     position=rotationMatrix*QVector3D(0,0,(float)distance);
     up=QVector3D(0,1,0);
     right=rotationMatrix*QVector3D(1,0,0);
 
     rotationMatrix.setToIdentity();
-    rotationMatrix.rotate((float)-yAngle_degrees,right);
+    rotationMatrix.rotate((float)-verticalAngle_degrees,right);
     position = rotationMatrix*position;
     up=rotationMatrix*up;
 
@@ -84,21 +84,26 @@ void Camera::rotateToNewPosition(){
 
 }
 void Camera::setHorizontalAngleDegrees(int degrees){
-    if(degrees!=xAngle_degrees){
-       xAngle_degrees=normalizeAngle(degrees);
+    if(degrees!=horizontalAngle_degrees){
+       horizontalAngle_degrees=normalizeAngle(degrees);
        rotateToNewPosition();
-       emit horizontalAngleChanged(xAngle_degrees);
+       emit horizontalAngleChanged(horizontalAngle_degrees);
     }
 
 }
 void Camera::setVerticalAngleDegrees(int degrees){
-    if(degrees!=yAngle_degrees){
-        yAngle_degrees = normalizeAngle(degrees);
+    if(degrees!=verticalAngle_degrees){
+        verticalAngle_degrees = normalizeAngle(degrees);
         rotateToNewPosition();
-        emit verticalAngleChanged(yAngle_degrees);
-
+        emit verticalAngleChanged(verticalAngle_degrees);
     }
 }
+
+void Camera::setCanvas(int width,int height){
+    canvasWidth=width;
+    canvasHeight=height;
+}
+
 void Camera::setDistance(int dist){
     if(distance!=dist){
         if(dist < 15){
@@ -125,8 +130,8 @@ void Camera::setViewAngle(int degrees){
 }
 
 void Camera::updateSignal(){
-    emit horizontalAngleChanged(xAngle_degrees);
-    emit verticalAngleChanged(yAngle_degrees);
+    emit horizontalAngleChanged(horizontalAngle_degrees);
+    emit verticalAngleChanged(verticalAngle_degrees);
     emit distanceChanged(distance);
     emit viewAngleChanged(viewAngle);
 }

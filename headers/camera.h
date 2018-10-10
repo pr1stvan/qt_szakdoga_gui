@@ -17,11 +17,10 @@ private:
     int canvasWidth;
     int canvasHeight;
 
-    int xAngle_degrees;
-    int yAngle_degrees;
+    int horizontalAngle_degrees;
+    int verticalAngle_degrees;
     int distance;
     int viewAngle;
-
     int distanceVelocity;
 
 public slots:
@@ -48,10 +47,7 @@ public:
 
     void setLookAtPoint(QVector3D lookAtPoint);
 
-    void setCanvas(int width,int height){
-        canvasWidth=width;
-        canvasHeight=height;
-    }
+    void setCanvas(int width,int height);
 
     void rotateHorizontal(int dh_degrees);
     void rotateVertical(int dv_degrees);

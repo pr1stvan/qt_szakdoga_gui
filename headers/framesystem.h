@@ -45,7 +45,7 @@ public:
     int size(){
         return frames.size();
     }
-    void loadDirectory(QStringList filePaths);
+    void loadFiles(QStringList filePaths);
     void setUpFrameColors();
     QVector3D getPointsAvgAfterLoading();
     void scalePointsAfterLoading();

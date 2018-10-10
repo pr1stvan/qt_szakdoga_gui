@@ -27,7 +27,7 @@ QColor vectorTocolor(QVector3D vec){
     return color;
 }
 
-void FrameSystem::loadDirectory(QStringList filePaths)
+void FrameSystem::loadFiles(QStringList filePaths)
 {
    frames.clear();
    frames.squeeze();

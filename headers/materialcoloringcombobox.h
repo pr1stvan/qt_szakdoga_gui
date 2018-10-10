@@ -12,17 +12,14 @@ class MaterialColoringComboBox : public QComboBox
 public:
     MaterialColoringComboBox(QWidget *parent);
     ColorMode getColorMode();
-
+    void setAvailableColorModes(bool solid, bool velocity, bool area);
 signals:
     void colorModeChanged(ColorMode mode);
 
 public slots:
     void setColorMode(ColorMode mode);
-
     void changeColorMode(int idx);
-    void setAvailableColorModes(bool solid, bool velocity, bool area);
 private:
-
     ColorMode colorMode;
 };
 

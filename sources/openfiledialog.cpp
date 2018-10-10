@@ -1,8 +1,6 @@
 #include "openfiledialog.h"
 #include "ui_openfiledialog.h"
 
-
-
 QStringList OpenFileDialog::getFiles(QStringList extensions,QString startDirectory)
 {
 
@@ -35,9 +33,6 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
     }
     else{
         treeViewModel->setup(QDir::rootPath());
-
-
-
         setupCombobox(QDir::rootPath());
         addPathToStack(QDir::rootPath());
     }

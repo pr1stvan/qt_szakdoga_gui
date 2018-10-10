@@ -164,7 +164,7 @@ int GLWidget::loadFrameDirectory(QStringList filePaths)
 {
     paused=true;
 
-    frameSystem.loadDirectory(filePaths);
+    frameSystem.loadFiles(filePaths);
     setColorMode(frameSystem.getColorMode());
 
 
