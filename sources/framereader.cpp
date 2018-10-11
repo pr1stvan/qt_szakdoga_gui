@@ -76,53 +76,70 @@ int FrameReader::loadFile(QString fileName)
     bool wasPoints=false;
     bool wasPointData=false;
     bool wasPolys=false;
-    while (!reader.atEnd()) {
+    while (!reader.atEnd())
+    {
         bool res=reader.readNextStartElement();
-        if(res){
+        if(res)
+        {
             //start element
-            if(reader.name() == "Points") {
+            if(reader.name() == "Points")
+            {
                 wasPoints=true;
             }
-            else if(reader.name() == "PointData"){
+            else if(reader.name() == "PointData")
+            {
                 wasPointData=true;
             }
-            else if(reader.name()=="Polys"){
+            else if(reader.name()=="Polys")
+            {
                 wasPolys=true;
             }
-            else if(reader.name()=="DataArray"){
-                if(wasPoints){
+            else if(reader.name()=="DataArray")
+            {
+                if(wasPoints)
+                {
                     pointArrayString=reader.readElementText();
                 }
-                else if(wasPointData){
-                    if(reader.attributes().value("Name") == "area"){
+                else if(wasPointData)
+                {
+                    if(reader.attributes().value("Name") == "area")
+                    {
                         areaArrayString=reader.readElementText();
                     }
-                    else if(reader.attributes().value("Name") == "velocity"){
+                    else if(reader.attributes().value("Name") == "velocity")
+                    {
                         velocityArrayString=reader.readElementText();
                     }
                 }
-                else if(wasPolys){
-                    if(reader.attributes().value("Name") == "connectivity"){
+                else if(wasPolys)
+                {
+                    if(reader.attributes().value("Name") == "connectivity")
+                    {
                         indexArrayString=reader.readElementText();
                     }
                 }
             }
         }
-        else{
+        else
+        {
             //end element
-            if(reader.name() == "Points") {
+            if(reader.name() == "Points")
+            {
                 wasPoints=false;
             }
-            else if(reader.name() == "PointData"){
+            else if(reader.name() == "PointData")
+            {
                 wasPointData=false;
             }
-            else if(reader.name()=="Polys"){
+            else if(reader.name()=="Polys")
+            {
                 wasPolys=false;
             }
         }
 
     }
-    if (reader.hasError()) {
+    if (reader.hasError())
+    {
            // do error handling
            //qDebug() << "xml reading error";
     }

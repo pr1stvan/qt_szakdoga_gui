@@ -81,7 +81,6 @@ void Camera::rotateToNewPosition(){
     up=rotationMatrix*up;
 
     position += lookAtPoint;
-
 }
 void Camera::setHorizontalAngleDegrees(int degrees){
     if(degrees!=horizontalAngle_degrees){
@@ -96,6 +95,7 @@ void Camera::setVerticalAngleDegrees(int degrees){
         verticalAngle_degrees = normalizeAngle(degrees);
         rotateToNewPosition();
         emit verticalAngleChanged(verticalAngle_degrees);
+
     }
 }
 

@@ -21,7 +21,6 @@ Frame::Frame(QString fileName)
         velocities=freader.getVelocities();
     }
 
-
     if(area_data_exist){
         areas=freader.getAreas();
         for(int i =0; i<areas.size(); i++){
@@ -45,7 +44,6 @@ Frame::Frame(QString fileName)
         }
         prefer_drawing_points=true;
     }
-
 
 }
 

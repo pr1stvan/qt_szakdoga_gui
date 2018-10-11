@@ -109,32 +109,11 @@ QString getDesktopLocation(){
 }
 void MainWindow::on_actionOpen_triggered()
 {
-//    OpenFilesDialog fileDialog(0,Qt::WindowCloseButtonHint | Qt::WindowSystemMenuHint | Qt::WindowTitleHint);
-//    fileDialog.setModal(false);
-
-//    int res=fileDialog.exec();
-//    if(res== QDialog::Accepted){
-//        QString name=fileDialog.getDirectoryName();
-//        qDebug() << name.toLatin1().data();
-//    }
-//    else{
-//        qDebug() << "rejected";
-//    }
-    //fileDialog.exec();
-//    QString directoryName =
-//        QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Directory"), QDir::rootPath()));
-
     QStringList extensions;
     extensions << QString("*.vtp");
 
     QStringList filePaths=OpenFileDialog::getFiles(extensions,getDesktopLocation());
 
-
-//    QString directoryName =
-//            QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Directory"),QString("C:/Users/THe_KinG/Desktop/000"),
-//                                                                       QFileDialog::ShowDirsOnly|
-//                                                                       QFileDialog::DontResolveSymlinks |
-//                                                                       QFileDialog::DontUseNativeDialog));
     if(!filePaths.isEmpty()){
         int framesCount = ui->glWidget->loadFrameDirectory(filePaths);
 
@@ -145,7 +124,6 @@ void MainWindow::on_actionOpen_triggered()
                                                              ui->glWidget->areaDataExist()
                                                              );
         ui->materialColoringComboBox->setCurrentIndex(0);
-
 
         if(framesCount){
             frameIdxSpinBox->setEnabled(true);
@@ -165,7 +143,6 @@ void MainWindow::on_actionOpen_triggered()
             fpsSpinBox->setValue(60);
         }
     }
-
 }
 
 void MainWindow::on_actionplay_triggered()

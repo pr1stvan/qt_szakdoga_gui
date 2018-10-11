@@ -236,14 +236,12 @@ void FrameSystem::setUpFrameColors()
         max=getMax();
     }
 
-
     for(int i= 0; i< frames.size(); i++){
         frames[i].setUpColors(colorMode,start,
                               end,
                               min,
                               max);
     }
-
 }
 
 const QVector<float> &FrameSystem::getPoints(int i)
