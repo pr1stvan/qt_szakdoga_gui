@@ -3,7 +3,7 @@
 // Interpolated values from the vertex shaders
 in vec3 Position_worldspace;
 in vec3 Position_cameraspace;
-in vec3 Normal_cameraspace;
+
 in vec3 EyeDirection_cameraspace;
 in vec3 LightDirection_cameraspace;
 in vec3 colour_ambient;

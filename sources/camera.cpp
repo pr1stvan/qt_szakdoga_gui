@@ -56,11 +56,13 @@ void Camera::setLookAtPoint(QVector3D lookAtPoint){
 }
 
 void Camera::rotateHorizontal(int dh_degrees){
-    setHorizontalAngleDegrees(horizontalAngle_degrees + dh_degrees);
+    float d = dh_degrees/2.0f;
+    setHorizontalAngleDegrees(horizontalAngle_degrees + (int)roundf(d));
 
 }
 void Camera::rotateVertical(int dv_degrees){
-    setVerticalAngleDegrees(verticalAngle_degrees - dv_degrees);
+    float d = dv_degrees/2.0f;
+    setVerticalAngleDegrees(verticalAngle_degrees - (int)roundf(d));
 }
 
 void Camera::increaseDistance(int dDistance){

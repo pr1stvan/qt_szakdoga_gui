@@ -481,11 +481,6 @@ void GLWidget::initializeGL()
     m_smoothnessLoc = glGetUniformLocation(m_programID, "Smoothness");
     m_ambientPowerLoc = glGetUniformLocation(m_programID, "AmbientPower");
 
-    // Create a vertex array object. In OpenGL ES 2.0 and OpenGL 2.x
-    // implementations this is optional and support may not be present
-    // at all. Nonetheless the below code works in all cases and makes
-    // sure there is a VAO when one is needed.
-
     glGenVertexArrays(1, &m_vaoID);	// create 1 vertex array object
     glBindVertexArray(m_vaoID);		// make it active
 
