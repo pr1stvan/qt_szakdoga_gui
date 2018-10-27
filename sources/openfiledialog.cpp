@@ -3,10 +3,10 @@
 
 QStringList OpenFileDialog::getFiles(QStringList extensions,QString startDirectory)
 {
-
     OpenFileDialog openFileDialog(extensions,startDirectory);
     openFileDialog.setModal(true);
-    if(openFileDialog.exec()){
+    if(openFileDialog.exec())
+    {
         return openFileDialog.selectedFiles();
     }
 
@@ -24,14 +24,14 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
     treeViewModel->setExtensions(extensions);
 
     QFileInfo file(directoryPath);
-    if(file.exists()){
+    if(file.exists())
+    {
         treeViewModel->setup(directoryPath);
-
-
         setupCombobox(directoryPath);
         addPathToStack(directoryPath);
     }
-    else{
+    else
+    {
         treeViewModel->setup(QDir::rootPath());
         setupCombobox(QDir::rootPath());
         addPathToStack(QDir::rootPath());
@@ -41,9 +41,7 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
     listViewModel->setRootPath(QString("/C:"));
     listViewModel->setFilter(QDir::NoDotAndDotDot | QDir::Dirs);
 
-
     QFileInfoList drives=QDir::drives();
-
     QFileIconProvider iconProvider;
 
     QStringList directoryList=QStandardPaths::standardLocations(QStandardPaths::HomeLocation) +
@@ -51,7 +49,8 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
             QStandardPaths::standardLocations(QStandardPaths::DesktopLocation) +
             QStandardPaths::standardLocations(QStandardPaths::DownloadLocation);
 
-    for(const QString & dir : directoryList){
+    for(const QString & dir : directoryList)
+    {
         QString displayedName=dir.split('/').last();
 
         QListWidgetItem *newItem = new QListWidgetItem(iconProvider.icon(QFileIconProvider::Folder),
@@ -61,7 +60,8 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
         ui->listWidget->addItem(newItem);
     }
 
-    for(const QFileInfo & dir : drives){
+    for(const QFileInfo & dir : drives)
+    {
          QString displayedName=dir.absoluteFilePath();
 
          QListWidgetItem *newItem = new QListWidgetItem(iconProvider.icon(QFileIconProvider::Drive),
@@ -96,8 +96,8 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
     QItemSelectionModel *selectionModel = ui->treeView->selectionModel();
 
     if(!QObject::connect(selectionModel, &QItemSelectionModel::currentChanged,
-                          this, &OpenFileDialog::mySelectionChanged)){
-
+                          this, &OpenFileDialog::mySelectionChanged))
+    {
         qDebug() << "can't connect slot";
     }
 }
@@ -109,19 +109,23 @@ OpenFileDialog::~OpenFileDialog()
 
 void OpenFileDialog::addPathToStack(QString path)
 {
-    while(pathStackIdx < pathStack.size() -1){
+    while(pathStackIdx < pathStack.size() -1)
+    {
         pathStack.removeLast();
     }
 
-    if(pathStack.size() == 8){
+    if(pathStack.size() == 8)
+    {
        pathStack.removeFirst();
     }
-    else{
+    else
+    {
         pathStackIdx++;
     }
     pathStack << path;
 
-    if( pathStackIdx > 0){
+    if( pathStackIdx > 0)
+    {
         ui->actionPrev->setEnabled(true);
     }
     ui->actionNext->setEnabled(false);
@@ -135,19 +139,21 @@ void OpenFileDialog::setupCombobox(QString path)
     QStringList pathFragments=path.split("/");
 
     QString pathString("");
-    for(int i=0; i<pathFragments.size()-1; i++){
+    for(int i=0; i<pathFragments.size()-1; i++)
+    {
         pathString=pathString + pathFragments.at(i) + QString("/");
         ui->pathComboBox->addItem(pathString);
     }
     ui->pathComboBox->setCurrentIndex(pathFragments.size()-2);
 
-    if(path.count('/')==1){
+    if(path.count('/')==1)
+    {
         ui->actionUpDirectory->setEnabled(false);
     }
-    else{
+    else
+    {
         ui->actionUpDirectory->setEnabled(true);
     }
-
 }
 
 void OpenFileDialog::openDirectory(QString directoryPath)
@@ -162,13 +168,15 @@ void OpenFileDialog::on_okButton_clicked()
     QItemSelectionModel *selectionModel = ui->treeView->selectionModel();
     QModelIndexList selectedIndexes=selectionModel->selectedIndexes();
 
-    if(selectedIndexes.isEmpty()){
+    if(selectedIndexes.isEmpty())
+    {
         return;
     }
     QModelIndex index = selectedIndexes.first();
 
-    if (!index.isValid()){
-            qDebug() << "ok button clicked";
+    if (!index.isValid())
+    {
+         qDebug() << "ok button clicked";
          qDebug() << "not valid index";
          return;
     }
@@ -177,7 +185,8 @@ void OpenFileDialog::on_okButton_clicked()
     TreeItem *item=static_cast<TreeItem*>(index.internalPointer());
     FileEntry entry=item->getFile();
 
-    if(!entry.isValid()){
+    if(!entry.isValid())
+    {
          qDebug() << "not valid file";
          return;
     }
@@ -220,7 +229,8 @@ void OpenFileDialog::on_actionUpDirectory_triggered()
 {
     QString path=treeViewModel->getDirectoryPath();
 
-    if(path.count('/') > 1){
+    if(path.count('/') > 1)
+    {
         QString directoryPath;
         QStringList fragments=path.split('/');
         for(int i =0; i<fragments.size() -2;i++){
@@ -236,7 +246,8 @@ void OpenFileDialog::on_actionUpDirectory_triggered()
 
 void OpenFileDialog::on_actionPrev_triggered()
 {
-    if(pathStackIdx-1 >= 0){
+    if(pathStackIdx-1 >= 0)
+    {
         pathStackIdx--;
         QString directoryPath=pathStack.at(pathStackIdx);
 
@@ -250,7 +261,8 @@ void OpenFileDialog::on_actionPrev_triggered()
 
 void OpenFileDialog::on_actionNext_triggered()
 {
-    if(pathStackIdx+1 < pathStack.size()){
+    if(pathStackIdx+1 < pathStack.size())
+    {
         pathStackIdx++;
 
         QString directoryPath=pathStack.at(pathStackIdx);
@@ -266,7 +278,8 @@ void OpenFileDialog::on_actionNext_triggered()
 
 void OpenFileDialog::on_listWidget_itemActivated(QListWidgetItem *item)
 {
-    if (item != nullptr) {
+    if (item != nullptr)
+    {
          QVariant data = item->data(Qt::UserRole);
          QString directoryPath = data.toString();
 
@@ -295,7 +308,8 @@ void OpenFileDialog::on_textBox1_textEdited(const QString &text)
                          Qt::MatchExactly);
 
     QItemSelectionModel *selectionModel = ui->treeView->selectionModel();
-    for(int i=0; i<list.size(); i++){
+    for(int i=0; i<list.size(); i++)
+    {
         QModelIndex index=list.at(i);
 
         selectionModel->select(index, QItemSelectionModel::Select | QItemSelectionModel::Rows);
@@ -305,7 +319,8 @@ void OpenFileDialog::on_textBox1_textEdited(const QString &text)
 
 void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
 {
-        if (!index.isValid()){
+        if (!index.isValid())
+        {
             qDebug() << "not valid index";
             return;
         }
@@ -313,7 +328,8 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
         TreeItem *item=static_cast<TreeItem*>(index.internalPointer());
         FileEntry entry=item->getFile();
 
-        if(!entry.isValid()){
+        if(!entry.isValid())
+        {
              qDebug() << "not valid file";
              return;
         }
@@ -327,7 +343,8 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
         case EntryType::glob:
         {
             QList<TreeItem*> childItems=item->getChildItems();
-            for(int i=0; i<childItems.size(); i++){
+            for(int i=0; i<childItems.size(); i++)
+            {
                 m_selectedFiles <<  treeViewModel->getDirectoryPath()+childItems.at(i)->getFile().name();
             }
             if(!m_selectedFiles.isEmpty())accept();

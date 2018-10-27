@@ -14,7 +14,6 @@ FileEntry::FileEntry(QString name, QString type, int size, QDateTime dateModifie
     m_dateModified=dateModified;
     m_entryType=entryType;
 
-
     valid=true;
 }
 
@@ -22,7 +21,6 @@ void FileEntry::setSortingType(SortingType type)
 {
     m_sortingType=type;
 }
-
 
 bool FileEntry::operator<(const FileEntry &other)const
 {

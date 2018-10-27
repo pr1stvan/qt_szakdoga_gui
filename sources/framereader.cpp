@@ -64,8 +64,6 @@ int FrameReader::loadFile(QString fileName)
                        "Failed to open file %1.\n").arg(fileName);
         return 1;
     }
-
-
     QXmlStreamReader reader(&inputFile);
 
     QString pointArrayString;
