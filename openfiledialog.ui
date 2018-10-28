@@ -108,14 +108,14 @@ border-width: 2px;
      <item>
       <widget class="QPushButton" name="okButton">
        <property name="text">
-        <string>Choose</string>
+        <string>Open</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="cancelButton">
        <property name="text">
-        <string>cancel</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>

@@ -37,10 +37,6 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
         addPathToStack(QDir::rootPath());
     }
 
-    listViewModel=new QFileSystemModel(this);
-    listViewModel->setRootPath(QString("/C:"));
-    listViewModel->setFilter(QDir::NoDotAndDotDot | QDir::Dirs);
-
     QFileInfoList drives=QDir::drives();
     QFileIconProvider iconProvider;
 
