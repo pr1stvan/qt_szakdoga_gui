@@ -35,16 +35,14 @@ public:
     QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
-    void setup(QString directoryPath);
-
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
+    void setup(QString directoryPath);
     QStringList getFilePaths();
-
     QString getDirectoryPath();
     EntryType lastClickState();
-
     void setExtensions(QStringList extensions);
+
 private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
 
