@@ -127,8 +127,6 @@ void OpenFileDialog::addPathToStack(QString path)
     ui->actionNext->setEnabled(false);
 }
 
-
-
 void OpenFileDialog::setupCombobox(QString path)
 {
     ui->pathComboBox->clear();
@@ -177,7 +175,6 @@ void OpenFileDialog::on_okButton_clicked()
          return;
     }
 
-
     TreeItem *item=static_cast<TreeItem*>(index.internalPointer());
     FileEntry entry=item->getFile();
 
@@ -196,7 +193,8 @@ void OpenFileDialog::on_okButton_clicked()
     case EntryType::glob:
     {
         QList<TreeItem*> childItems=item->getChildItems();
-        for(int i=0; i<childItems.size(); i++){
+        for(int i=0; i<childItems.size(); i++)
+        {
             m_selectedFiles <<  treeViewModel->getDirectoryPath()+childItems.at(i)->getFile().name();
         }
         if(!m_selectedFiles.isEmpty())accept();
@@ -211,7 +209,6 @@ void OpenFileDialog::on_okButton_clicked()
     default:
         break;
     }
-
 }
 
 void OpenFileDialog::on_pathComboBox_activated(const QString &directoryPath)
@@ -229,7 +226,8 @@ void OpenFileDialog::on_actionUpDirectory_triggered()
     {
         QString directoryPath;
         QStringList fragments=path.split('/');
-        for(int i =0; i<fragments.size() -2;i++){
+        for(int i =0; i<fragments.size() -2;i++)
+        {
             directoryPath=directoryPath+fragments.at(i) + '/';
         }
         treeViewModel->setup(directoryPath);

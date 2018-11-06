@@ -157,15 +157,6 @@ void CustomFileSystemModel::sort(int column, Qt::SortOrder order)
     endResetModel();
 }
 
-QStringList CustomFileSystemModel::getFilePaths()
-{
-    QStringList filePaths;
-    for(int i=0; i<fileNames.size(); i++){
-        filePaths << directoryPath + fileNames.at(i);
-    }
-    return filePaths;
-}
-
 QString CustomFileSystemModel::getDirectoryPath()
 {
     return directoryPath;

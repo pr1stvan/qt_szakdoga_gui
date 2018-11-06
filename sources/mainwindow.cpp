@@ -82,7 +82,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->resize(5*w/8,h/2);
 }
 
-
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -107,6 +106,7 @@ QString getDesktopLocation(){
     }
     return desktopPath;
 }
+
 void MainWindow::on_actionOpen_triggered()
 {
     QStringList extensions;
@@ -188,7 +188,6 @@ void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
         ui->startColorButton->setVisible(false);
         ui->endColorButton->setVisible(false);
         ui->endColorLabel->setVisible(false);
-
     }
     else{
         ui->solidColorButton->setVisible(false);
@@ -197,7 +196,6 @@ void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
         ui->startColorButton->setVisible(true);
         ui->endColorButton->setVisible(true);
         ui->endColorLabel->setVisible(true);
-
     }
     ui->glWidget->setColorMode(mode);
 }

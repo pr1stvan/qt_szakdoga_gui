@@ -168,7 +168,8 @@ int GLWidget::loadFrameDirectory(QStringList filePaths)
     setColorMode(frameSystem.getColorMode());
 
 
-    if(frameSystem.size()>0){
+    if(frameSystem.size()>0)
+    {
         areFramesLoaded=true;
         setDrawingTriangles(!frameSystem.preferDrawingPoints());
         allocateBuffers();
@@ -181,13 +182,13 @@ int GLWidget::loadFrameDirectory(QStringList filePaths)
 
         setLightPosition(centerPoint + QVector3D(2,10,-4));
     }
-    else {
+    else
+    {
         areFramesLoaded=false;
         setLightPosition(QVector3D(0,10,0));
     }
 //    drawingTriangles=!frameSystem.preferDrawingPoints();
     return frameSystem.size();
-
 }
 
 bool GLWidget::velocityDataExist()
@@ -267,11 +268,13 @@ void GLWidget::setSmoothness(int smoothnessValue)
 void GLWidget::setDrawingTriangles(bool state)
 {
 
-    if(state==false){
+    if(state==false)
+    {
         drawingTriangles=false;
         ambientPower=100;
     }
-    else{
+    else
+    {
         drawingTriangles=true;
         ambientPower=50;
     }
@@ -328,7 +331,8 @@ void GLWidget::setLightPosition(QVector3D position)
 
 void GLWidget::setFrameIdx(int idx)
 {
-    if(areFramesLoaded){
+    if(areFramesLoaded)
+    {
         frameIdx=idx;
         emit frameIdxChanged(frameIdx);
     }
@@ -341,21 +345,24 @@ void GLWidget::setFps(int fps)
 
 void GLWidget::play()
 {
-    if(areFramesLoaded){
+    if(areFramesLoaded)
+    {
          paused=false;
     }
 }
 
 void GLWidget::pause()
 {
-    if(areFramesLoaded){
+    if(areFramesLoaded)
+    {
           paused=true;
     }
 }
 
 void GLWidget::stop()
 {
-    if(areFramesLoaded){
+    if(areFramesLoaded)
+    {
         setFrameIdx(0);
         paused=true;
     }
@@ -363,12 +370,16 @@ void GLWidget::stop()
 
 void GLWidget::nextFrame()
 {
-    if(areFramesLoaded){
-        if(!paused){
+    if(areFramesLoaded)
+    {
+        if(!paused)
+        {
             pause();
         }
-        else{
-            if(frameIdx +1 <= frameSystem.size() -1){
+        else
+        {
+            if(frameIdx +1 <= frameSystem.size() -1)
+            {
                 setFrameIdx(frameIdx+1);
             }
         }
@@ -377,12 +388,16 @@ void GLWidget::nextFrame()
 
 void GLWidget::prevFrame()
 {
-    if(areFramesLoaded){
-        if(!paused){
+    if(areFramesLoaded)
+    {
+        if(!paused)
+        {
             pause();
         }
-        else{
-            if(frameIdx -1 >= 0){
+        else
+        {
+            if(frameIdx -1 >= 0)
+            {
                 setFrameIdx(frameIdx-1);
             }
         }
@@ -552,14 +567,18 @@ void GLWidget::allocateBuffers()
 void GLWidget::animate(int frameCount)
 {
     if(areFramesLoaded){
-        for(int i = 1; i<=frameCount && !paused; i++){
-            if(frameIdx+1 >= frameSystem.size() && autoReplay){
+        for(int i = 1; i<=frameCount && !paused; i++)
+        {
+            if(frameIdx+1 >= frameSystem.size() && autoReplay)
+            {
                 setFrameIdx(0);
             }
-            else if(frameIdx+1 >= frameSystem.size() && !autoReplay){
+            else if(frameIdx+1 >= frameSystem.size() && !autoReplay)
+            {
                 pause();
             }
-            else{
+            else
+            {
                 setFrameIdx(frameIdx+1);
             }
         }
@@ -663,7 +682,8 @@ void GLWidget::wheelEvent(QWheelEvent *event){
 QString GLWidget::loadFile(QString path)
 {
     QFile file(path);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
         return QString("file not found");
     }
     QTextStream in(&file);

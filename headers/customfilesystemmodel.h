@@ -38,7 +38,6 @@ public:
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
     void setup(QString directoryPath);
-    QStringList getFilePaths();
     QString getDirectoryPath();
     EntryType lastClickState();
     void setExtensions(QStringList extensions);
