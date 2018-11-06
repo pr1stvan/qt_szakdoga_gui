@@ -20,18 +20,19 @@ OpenFileDialog::OpenFileDialog(QStringList extensions,QString directoryPath,QWid
     ui->setupUi(this);
 
     pathStackIdx=-1;
-    treeViewModel=new CustomFileSystemModel(this);
-    treeViewModel->setExtensions(extensions);
+    treeViewModel=new CustomFileSystemModel(extensions,this);
 
     QFileInfo file(directoryPath);
     if(file.exists())
     {
+        m_directoryPath = directoryPath;
         treeViewModel->setup(directoryPath);
         setupCombobox(directoryPath);
         addPathToStack(directoryPath);
     }
     else
     {
+        m_directoryPath = QDir::rootPath();
         treeViewModel->setup(QDir::rootPath());
         setupCombobox(QDir::rootPath());
         addPathToStack(QDir::rootPath());
@@ -152,6 +153,7 @@ void OpenFileDialog::setupCombobox(QString path)
 
 void OpenFileDialog::openDirectory(QString directoryPath)
 {
+    m_directoryPath=directoryPath;
     treeViewModel->setup(directoryPath);
     setupCombobox(directoryPath);
     addPathToStack(directoryPath);
@@ -215,6 +217,7 @@ void OpenFileDialog::on_okButton_clicked()
 
 void OpenFileDialog::on_pathComboBox_activated(const QString &directoryPath)
 {
+    m_directoryPath=directoryPath;
     treeViewModel->setup(directoryPath);
     setupCombobox(directoryPath);
     addPathToStack(directoryPath);
@@ -222,16 +225,16 @@ void OpenFileDialog::on_pathComboBox_activated(const QString &directoryPath)
 
 void OpenFileDialog::on_actionUpDirectory_triggered()
 {
-    QString path=treeViewModel->getDirectoryPath();
-
-    if(path.count('/') > 1)
+    qDebug() << m_directoryPath;
+    if(m_directoryPath.count('/') > 1)
     {
         QString directoryPath;
-        QStringList fragments=path.split('/');
+        QStringList fragments=m_directoryPath.split('/');
         for(int i =0; i<fragments.size() -2;i++)
         {
             directoryPath=directoryPath+fragments.at(i) + '/';
         }
+        m_directoryPath=directoryPath;
         treeViewModel->setup(directoryPath);
         setupCombobox(directoryPath);
 
@@ -247,6 +250,7 @@ void OpenFileDialog::on_actionPrev_triggered()
         pathStackIdx--;
         QString directoryPath=pathStack.at(pathStackIdx);
 
+        m_directoryPath=directoryPath;
         treeViewModel->setup(directoryPath);
         setupCombobox(directoryPath);
 
@@ -263,6 +267,7 @@ void OpenFileDialog::on_actionNext_triggered()
 
         QString directoryPath=pathStack.at(pathStackIdx);
 
+        m_directoryPath=directoryPath;
         treeViewModel->setup(directoryPath);
         setupCombobox(directoryPath);
 
@@ -279,6 +284,7 @@ void OpenFileDialog::on_listWidget_itemActivated(QListWidgetItem *item)
          QVariant data = item->data(Qt::UserRole);
          QString directoryPath = data.toString();
 
+         m_directoryPath=directoryPath;
          treeViewModel->setup(directoryPath);
          setupCombobox(directoryPath);
          addPathToStack(directoryPath);
@@ -333,7 +339,7 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
         m_selectedFiles=QStringList();
         switch(entry.entryType()){
         case EntryType::file:
-            m_selectedFiles << treeViewModel->getDirectoryPath()+entry.name();
+            m_selectedFiles << entry.path();
             if(!m_selectedFiles.isEmpty())accept();
             break;
         case EntryType::glob:
@@ -341,14 +347,14 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
             QList<TreeItem*> childItems=item->getChildItems();
             for(int i=0; i<childItems.size(); i++)
             {
-                m_selectedFiles <<  treeViewModel->getDirectoryPath()+childItems.at(i)->getFile().name();
+                m_selectedFiles <<  childItems.at(i)->getFile().path();
             }
             if(!m_selectedFiles.isEmpty())accept();
             break;
         }
         case EntryType::directory:
         {
-            QString directoryPath=treeViewModel->getDirectoryPath()+entry.name()+QChar('/');
+            QString directoryPath=entry.path()+QChar('/');
             openDirectory(directoryPath);
             break;
         }

@@ -61,6 +61,7 @@ private:
     QFileSystemModel *listViewModel;
 
     QStringList m_selectedFiles;
+    QString m_directoryPath;
     //for the next and prev buttons
     QStringList pathStack;
     int pathStackIdx;

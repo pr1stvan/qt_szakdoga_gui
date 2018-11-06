@@ -2,7 +2,7 @@
 #include "customfilesystemmodel.h"
 
 
-CustomFileSystemModel::CustomFileSystemModel(QObject *parent)
+CustomFileSystemModel::CustomFileSystemModel(QStringList extensions, QObject *parent)
     : QAbstractItemModel(parent)
 {
     m_lastClickState=none;
@@ -15,7 +15,7 @@ CustomFileSystemModel::CustomFileSystemModel(QObject *parent)
     sortingTypes[QString("Size")]=SortingType::size;
     sortingTypes[QString("Date modified")]=SortingType::dateModified;
 
-    extensions=QStringList();
+    m_extensions=extensions;
 }
 
 CustomFileSystemModel::~CustomFileSystemModel()
@@ -41,7 +41,6 @@ void CustomFileSystemModel::setup(QString directoryPath)
     rootItem = new TreeItem(rootData,FileEntry());
 
     this->fileNames=QStringList();
-    this->directoryPath=directoryPath;
 
     QDir dir(directoryPath);
 
@@ -66,7 +65,7 @@ void CustomFileSystemModel::setup(QString directoryPath)
     //files
     QMap<QString, QVector<FileEntry>> fileGlobHash;
 
-    QFileInfoList fileInfoList =dir.entryInfoList(extensions, QDir::Files | QDir::NoSymLinks);
+    QFileInfoList fileInfoList =dir.entryInfoList(m_extensions, QDir::Files | QDir::NoSymLinks);
 
     for(int i=0; i<fileInfoList.size(); i++){
         QFileInfo fileInfo=fileInfoList.at(i);
@@ -161,16 +160,6 @@ void CustomFileSystemModel::sort(int column, Qt::SortOrder order)
     rootItem->sort(stype,order);
 
     endResetModel();
-}
-
-QString CustomFileSystemModel::getDirectoryPath()
-{
-    return directoryPath;
-}
-
-void CustomFileSystemModel::setExtensions(QStringList extensions)
-{
-    this->extensions=extensions;
 }
 
 QVariant CustomFileSystemModel::data(const QModelIndex &index, int role) const

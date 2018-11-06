@@ -23,7 +23,7 @@ class CustomFileSystemModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    explicit CustomFileSystemModel(QObject *parent = 0);
+    explicit CustomFileSystemModel(QStringList extensions,QObject *parent = 0);
     ~CustomFileSystemModel();
 
     QVariant data(const QModelIndex &index, int role) const override;
@@ -38,15 +38,12 @@ public:
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
     void setup(QString directoryPath);
-    QString getDirectoryPath();
-    void setExtensions(QStringList extensions);
-
 private:
     void setupModelData(const QStringList &lines, TreeItem *parent);
 
-    QStringList extensions;
+    QStringList m_extensions;
     QMap<QString,SortingType> sortingTypes;
-    QString directoryPath;
+
     QStringList fileNames;
     TreeItem *rootItem;
     QFileIconProvider iconProvider;
