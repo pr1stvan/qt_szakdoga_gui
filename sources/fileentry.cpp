@@ -5,7 +5,7 @@ FileEntry::FileEntry()
     valid=false;
 }
 
-FileEntry::FileEntry(QString name, QString type, int size, QDateTime dateModified,EntryType entryType)
+FileEntry::FileEntry(QString name, QString type, int size, QDateTime dateModified, EntryType entryType, QString path)
 {
     m_sortingType=SortingType::name;
     m_name=name;
@@ -14,6 +14,7 @@ FileEntry::FileEntry(QString name, QString type, int size, QDateTime dateModifie
     m_dateModified=dateModified;
     m_entryType=entryType;
 
+    m_path = path;
     valid=true;
 }
 
@@ -61,4 +62,9 @@ EntryType FileEntry::entryType(){
 SortingType FileEntry::sortingType()
 {
     return m_sortingType;
+}
+
+QString FileEntry::path()
+{
+    return m_path;
 }

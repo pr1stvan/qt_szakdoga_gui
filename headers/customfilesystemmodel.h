@@ -39,7 +39,6 @@ public:
 
     void setup(QString directoryPath);
     QString getDirectoryPath();
-    EntryType lastClickState();
     void setExtensions(QStringList extensions);
 
 private:

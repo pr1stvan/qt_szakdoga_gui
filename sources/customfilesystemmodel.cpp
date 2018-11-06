@@ -55,7 +55,8 @@ void CustomFileSystemModel::setup(QString directoryPath)
                             QString("File folder"),
                             directoryInfo.size(),
                             directoryInfo.lastModified(),
-                            EntryType::directory);
+                            EntryType::directory,
+                            directoryInfo.filePath());
 
         QList<QVariant> list;
         list << directory.name() << directory.type() << QString("") << directory.dateModified();
@@ -76,7 +77,8 @@ void CustomFileSystemModel::setup(QString directoryPath)
                                  extension + QString(" file"),
                                  fileInfo.size(),
                                  fileInfo.lastModified(),
-                                 EntryType::file);
+                                 EntryType::file,
+                                 fileInfo.filePath());
 
         //Has number at the end, e.g out_001.vtp
         QRegExp rx(".*_[0-9]*\\..*$");
@@ -103,14 +105,15 @@ void CustomFileSystemModel::setup(QString directoryPath)
         }
     }
 
-
     QMapIterator<QString, QVector<FileEntry>> it(fileGlobHash);
-    while (it.hasNext()) {
+    while (it.hasNext())
+    {
         it.next();
 
         QVector<FileEntry> files=it.value();
 
-        if(files.size() > 1){
+        if(files.size() > 1)
+        {
             qSort(files);
 
             QList<QVariant> list;
@@ -119,8 +122,10 @@ void CustomFileSystemModel::setup(QString directoryPath)
                                                               QString("Group"),
                                                               0,
                                                               QDateTime(),
-                                                              EntryType::glob),rootItem);
-            for(int i=0; i< files.size(); i++){
+                                                              EntryType::glob,
+                                                               QString()),rootItem);
+            for(int i=0; i< files.size(); i++)
+            {
                 FileEntry file=files.at(i);
                 QString sizeNumberString=QString::number(file.size()/1000.0, 'f', 1) + QString(" KB");
                 list=QList<QVariant>();
@@ -131,7 +136,8 @@ void CustomFileSystemModel::setup(QString directoryPath)
             rootItem->appendChild(fileGlobItem);
 
         }
-        else if(files.size() == 1){
+        else if(files.size() == 1)
+        {
             FileEntry file=files.at(0);
             QList<QVariant> list;
             QString sizeNumberString=QString::number(file.size()/1000.0, 'f', 1) + QString(" KB");
@@ -139,10 +145,10 @@ void CustomFileSystemModel::setup(QString directoryPath)
 
             rootItem->appendChild(new TreeItem(list,file,rootItem));
         }
-        else{
+        else
+        {
             qDebug() << "!!!!No files!!!!!";
         }
-
     }
     endResetModel();
 }
@@ -160,11 +166,6 @@ void CustomFileSystemModel::sort(int column, Qt::SortOrder order)
 QString CustomFileSystemModel::getDirectoryPath()
 {
     return directoryPath;
-}
-
-EntryType CustomFileSystemModel::lastClickState()
-{
-    return m_lastClickState;
 }
 
 void CustomFileSystemModel::setExtensions(QStringList extensions)

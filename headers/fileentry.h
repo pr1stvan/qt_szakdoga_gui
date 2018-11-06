@@ -25,7 +25,7 @@ class FileEntry
 {
 public:
     FileEntry();
-    FileEntry(QString name, QString type, int size, QDateTime dateModified, EntryType entryType);
+    FileEntry(QString name, QString type, int size, QDateTime dateModified, EntryType entryType, QString path);
     bool isValid(){
         return valid;
     }
@@ -48,15 +48,18 @@ public:
     EntryType entryType();
     SortingType sortingType();
 
-
+    QString path();
 private:
     SortingType m_sortingType;
     bool valid;
 
-    QString m_name,m_type;
+    QString m_name;
+    QString m_type;
     int m_size;
     QDateTime m_dateModified;
     EntryType m_entryType;
+
+    QString m_path;
 };
 
 #endif // FILEENTRY_H

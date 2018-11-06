@@ -187,22 +187,24 @@ void OpenFileDialog::on_okButton_clicked()
     m_selectedFiles=QStringList();
     switch(entry.entryType()){
     case EntryType::file:
-        m_selectedFiles << treeViewModel->getDirectoryPath()+entry.name();
+    {
+        m_selectedFiles << entry.path();
         if(!m_selectedFiles.isEmpty())accept();
         break;
+    }
     case EntryType::glob:
     {
         QList<TreeItem*> childItems=item->getChildItems();
         for(int i=0; i<childItems.size(); i++)
         {
-            m_selectedFiles <<  treeViewModel->getDirectoryPath()+childItems.at(i)->getFile().name();
+            m_selectedFiles << childItems.at(i)->getFile().path();
         }
         if(!m_selectedFiles.isEmpty())accept();
         break;
     }
     case EntryType::directory:
     {
-        QString directoryPath=treeViewModel->getDirectoryPath()+entry.name()+QChar('/');
+        QString directoryPath=entry.path() + QChar('/');
         openDirectory(directoryPath);
         break;
     }
