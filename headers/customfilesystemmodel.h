@@ -39,8 +39,6 @@ public:
 
     void setup(QString directoryPath);
 private:
-    void setupModelData(const QStringList &lines, TreeItem *parent);
-
     QStringList m_extensions;
     QMap<QString,SortingType> sortingTypes;
 

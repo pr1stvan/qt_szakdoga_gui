@@ -26,14 +26,21 @@ CustomFileSystemModel::~CustomFileSystemModel()
 int CustomFileSystemModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
+    {
         return static_cast<TreeItem*>(parent.internalPointer())->columnCount();
+    }
     else
+    {
         return rootItem->columnCount();
+    }
 }
 
 void CustomFileSystemModel::setup(QString directoryPath)
 {
-    if(m_lastClickState==directory)m_lastClickState=none;
+    if(m_lastClickState==directory)
+    {
+        m_lastClickState=none;
+    }
     delete rootItem;
 
     QList<QVariant> rootData;
@@ -47,7 +54,8 @@ void CustomFileSystemModel::setup(QString directoryPath)
     //directories
     QFileInfoList directoryInfoList =dir.entryInfoList(QStringList(), QDir::NoDotAndDotDot | QDir::Dirs | QDir::NoSymLinks,QDir::Name);
 
-    for(int i=0; i<directoryInfoList.size(); i++){
+    for(int i=0; i<directoryInfoList.size(); i++)
+    {
         QFileInfo directoryInfo=directoryInfoList.at(i);
 
         FileEntry directory(directoryInfo.fileName(),
@@ -67,7 +75,8 @@ void CustomFileSystemModel::setup(QString directoryPath)
 
     QFileInfoList fileInfoList =dir.entryInfoList(m_extensions, QDir::Files | QDir::NoSymLinks);
 
-    for(int i=0; i<fileInfoList.size(); i++){
+    for(int i=0; i<fileInfoList.size(); i++)
+    {
         QFileInfo fileInfo=fileInfoList.at(i);
 
         QString extension=fileInfo.fileName();
@@ -82,7 +91,8 @@ void CustomFileSystemModel::setup(QString directoryPath)
         //Has number at the end, e.g out_001.vtp
         QRegExp rx(".*_[0-9]*\\..*$");
 
-        if(rx.exactMatch(file.name())){
+        if(rx.exactMatch(file.name()))
+        {
             //remove numbers from the end
             QStringList list1 = file.name().split('_');
             list1.pop_back();
@@ -99,7 +109,8 @@ void CustomFileSystemModel::setup(QString directoryPath)
 
             fileGlobHash[fileNameWithoutEndNumbers].push_back(file);
         }
-        else{
+        else
+        {
             fileGlobHash[file.name()].push_back(file);
         }
     }
@@ -133,7 +144,6 @@ void CustomFileSystemModel::setup(QString directoryPath)
                 fileGlobItem->appendChild(new TreeItem(list,file,fileGlobItem));
             }
             rootItem->appendChild(fileGlobItem);
-
         }
         else if(files.size() == 1)
         {
@@ -165,10 +175,13 @@ void CustomFileSystemModel::sort(int column, Qt::SortOrder order)
 QVariant CustomFileSystemModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
+    {
         return QVariant();
+    }
 
     TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
-    if (role == Qt::DisplayRole){
+    if (role == Qt::DisplayRole)
+    {
         return item->data(index.column());
     }
     else if ( role == Qt::DecorationRole && index.column()==0) {
@@ -185,8 +198,9 @@ QVariant CustomFileSystemModel::data(const QModelIndex &index, int role) const
 Qt::ItemFlags CustomFileSystemModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
+    {
         return 0;
-
+    }
     return QAbstractItemModel::flags(index);
 }
 
@@ -194,8 +208,9 @@ QVariant CustomFileSystemModel::headerData(int section, Qt::Orientation orientat
                                int role) const
 {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
+    {
         return rootItem->data(section);
-
+    }
     return QVariant();
 }
 
@@ -203,32 +218,44 @@ QModelIndex CustomFileSystemModel::index(int row, int column, const QModelIndex 
             const
 {
     if (!hasIndex(row, column, parent))
+    {
         return QModelIndex();
-
+    }
     TreeItem *parentItem;
 
     if (!parent.isValid())
+    {
         parentItem = rootItem;
+    }
     else
+    {
         parentItem = static_cast<TreeItem*>(parent.internalPointer());
-
+    }
     TreeItem *childItem = parentItem->child(row);
     if (childItem)
+    {
         return createIndex(row, column, childItem);
+    }
     else
+    {
         return QModelIndex();
+    }
 }
 
 QModelIndex CustomFileSystemModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
+    {
         return QModelIndex();
+    }
 
     TreeItem *childItem = static_cast<TreeItem*>(index.internalPointer());
     TreeItem *parentItem = childItem->parentItem();
 
     if (parentItem == rootItem)
+    {
         return QModelIndex();
+    }
 
     return createIndex(parentItem->row(), 0, parentItem);
 }
@@ -237,12 +264,17 @@ int CustomFileSystemModel::rowCount(const QModelIndex &parent) const
 {
     TreeItem *parentItem;
     if (parent.column() > 0)
+    {
         return 0;
+    }
 
     if (!parent.isValid())
+    {
         parentItem = rootItem;
+    }
     else
+    {
         parentItem = static_cast<TreeItem*>(parent.internalPointer());
-
+    }
     return parentItem->childCount();
 }
