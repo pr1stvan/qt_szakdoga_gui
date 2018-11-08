@@ -537,7 +537,7 @@
      <item row="12" column="0">
       <widget class="QLabel" name="viewAngleLabel">
        <property name="text">
-        <string>angle of view:</string>
+        <string>field of view:</string>
        </property>
       </widget>
      </item>

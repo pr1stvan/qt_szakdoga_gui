@@ -69,7 +69,6 @@ void CustomFileSystemModel::setup(QString directoryPath)
         list << directory.name() << directory.type() << QString("") << directory.dateModified();
         rootItem->appendChild(new TreeItem(list,directory,rootItem));
     }
-
     //files
     QMap<QString, QVector<FileEntry>> fileGlobHash;
 
@@ -184,9 +183,11 @@ QVariant CustomFileSystemModel::data(const QModelIndex &index, int role) const
     {
         return item->data(index.column());
     }
-    else if ( role == Qt::DecorationRole && index.column()==0) {
+    else if ( role == Qt::DecorationRole && index.column()==0)
+    {
         FileEntry file=item->getFile();
-        if(file.entryType() == EntryType::directory){
+        if(file.entryType() == EntryType::directory)
+        {
             return iconProvider.icon(QFileIconProvider::Folder);
         }
         return iconProvider.icon(QFileIconProvider::File);
