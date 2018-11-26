@@ -26,19 +26,11 @@ class FileEntry
 public:
     FileEntry();
     FileEntry(QString name, QString type, int size, QDateTime dateModified, EntryType entryType, QString path);
-    bool isValid(){
-        return valid;
-    }
 
-    QString name() const{
-        return m_name;
-    }
-    QString type() const{
-        return m_type;
-    }
-    QDateTime dateModified() const{
-        return m_dateModified;
-    }
+    bool isValid();
+    QString name()const;
+    QString type()const;
+    QDateTime dateModified()const;
 
     void setSortingType(SortingType type);
 

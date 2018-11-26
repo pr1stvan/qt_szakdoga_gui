@@ -69,3 +69,6 @@ FORMS += \
 
 RESOURCES += \
     resource.qrc
+
+DISTFILES += \
+    class_diagram.qmodel

@@ -18,6 +18,26 @@ FileEntry::FileEntry(QString name, QString type, int size, QDateTime dateModifie
     valid=true;
 }
 
+bool FileEntry::isValid()
+{
+    return valid;
+}
+
+QString FileEntry::name() const
+{
+    return m_name;
+}
+
+QString FileEntry::type() const
+{
+    return m_type;
+}
+
+QDateTime FileEntry::dateModified() const
+{
+    return m_dateModified;
+}
+
 void FileEntry::setSortingType(SortingType type)
 {
     m_sortingType=type;

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qmt>
+ <project>
+  <uid>{4d3be4ce-3767-4bff-9b8f-3af97f086d4f}</uid>
+  <root-package>
+   <instance>
+    <MPackage>
+     <base-MObject>
+      <MObject>
+       <base-MElement>
+        <MElement>
+         <uid>{310009e0-75f1-44e1-9ea8-9d75089e2a77}</uid>
+        </MElement>
+       </base-MElement>
+       <name>class_diagram</name>
+       <children>
+        <handles>
+         <handles>
+          <qlist>
+           <item>
+            <handle>
+             <uid>{33a7bbc5-f4e4-4bf2-8f5b-9c5841546f73}</uid>
+             <target>
+              <instance type="MCanvasDiagram">
+               <MCanvasDiagram>
+                <base-MDiagram>
+                 <MDiagram>
+                  <base-MObject>
+                   <MObject>
+                    <base-MElement>
+                     <MElement>
+                      <uid>{33a7bbc5-f4e4-4bf2-8f5b-9c5841546f73}</uid>
+                     </MElement>
+                    </base-MElement>
+                    <name>class_diagram</name>
+                   </MObject>
+                  </base-MObject>
+                  <elements>
+                   <qlist>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{95efa739-521d-44a6-bf71-1b116fb40fb9}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{233d9db6-27d0-4834-a6db-eabea862b27b}</object>
+                         <name>Camera</name>
+                         <pos>x:345;y:340</pos>
+                         <rect>x:-130;y:-235;w:260;h:470</rect>
+                         <auto-sized>false</auto-sized>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                       <show-all-members>true</show-all-members>
+                      </DClass>
+                     </instance>
+                    </item>
+                   </qlist>
+                  </elements>
+                  <last-modified>1543197323444</last-modified>
+                  <toolbarid>General</toolbarid>
+                 </MDiagram>
+                </base-MDiagram>
+               </MCanvasDiagram>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{233d9db6-27d0-4834-a6db-eabea862b27b}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{233d9db6-27d0-4834-a6db-eabea862b27b}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>Camera</name>
+                 </MObject>
+                </base-MObject>
+                <members>
+                 <qlist>
+                  <item>
+                   <MClassMember>
+                    <uid>{44e47a9d-d5ab-422d-8eff-b212583515a8}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>position: QVector3D</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c60397d6-e92c-4afa-adbf-8762c86c60e1}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>lookAtPoint: QVector3D</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{aed578d2-ba9e-4775-93e0-b78ed96b0712}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>up: QVector3D</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{2994ecb1-56a6-4dc3-b270-3daf7e91b674}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>right: QVector3D</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{97479fed-8fad-409f-925f-132280ffa0ca}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>canvasWidth: int</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f5c7f925-489c-43a3-aa3b-c8ef0ac0cb12}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>canvasHeight: int</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{701d540e-c744-45fc-b644-33b774799a90}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>horizontalAngle_degrees: int</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fd39282f-3505-4ee0-b8ee-f31dedbf88eb}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>verticalAngle_degrees: int</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a81b424a-2eb2-4d04-afcb-46b57bf3735e}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>distance: int</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6ee5ae26-34d2-4403-b923-fb1ee88257a7}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>viewAngle: int</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{306a5b1c-f88f-4f46-b8dc-fee86674218c}</uid>
+                    <visibility>3</visibility>
+                    <type>1</type>
+                    <declaration>distanceVelocity: int</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{53522661-599b-434f-87ce-51da92bdb4e8}</uid>
+                    <visibility>7</visibility>
+                    <type>2</type>
+                    <declaration>setHorizontalAngleDegrees(degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{c05b63f1-10d5-4e5a-b3a4-250a595f734b}</uid>
+                    <visibility>7</visibility>
+                    <type>2</type>
+                    <declaration>setVerticalAngleDegrees(degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{7f38a0a5-aa5a-4c5c-bc79-dc463089ab5b}</uid>
+                    <visibility>7</visibility>
+                    <type>2</type>
+                    <declaration>setDistance(distance: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{99c84d13-e008-4d49-a4ed-ab055b9c489e}</uid>
+                    <visibility>7</visibility>
+                    <type>2</type>
+                    <declaration>setViewAngle(degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a06d14d0-4698-4d36-b1ee-3096af744dce}</uid>
+                    <visibility>4</visibility>
+                    <type>2</type>
+                    <declaration>horizontalAngleChanged(degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{367266c5-3c70-4296-b67c-43f3642c071f}</uid>
+                    <visibility>4</visibility>
+                    <type>2</type>
+                    <declaration>verticalAngleChanged(degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{a68e5d86-c8dd-4987-9a35-3e851189f732}</uid>
+                    <visibility>4</visibility>
+                    <type>2</type>
+                    <declaration>distanceChanged(distance: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{08feab2a-aa20-4633-a239-ecfd588b126f}</uid>
+                    <visibility>4</visibility>
+                    <type>2</type>
+                    <declaration>viewAngleChanged(degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{9fe7bf05-bf32-4eb8-99a5-83be3200d6aa}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QMatrix4x4 V()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{6a0fde6f-b1f7-4e80-a4df-7d2885ec4838}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>QMatrix4x4 P()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{fb7e2d23-0d6d-4a40-ac49-6a089808fb80}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>updateSignal()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{01a60ad4-9e66-4235-97f5-fabbe4977ebc}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>rotateToNewPosition()</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{978ecf36-738b-4105-b02c-221c1af8dca6}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>setPosition(position: QVector3D)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{3d2cfb86-262d-42db-a0a1-a3929880ff32}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>setLookAtPoint(lookAtPoint: QVector3D)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{f749b5da-9d2e-4383-96e3-0b470c52ab84}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>setCanvas(width: int,height: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{087f9074-3c25-4690-a9bb-2883d4b566cd}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>rotateHorizontal(dh_degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{aef1bb66-c16d-4380-9ece-c3af04bf691a}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>rotateVertical(dv_degrees: int)</declaration>
+                   </MClassMember>
+                  </item>
+                  <item>
+                   <MClassMember>
+                    <uid>{ba4e50eb-0cc7-42c6-b60b-71b91fda53da}</uid>
+                    <visibility>1</visibility>
+                    <type>2</type>
+                    <declaration>increaseDistance(dDistance: int)</declaration>
+                   </MClassMember>
+                  </item>
+                 </qlist>
+                </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+          </qlist>
+         </handles>
+        </handles>
+       </children>
+      </MObject>
+     </base-MObject>
+    </MPackage>
+   </instance>
+  </root-package>
+ </project>
+</qmt>
