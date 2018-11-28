@@ -17,14 +17,18 @@ Frame::Frame(QString fileName)
     velocity_data_exist=freader.velocityDataExist();
     area_data_exist=freader.areaDataExist();
 
-    if(velocity_data_exist){
+    if(velocity_data_exist)
+    {
         velocities=freader.getVelocities();
     }
 
-    if(area_data_exist){
+    if(area_data_exist)
+    {
         areas=freader.getAreas();
-        for(int i =0; i<areas.size(); i++){
-            if(i%3 ==2){
+        for(int i =0; i<areas.size(); i++)
+        {
+            if(i%3 ==2)
+            {
                 vertexAreas.append(areas.at(i-2));
                 projectedVertexAreas.append(areas.at(i-1));
                 vertexMasses.append(areas.at(i));
@@ -32,44 +36,54 @@ Frame::Frame(QString fileName)
         }
     }
 
-    if(freader.indexDataExist()){
+    if(freader.indexDataExist())
+    {
         indices=freader.getIndices();
         prefer_drawing_points=false;
     }
-    else{
-        for(int i=0; i<points.size();i++){
-            if(i%3 == 2){
+    else
+    {
+        for(int i=0; i<points.size();i++)
+        {
+            if(i%3 == 2)
+            {
                indices.append(i/3);
             }
         }
         prefer_drawing_points=true;
     }
-
 }
 
 float Frame::getMinPointCoord(int xyz)
 {
-    if(points.size()==0){
+    if(points.size()==0)
+    {
         return 0;
     }
 
     float min=points[xyz];
-    for(int i=xyz+3; i<points.size();i+=3){
-        if(points[i]<min){
+    for(int i=xyz+3; i<points.size();i+=3)
+    {
+        if(points[i]<min)
+        {
             min=points[i];
         }
     }
     return min;
 }
+
 float Frame::getMaxPointCoord(int xyz)
 {
-    if(points.size()==0){
+    if(points.size()==0)
+    {
         return 0;
     }
 
     float max=points[xyz];
-    for(int i=xyz+3; i<points.size();i+=3){
-        if(points[i]>max){
+    for(int i=xyz+3; i<points.size();i+=3)
+    {
+        if(points[i]>max)
+        {
             max=points[i];
         }
     }
@@ -78,7 +92,8 @@ float Frame::getMaxPointCoord(int xyz)
 
 float Frame::getMin(ColorMode mode)
 {
-    switch(mode) {
+    switch(mode)
+    {
     case VELOCITY:
         return minLength(toQVector3DArray(velocities)).length();
         break;
@@ -98,7 +113,8 @@ float Frame::getMin(ColorMode mode)
 
 float Frame::getMax(ColorMode mode)
 {
-    switch(mode) {
+    switch(mode)
+    {
     case VELOCITY:
         return maxLength(toQVector3DArray(velocities)).length();
         break;
@@ -138,7 +154,8 @@ const QVector<float> &Frame::getVertexMasses()
 
 void Frame::scalePointsAfterLoading(float scale)
 {
-    for(int i=0;i<points.size();i++){
+    for(int i=0;i<points.size();i++)
+    {
         points[i]=points[i]*scale;
     }
 }
@@ -152,23 +169,28 @@ void Frame::setUpColors(ColorMode mode, QVector3D startColor, QVector3D endColor
 {
 
     QVector<float> weights;
-    if(mode == SOLID){
+    if(mode == SOLID)
+    {
         QVector<float> newAmbients;
         QVector<float> newDiffuses;
         QVector<float> newSpeculars;
 
-        for(int i =0 ; i< points.size(); i++){
-            if(i%3 == 0){
+        for(int i =0 ; i< points.size(); i++)
+        {
+            if(i%3 == 0)
+            {
                 newAmbients.append(startColor.x());
                 newDiffuses.append(startColor.x());
                 newSpeculars.append(1.0f);
             }
-            else if(i%3 == 1){
+            else if(i%3 == 1)
+            {
                 newAmbients.append(startColor.y());
                 newDiffuses.append(startColor.y());
                 newSpeculars.append(1.0f);
             }
-            else if(i%3 == 2){
+            else if(i%3 == 2)
+            {
                 newAmbients.append(startColor.z());
                 newDiffuses.append(startColor.z());
                 newSpeculars.append(1.0f);
@@ -181,29 +203,37 @@ void Frame::setUpColors(ColorMode mode, QVector3D startColor, QVector3D endColor
 
         return;
     }
-    else if(mode == VELOCITY){
-        if(!velocity_data_exist){
+    else if(mode == VELOCITY)
+    {
+        if(!velocity_data_exist)
+        {
             qDebug() << "setUpFrameColors: no velocity data";
             return;
         }
         weights=toLengthArray(velocities);
     }
-    else if(mode == VERTEX_AREA){
-        if(!area_data_exist){
+    else if(mode == VERTEX_AREA)
+    {
+        if(!area_data_exist)
+        {
             qDebug() << "setUpFrameColors: no area data";
             return;
         }
         weights=vertexAreas;
     }
-    else if(mode == PROJECTED_VERTEX_AREA){
-        if(!area_data_exist){
+    else if(mode == PROJECTED_VERTEX_AREA)
+    {
+        if(!area_data_exist)
+        {
             qDebug() << "setUpFrameColors: no area data";
             return;
         }
         weights=projectedVertexAreas;
     }
-    else if(mode == VERTEX_MASS){
-        if(!area_data_exist){
+    else if(mode == VERTEX_MASS)
+    {
+        if(!area_data_exist)
+        {
             qDebug() << "setUpFrameColors: no area data";
             return;
         }
@@ -211,12 +241,12 @@ void Frame::setUpColors(ColorMode mode, QVector3D startColor, QVector3D endColor
     }
     if(weights.size() == 0)return;
 
-
     QVector<float> newAmbients;
     QVector<float> newDiffuses;
     QVector<float> newSpeculars;
 
-    for(int i=0; i< weights.size(); i++){
+    for(int i=0; i< weights.size(); i++)
+    {
         float rate=(weights.at(i)-min)/(max-min);
 
         QVector3D actualColor = (1-rate)*startColor+rate*endColor;
@@ -239,4 +269,3 @@ void Frame::setUpColors(ColorMode mode, QVector3D startColor, QVector3D endColor
     Speculars=newSpeculars;
 
 }
-

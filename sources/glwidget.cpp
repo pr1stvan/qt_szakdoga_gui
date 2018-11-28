@@ -75,7 +75,8 @@ GLWidget::GLWidget(QWidget *parent)
     // --transparent causes the clear color to be transparent. Therefore, on systems that
     // support it, the widget will become transparent apart from the logo.
     m_transparent = QCoreApplication::arguments().contains(QStringLiteral("--transparent"));
-    if (m_transparent) {
+    if (m_transparent)
+    {
         QSurfaceFormat fmt = format();
         fmt.setAlphaBufferSize(8);
         setFormat(fmt);
@@ -511,7 +512,8 @@ void GLWidget::initializeGL()
 }
 
 
-void GLWidget::setupVertexAttribs(){
+void GLWidget::setupVertexAttribs()
+{
     glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferID);
 
     glEnableVertexAttribArray(0);
@@ -566,7 +568,8 @@ void GLWidget::allocateBuffers()
 
 void GLWidget::animate(int frameCount)
 {
-    if(areFramesLoaded){
+    if(areFramesLoaded)
+    {
         for(int i = 1; i<=frameCount && !paused; i++)
         {
             if(frameIdx+1 >= frameSystem.size() && autoReplay)
@@ -660,11 +663,13 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     int dy = event->y() - m_lastPos.y();
 
 
-    if (event->buttons() & Qt::LeftButton) {
+    if (event->buttons() & Qt::LeftButton)
+    {
         camera.rotateHorizontal(-dx);
         camera.rotateVertical(dy);
 
-    } else if (event->buttons() & Qt::RightButton) {
+    } else if (event->buttons() & Qt::RightButton)
+    {
         camera.rotateHorizontal(dx);
         camera.rotateVertical(dy);
 
@@ -672,7 +677,8 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     m_lastPos = event->pos();
 }
 
-void GLWidget::wheelEvent(QWheelEvent *event){
+void GLWidget::wheelEvent(QWheelEvent *event)
+{
      QPoint numDegrees = event->angleDelta() / 50.0f;
      float degrees=-numDegrees.y();
      camera.increaseDistance(nearbyint(degrees));

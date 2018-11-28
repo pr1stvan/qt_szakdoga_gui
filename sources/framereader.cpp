@@ -49,9 +49,7 @@ int FrameReader::getIndexSize()
 int FrameReader::loadFile(QString fileName)
 {
     QFile inputFile(fileName);
-
     QTextStream errorStream(stderr);
-
 
     if (!QFile::exists(fileName))
     {
@@ -59,7 +57,9 @@ int FrameReader::loadFile(QString fileName)
                        "File %1 does not exist.\n").arg(fileName);
         return 1;
 
-    } else if (!inputFile.open(QIODevice::ReadOnly)) {
+    }
+    else if (!inputFile.open(QIODevice::ReadOnly))
+    {
         errorStream << XmlStreamLint::tr(
                        "Failed to open file %1.\n").arg(fileName);
         return 1;
@@ -74,6 +74,7 @@ int FrameReader::loadFile(QString fileName)
     bool wasPoints=false;
     bool wasPointData=false;
     bool wasPolys=false;
+
     while (!reader.atEnd())
     {
         bool res=reader.readNextStartElement();
@@ -134,12 +135,11 @@ int FrameReader::loadFile(QString fileName)
                 wasPolys=false;
             }
         }
-
     }
+
     if (reader.hasError())
     {
            // do error handling
-           //qDebug() << "xml reading error";
     }
 
     QStringList pointStringList;
@@ -167,29 +167,40 @@ int FrameReader::loadFile(QString fileName)
     areaStringList = areaArrayString.split(" ");
     indexStringList = indexArrayString.split(" ");
 
-    for(int i=0; i<pointStringList.size(); i++){
+    for(int i=0; i<pointStringList.size(); i++)
+    {
         QString actual=pointStringList.at(i).trimmed();
-        if(actual.size()!=0){
+        if(actual.size()!=0)
+        {
             newPointStringList << actual;
 
         }
     }
-    for(int i = 0 ; i< velocityStringList.size(); i++){
+
+    for(int i = 0 ; i< velocityStringList.size(); i++)
+    {
         QString actual=velocityStringList.at(i).trimmed();
-        if(actual.size()!=0){
+        if(actual.size()!=0)
+        {
             newVelocityStringList << actual;
         }
     }
-    for(int i = 0 ; i< areaStringList.size(); i++){
+
+    for(int i = 0 ; i< areaStringList.size(); i++)
+    {
         QString actual=areaStringList.at(i).trimmed();
-        if(actual.size()!=0){
+        if(actual.size()!=0)
+        {
             newAreaStringList << actual;
         }
 
     }
-    for(int i = 0 ; i< indexStringList.size(); i++){
+
+    for(int i = 0 ; i< indexStringList.size(); i++)
+    {
         QString actual=indexStringList.at(i).trimmed();
-        if(actual.size()!=0){
+        if(actual.size()!=0)
+        {
              newIndexStringList << actual;
         }
 
@@ -200,31 +211,32 @@ int FrameReader::loadFile(QString fileName)
     areaStringList=newAreaStringList;
     indexStringList=newIndexStringList;
 
-//    qDebug() << pointStringList;
-//    qDebug() << velocityStringList;
-//    qDebug() << areaStringList;
-//    qDebug() << indexStringList;
-
-    for(int i = 0 ; i< newPointStringList.size(); i++){
+    for(int i = 0 ; i< newPointStringList.size(); i++)
+    {
         points << pointStringList.at(i).toFloat();
     }
-    for(int i = 0 ; i< velocityStringList.size(); i++){
+    for(int i = 0 ; i< velocityStringList.size(); i++)
+    {
         velocities << velocityStringList.at(i).toFloat();
     }
-    for(int i = 0 ; i< areaStringList.size(); i++){
+    for(int i = 0 ; i< areaStringList.size(); i++)
+    {
         areas << areaStringList.at(i).toFloat();
     }
-    for(int i = 0 ; i< indexStringList.size(); i++){
+    for(int i = 0 ; i< indexStringList.size(); i++)
+    {
         indices << indexStringList.at(i).toInt();
     }
 
     //Check if the velocity and area arrays have correct size
-    if(velocities.size() !=0 && velocities.size() != points.size()){
+    if(velocities.size() !=0 && velocities.size() != points.size())
+    {
         qDebug() << velocities.size() - points.size() << "more velocity numbers.";
         velocities.clear();
         velocities.squeeze();
     }
-    if(areas.size()!=0 && areas.size() != points.size()){
+    if(areas.size()!=0 && areas.size() != points.size())
+    {
         qDebug() << areas.size() - points.size() << "more area numbers.";
         areas.clear();
         areas.squeeze();
@@ -235,7 +247,8 @@ int FrameReader::loadFile(QString fileName)
 
 bool FrameReader::velocityDataExist()
 {
-    if(velocities.size() > 0){
+    if(velocities.size() > 0)
+    {
         return true;
     }
     return false;
@@ -243,7 +256,8 @@ bool FrameReader::velocityDataExist()
 
 bool FrameReader::areaDataExist()
 {
-    if(areas.size() > 0){
+    if(areas.size() > 0)
+    {
         return true;
     }
     return false;
@@ -251,7 +265,8 @@ bool FrameReader::areaDataExist()
 
 bool FrameReader::indexDataExist()
 {
-    if(indices.size() > 0){
+    if(indices.size() > 0)
+    {
         return true;
     }
     return false;

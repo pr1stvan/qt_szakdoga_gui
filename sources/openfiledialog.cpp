@@ -178,7 +178,7 @@ void OpenFileDialog::on_okButton_clicked()
     }
 
     TreeItem *item=static_cast<TreeItem*>(index.internalPointer());
-    FileEntry entry=item->getFile();
+    FileEntry entry=item->file();
 
     if(!entry.isValid())
     {
@@ -187,7 +187,8 @@ void OpenFileDialog::on_okButton_clicked()
     }
 
     m_selectedFiles=QStringList();
-    switch(entry.entryType()){
+    switch(entry.entryType())
+    {
     case EntryType::file:
     {
         m_selectedFiles << entry.path();
@@ -199,7 +200,7 @@ void OpenFileDialog::on_okButton_clicked()
         QList<TreeItem*> childItems=item->getChildItems();
         for(int i=0; i<childItems.size(); i++)
         {
-            m_selectedFiles << childItems.at(i)->getFile().path();
+            m_selectedFiles << childItems.at(i)->file().path();
         }
         if(!m_selectedFiles.isEmpty())accept();
         break;
@@ -328,7 +329,7 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
         }
 
         TreeItem *item=static_cast<TreeItem*>(index.internalPointer());
-        FileEntry entry=item->getFile();
+        FileEntry entry=item->file();
 
         if(!entry.isValid())
         {
@@ -337,7 +338,8 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
         }
 
         m_selectedFiles=QStringList();
-        switch(entry.entryType()){
+        switch(entry.entryType())
+        {
         case EntryType::file:
             m_selectedFiles << entry.path();
             if(!m_selectedFiles.isEmpty())accept();
@@ -347,7 +349,7 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
             QList<TreeItem*> childItems=item->getChildItems();
             for(int i=0; i<childItems.size(); i++)
             {
-                m_selectedFiles <<  childItems.at(i)->getFile().path();
+                m_selectedFiles <<  childItems.at(i)->file().path();
             }
             if(!m_selectedFiles.isEmpty())accept();
             break;
@@ -366,7 +368,7 @@ void OpenFileDialog::on_treeView_doubleClicked(const QModelIndex &index)
 void OpenFileDialog::mySelectionChanged(const QModelIndex &index, const QModelIndex &)
 {
     TreeItem * item=static_cast<TreeItem*>(index.internalPointer());
-    FileEntry entry=item->getFile();
+    FileEntry entry=item->file();
     ui->textBox1->setText(entry.name());
 }
 

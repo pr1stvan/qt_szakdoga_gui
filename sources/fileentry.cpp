@@ -50,19 +50,22 @@ bool FileEntry::operator<(const FileEntry &other)const
         return m_name < other.m_name;
         break;
     case SortingType::type:
-        if(m_type == other.m_type){
+        if(m_type == other.m_type)
+        {
             return m_name < other.m_name;
         }
         return m_type < other.m_type;
         break;
     case SortingType::size:
-        if(m_size == other.m_size){
+        if(m_size == other.m_size)
+        {
             return m_name < other.m_name;
         }
         return m_size < other.m_size;
         break;
     case SortingType::dateModified:
-        if(m_dateModified == other.m_dateModified){
+        if(m_dateModified == other.m_dateModified)
+        {
             return m_name < other.m_name;
         }
         return m_dateModified < other.m_dateModified;
@@ -71,11 +74,13 @@ bool FileEntry::operator<(const FileEntry &other)const
     return m_name < other.m_name;
 }
 
-int FileEntry::size(){
+int FileEntry::size()
+{
     return m_size;
 }
 
-EntryType FileEntry::entryType(){
+EntryType FileEntry::entryType()
+{
     return m_entryType;
 }
 

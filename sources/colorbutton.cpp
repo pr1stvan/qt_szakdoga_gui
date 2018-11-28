@@ -19,13 +19,13 @@ QColor ColorButton::getColor()
 void ColorButton::setColor(const QColor color)
 {
     currentColor = color;
-
 }
 
 void ColorButton::chooseColor()
 {
     QColor color = QColorDialog::getColor(currentColor, this);
-    if (color.isValid()){
+    if (color.isValid())
+    {
          setColor(color);
          emit colorChanged(currentColor);
     }
@@ -36,8 +36,8 @@ void ColorButton::paintEvent(QPaintEvent *event)
     QPushButton::paintEvent(event);
 
     int colorPadding = this->height()/6;
-
     QRect rect = event->rect();
+
     QPainter painter( this );
     painter.setBrush( QBrush( currentColor ) );
     painter.setPen("#CECECE");

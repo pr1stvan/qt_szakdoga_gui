@@ -98,10 +98,12 @@ void MainWindow::on_actionAbout_triggered()
                        tr("It's an OpenGL sample application."));
 }
 
-QString getDesktopLocation(){
+QString getDesktopLocation()
+{
     QString desktopPath= QStandardPaths::standardLocations(QStandardPaths::DesktopLocation).first();
 
-    if(desktopPath.at(desktopPath.size() -1) != QChar('/')){
+    if(desktopPath.at(desktopPath.size() -1) != QChar('/'))
+    {
         return desktopPath + QChar('/');
     }
     return desktopPath;
@@ -114,7 +116,8 @@ void MainWindow::on_actionOpen_triggered()
 
     QStringList filePaths=OpenFileDialog::getFiles(extensions,getDesktopLocation());
 
-    if(!filePaths.isEmpty()){
+    if(!filePaths.isEmpty())
+    {
         int framesCount = ui->glWidget->loadFrameDirectory(filePaths);
 
         ui->materialColoringComboBox->setCurrentIndex(0);
@@ -125,7 +128,8 @@ void MainWindow::on_actionOpen_triggered()
                                                              );
         ui->materialColoringComboBox->setCurrentIndex(0);
 
-        if(framesCount){
+        if(framesCount)
+        {
             frameIdxSpinBox->setEnabled(true);
             frameIdxSpinBox->setMinimum(0);
             frameIdxSpinBox->setMaximum(framesCount-1);
@@ -134,7 +138,8 @@ void MainWindow::on_actionOpen_triggered()
             fpsSpinBox->setEnabled(true);
             fpsSpinBox->setValue(60);
         }
-        else{
+        else
+        {
             frameIdxSpinBox->setEnabled(false);
             frameIdxSpinBox->setMinimum(0);
             frameIdxSpinBox->setValue(0);
@@ -181,7 +186,8 @@ void MainWindow::on_actionreplay_triggered()
 
 void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
 {
-    if(mode == SOLID){
+    if(mode == SOLID)
+    {
         ui->solidColorButton->setVisible(true);
         ui->solidColorLabel->setVisible(true);
         ui->startColorLabel->setVisible(false);
@@ -189,7 +195,8 @@ void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
         ui->endColorButton->setVisible(false);
         ui->endColorLabel->setVisible(false);
     }
-    else{
+    else
+    {
         ui->solidColorButton->setVisible(false);
         ui->solidColorLabel->setVisible(false);
         ui->startColorLabel->setVisible(true);
@@ -202,7 +209,8 @@ void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
 
 void MainWindow::on_glWidget_colorModeChanged(ColorMode mode)
 {
-    if(mode == SOLID){
+    if(mode == SOLID)
+    {
         ui->solidColorButton->setVisible(true);
         ui->solidColorLabel->setVisible(true);
         ui->startColorLabel->setVisible(false);
@@ -210,7 +218,8 @@ void MainWindow::on_glWidget_colorModeChanged(ColorMode mode)
         ui->endColorButton->setVisible(false);
         ui->endColorLabel->setVisible(false);
     }
-    else{
+    else
+    {
         ui->solidColorButton->setVisible(false);
         ui->solidColorLabel->setVisible(false);
         ui->startColorLabel->setVisible(true);

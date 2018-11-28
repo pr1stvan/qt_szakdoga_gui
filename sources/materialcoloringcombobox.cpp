@@ -71,7 +71,8 @@ void MaterialColoringComboBox::setAvailableColorModes(bool solid, bool velocity,
 
     if(solid)this->addItem(QString("solid"));
     if(velocity)this -> addItem(QString("velocity"));
-    if(area){
+    if(area)
+    {
         this -> addItem(QString("vertex area"));
         this -> addItem(QString("projected vertex area"));
         this -> addItem(QString("vertex mass"));

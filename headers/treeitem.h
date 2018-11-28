@@ -80,9 +80,7 @@ public:
 
     void sort(SortingType sortingType, Qt::SortOrder order = Qt::AscendingOrder);
 
-    FileEntry getFile(){
-        return m_file;
-    }
+    FileEntry file();
     QList<TreeItem*> getChildItems();
 
 private:

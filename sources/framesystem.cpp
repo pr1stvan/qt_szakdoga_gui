@@ -20,7 +20,8 @@ FrameSystem::FrameSystem():
 
 }
 
-QColor vectorTocolor(QVector3D vec){
+QColor vectorTocolor(QVector3D vec)
+{
     QColor color;
 
     color.setRgbF((qreal)vec.x(),(qreal)vec.y(),(qreal)vec.z());
@@ -34,11 +35,13 @@ void FrameSystem::loadFiles(QStringList filePaths)
 //   QStringList files = getDirectoryFiles(directoryPath);
 
    prefer_drawing_points=false;
-   if(filePaths.size() == 0){
+   if(filePaths.size() == 0)
+   {
        velocity_data_exist=false;
        area_data_exist=false;
    }
-   else{
+   else
+   {
        Frame frame(filePaths.at(0));
        frames.push_back(frame);
 
@@ -46,15 +49,18 @@ void FrameSystem::loadFiles(QStringList filePaths)
        area_data_exist=frame.getAreaDataExist();
        prefer_drawing_points=frame.preferDrawingPoints();
 
-       for(int i = 1 ; i< filePaths.size(); i++){
+       for(int i = 1 ; i< filePaths.size(); i++)
+       {
            Frame frame(filePaths.at(i));
            frames.push_back(frame);
        }
        colorMode=SOLID;
-       if(!velocity_data_exist && colorMode==VELOCITY){
+       if(!velocity_data_exist && colorMode==VELOCITY)
+       {
            colorMode=SOLID;
        }
-       if(!area_data_exist && colorMode!=VELOCITY){
+       if(!area_data_exist && colorMode!=VELOCITY)
+       {
            colorMode=SOLID;
        }
        setUpFrameColors();
@@ -64,7 +70,8 @@ void FrameSystem::loadFiles(QStringList filePaths)
 
 QVector3D FrameSystem::getPointsAvgAfterLoading()
 {
-    if(frames.size() == 0){
+    if(frames.size() == 0)
+    {
         return QVector3D(0,0,0);
     }
 
@@ -74,18 +81,22 @@ QVector3D FrameSystem::getPointsAvgAfterLoading()
     float avgY=0;
     float avgZ=0;
     float count=0;
-    for(int i=0; i<points.size(); i++){
-        if(i%3 == 0){
+    for(int i=0; i<points.size(); i++)
+    {
+        if(i%3 == 0)
+        {
             //x coordinates
             count +=1;
 
             avgX += points[i];
         }
-        else if(i%3 == 1){
+        else if(i%3 == 1)
+        {
             //y coordinates
             avgY+=points[i];
         }
-        else if(i%3 == 2){
+        else if(i%3 == 2)
+        {
             //z coordinates
             avgZ+=points[i];
         }
@@ -101,24 +112,13 @@ void FrameSystem::scalePointsAfterLoading()
     t << getMaxPointCoord(1)-getMinPointCoord(1);
     t << getMaxPointCoord(2)-getMinPointCoord(2);
 
-//    qDebug() << "x:" << t[0];
-//    qDebug() << "y:" << t[1];
-//    qDebug() << "z:" << t[2];
-//    float avg=0;
-//    for(auto e : t){
-//        avg+=e;
-//    }
-//    avg/=3.0f;
-//    qDebug() << "avg:" << avg;
-
     float maxCoordinateDistance=*std::max_element(t.constBegin(),t.constEnd());
-//    qDebug() << "max distance:" << maxCoordinateDistance;
     float scale=26.0f/maxCoordinateDistance;
-//    qDebug() << "scale:" << scale;
-    for(int i=0; i<frames.size(); i++){
+
+    for(int i=0; i<frames.size(); i++)
+    {
         frames[i].scalePointsAfterLoading(scale);
     }
-
 
     t.clear();
     t.squeeze();
@@ -126,26 +126,23 @@ void FrameSystem::scalePointsAfterLoading()
     t << getMaxPointCoord(1)-getMinPointCoord(1);
     t << getMaxPointCoord(2)-getMinPointCoord(2);
 
-//    qDebug() << "new x:" << t[0];
-//    qDebug() << "new y:" << t[1];
-//    qDebug() << "new z:" << t[2];
-
     maxCoordinateDistance=*std::max_element(t.constBegin(),t.constEnd());
-//    qDebug() <<"new max distance:" << maxCoordinateDistance;
-
 }
 
 float FrameSystem::getMin()
 {
-    if(frames.size()==0){
+    if(frames.size()==0)
+    {
         return 0;
     }
 
     float min= frames[0].getMin(colorMode);
 
-    for(int i=1; i< frames.size(); i++){
+    for(int i=1; i< frames.size(); i++)
+    {
         float actual=frames[i].getMin(colorMode);
-        if(actual < min){
+        if(actual < min)
+        {
             min = actual;
         }
     }
@@ -155,15 +152,18 @@ float FrameSystem::getMin()
 
 float FrameSystem::getMax()
 {
-    if(frames.size()==0){
+    if(frames.size()==0)
+    {
         return 0;
     }
 
     float max= frames[0].getMax(colorMode);
 
-    for(int i=1; i< frames.size(); i++){
+    for(int i=1; i< frames.size(); i++)
+    {
         float actual=frames[i].getMax(colorMode);
-        if(actual > max){
+        if(actual > max)
+        {
             max = actual;
         }
     }
@@ -176,9 +176,11 @@ float FrameSystem::getMinPointCoord(int xyz)
     if(frames.size() == 0)return 0;
 
     float min=frames[0].getMinPointCoord(xyz);
-    for(int i=1; i<frames.size();i++){
+    for(int i=1; i<frames.size();i++)
+    {
         float actual=frames[i].getMinPointCoord(xyz);
-        if(actual < min){
+        if(actual < min)
+        {
             min=actual;
         }
     }
@@ -191,9 +193,11 @@ float FrameSystem::getMaxPointCoord(int xyz)
     if(frames.size() == 0)return 0;
 
     float max=frames[0].getMaxPointCoord(xyz);
-    for(int i=1; i<frames.size();i++){
+    for(int i=1; i<frames.size();i++)
+    {
         float actual=frames[i].getMaxPointCoord(xyz);
-        if(actual > max){
+        if(actual > max)
+        {
             max=actual;
         }
     }
@@ -208,7 +212,8 @@ QStringList FrameSystem::getDirectoryFiles(QString directoryPath)
     QStringList fileNames=currentDir.entryList(QStringList(QString("*.vtp")), QDir::Files | QDir::NoSymLinks);
 
     QStringList files;
-    for(QString file : fileNames){
+    for(QString file : fileNames)
+    {
         files.append(directoryPath + QLatin1Char('/') + file);
     }
     files.sort();
@@ -218,25 +223,29 @@ QStringList FrameSystem::getDirectoryFiles(QString directoryPath)
 
 void FrameSystem::setUpFrameColors()
 {
-    if(frames.size()<1){
+    if(frames.size()<1)
+    {
         return;
     }
 
     QVector3D start,end;
     float min,max;
-    if(colorMode==SOLID){
+    if(colorMode==SOLID)
+    {
         start=solidColor;
         end=QVector3D(0,0,0);
         max=0,min=0;
     }
-    else {
+    else
+    {
         start=startColor;
         end=endColor;
         min=getMin();
         max=getMax();
     }
 
-    for(int i= 0; i< frames.size(); i++){
+    for(int i= 0; i< frames.size(); i++)
+    {
         frames[i].setUpColors(colorMode,start,
                               end,
                               min,
@@ -248,6 +257,7 @@ const QVector<float> &FrameSystem::getPoints(int i)
 {
     return frames[i].getPoints();
 }
+
 const QVector<float> &FrameSystem::getVelocities(int i)
 {
     return frames[i].getVelocities();
@@ -303,7 +313,6 @@ void FrameSystem::setSolidColor(QColor color)
                                  (float)color.greenF(),
                                  (float)color.blueF());
     setUpFrameColors();
-//    qDebug() << "setSolid: " <<  QVector3D(solidColor.x()*255,solidColor.y()*255,solidColor.z()*255);
 }
 
 void FrameSystem::setStartColor(QColor color)
@@ -313,8 +322,6 @@ void FrameSystem::setStartColor(QColor color)
                                  (float)color.blueF());
 
     setUpFrameColors();
-
-//    qDebug() << "setStart: " << QVector3D(startColor.x()*255,startColor.y()*255,startColor.z()*255);
 }
 void FrameSystem::setEndColor(QColor color)
 {
@@ -322,7 +329,6 @@ void FrameSystem::setEndColor(QColor color)
                                  (float)color.greenF(),
                                  (float)color.blueF());
     setUpFrameColors();
-//    qDebug() << "setEnd: " << QVector3D(endColor.x()*255,endColor.y()*255,endColor.z()*255);
 }
 
 QColor FrameSystem::getSolidColor()
@@ -342,14 +348,16 @@ QColor FrameSystem::getEndColor()
 
 int FrameSystem::getVertexAllocationSize()
 {
-    if(frames.size()>0){
+    if(frames.size()>0)
+    {
         return frames[0].getPointsSize();
     }
     return 0;
 }
 int FrameSystem::getIndexAllocationSize()
 {
-    if(frames.size()>0){
+    if(frames.size()>0)
+    {
         return frames[0].getIndicesSize();
     }
     return 0;

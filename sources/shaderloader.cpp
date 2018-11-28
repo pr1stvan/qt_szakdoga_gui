@@ -5,7 +5,8 @@ void ShaderLoader::getErrorInfo(unsigned int handle)
 {
     int logLen;
     glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &logLen);
-    if (logLen > 0) {
+    if (logLen > 0)
+    {
         char * log = new char[logLen];
         int written;
         glGetShaderInfoLog(handle, logLen, &written, log);
@@ -18,7 +19,8 @@ void ShaderLoader::checkShader(unsigned int shader, const char *message)
 {
     int OK;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &OK);
-    if (!OK) {
+    if (!OK)
+    {
         printf("%s!\n", message);
         getErrorInfo(shader);
     }
@@ -28,7 +30,8 @@ void ShaderLoader::checkLinking(unsigned int program)
 {
     int OK;
     glGetProgramiv(program, GL_LINK_STATUS, &OK);
-    if (!OK) {
+    if (!OK)
+    {
         printf("Failed to link shader program!\n");
         getErrorInfo(program);
     }
@@ -38,7 +41,8 @@ unsigned int ShaderLoader::createShaderProgramFromSource(const char *vertexSourc
 {
     // Create vertex shader from string
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    if (!vertexShader) {
+    if (!vertexShader)
+    {
         printf("Error in vertex shader creation\n");
         exit(1);
     }
@@ -48,7 +52,8 @@ unsigned int ShaderLoader::createShaderProgramFromSource(const char *vertexSourc
 
     // Create fragment shader from string
     unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    if (!fragmentShader) {
+    if (!fragmentShader)
+    {
         printf("Error in fragment shader creation\n");
         exit(1);
     }
@@ -58,7 +63,8 @@ unsigned int ShaderLoader::createShaderProgramFromSource(const char *vertexSourc
 
     // Attach shaders to a single program
     unsigned int programID = glCreateProgram();
-    if (!programID) {
+    if (!programID)
+    {
         printf("Error in shader program creation\n");
         exit(1);
     }

@@ -20,29 +20,15 @@ public:
 
 private slots:
     void on_actionQuit_triggered();
-
     void on_actionAbout_triggered();
-
-
     void on_actionOpen_triggered();
-
     void on_actionplay_triggered();
-
     void on_actionstop_triggered();
-
     void on_actionpause_triggered();
-
     void on_actionnext_triggered();
-
     void on_actionprev_triggered();
-
-
-
     void on_actionreplay_triggered();
-
-
     void on_materialColoringComboBox_colorModeChanged(ColorMode mode);
-
     void on_glWidget_colorModeChanged(ColorMode mode);
 
 private:

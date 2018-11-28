@@ -127,7 +127,8 @@ void TreeItem::setSortingType(SortingType type)
 
 void TreeItem::setChildsSortingType(SortingType type)
 {
-    for(int i=0; i<m_childItems.size(); i++){
+    for(int i=0; i<m_childItems.size(); i++)
+    {
         m_childItems[i]->setSortingType(type);
     }
 }
@@ -147,12 +148,15 @@ void TreeItem::sort(SortingType sortingType,Qt::SortOrder order)
     QList<TreeItem*> directories;
     QList<TreeItem*> files;
 
-    for(int i=0; i< m_childItems.size(); i++){
-        FileEntry entry=m_childItems.at(i)->getFile();
+    for(int i=0; i< m_childItems.size(); i++)
+    {
+        FileEntry entry=m_childItems.at(i)->file();
 
-        switch(entry.entryType()){
+        switch(entry.entryType())
+        {
         case EntryType::directory:
-            switch(sortingType){
+            switch(sortingType)
+            {
             case SortingType::name:
                 m_childItems.at(i)->setSortingType(SortingType::name);
                 break;
@@ -185,10 +189,14 @@ void TreeItem::sort(SortingType sortingType,Qt::SortOrder order)
     }
 
     fvptr compareFunction=PComp<TreeItem>;
-    if(order==Qt::DescendingOrder){
+
+    if(order==Qt::DescendingOrder)
+    {
         compareFunction=PComp_reverse<TreeItem>;
     }
-    switch(sortingType){
+
+    switch(sortingType)
+    {
     case SortingType::name:
         qSort(directories.begin(),directories.end(),compareFunction);
         qSort(files.begin(),files.end(),compareFunction);
@@ -209,18 +217,21 @@ void TreeItem::sort(SortingType sortingType,Qt::SortOrder order)
     m_childItems=directories + files;
 }
 
+FileEntry TreeItem::file()
+{
+    return m_file;
+}
+
 QList<TreeItem *> TreeItem::getChildItems()
 {
     return m_childItems;
 }
-//! [7]
 
-//! [8]
 int TreeItem::row() const
 {
     if (m_parentItem)
+    {
         return m_parentItem->m_childItems.indexOf(const_cast<TreeItem*>(this));
-
+    }
     return 0;
 }
-//! [8]

@@ -185,7 +185,7 @@ QVariant CustomFileSystemModel::data(const QModelIndex &index, int role) const
     }
     else if ( role == Qt::DecorationRole && index.column()==0)
     {
-        FileEntry file=item->getFile();
+        FileEntry file=item->file();
         if(file.entryType() == EntryType::directory)
         {
             return iconProvider.icon(QFileIconProvider::Folder);
@@ -264,6 +264,7 @@ QModelIndex CustomFileSystemModel::parent(const QModelIndex &index) const
 int CustomFileSystemModel::rowCount(const QModelIndex &parent) const
 {
     TreeItem *parentItem;
+
     if (parent.column() > 0)
     {
         return 0;
