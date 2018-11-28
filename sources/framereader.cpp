@@ -203,7 +203,6 @@ int FrameReader::loadFile(QString fileName)
         {
              newIndexStringList << actual;
         }
-
     }
 
     pointStringList=newPointStringList;

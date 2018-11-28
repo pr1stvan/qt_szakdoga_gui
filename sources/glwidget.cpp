@@ -282,7 +282,6 @@ void GLWidget::setDrawingTriangles(bool state)
     emit drawingTrianglesChanged(state);
 }
 
-
 void GLWidget::setLightColor(QColor color)
 {
     lightColor=color;
@@ -460,8 +459,6 @@ void GLWidget::cleanup()
     doneCurrent();
 }
 
-
-
 void GLWidget::initializeGL()
 {
     // In this example the widget's corresponding top-level window can change
@@ -510,7 +507,6 @@ void GLWidget::initializeGL()
     allocateBuffers();
     setupVertexAttribs();
 }
-
 
 void GLWidget::setupVertexAttribs()
 {
@@ -638,7 +634,6 @@ void GLWidget::paintGL()
                 (float)lightColor.greenF(),
                 (float)lightColor.blueF());
 
-//    glDrawArrays(GL_TRIANGLES, 0, frameSystem.getVertexAllocationSize());
     glDrawElements(
         drawingTriangles? GL_TRIANGLES: GL_POINTS,      // mode
         frameSystem.getIndexAllocationSize(),    // count
@@ -710,26 +705,32 @@ void GLWidget::glGetShaderiv(GLuint shader, GLenum pname, GLint *params)
 {
     QOpenGLFunctions::glGetShaderiv(shader, pname, params);
 }
+
 void GLWidget::glGetShaderInfoLog(GLuint shader, GLsizei bufsize, GLsizei* length, char* infolog)
 {
     QOpenGLFunctions::glGetShaderInfoLog(shader, bufsize, length, infolog);
 }
+
 void GLWidget::glGetProgramiv(GLuint program, GLenum pname, GLint* params)
 {
     QOpenGLFunctions::glGetProgramiv(program, pname, params);
 }
+
 void GLWidget::glShaderSource(GLuint shader, GLsizei count, const char** string, const GLint* length)
 {
     QOpenGLFunctions::glShaderSource(shader, count, string, length);
 }
+
 void GLWidget::glCompileShader(GLuint shader)
 {
     QOpenGLFunctions::glCompileShader(shader);
 }
+
 void GLWidget::glAttachShader(GLuint program, GLuint shader)
 {
     QOpenGLFunctions::glAttachShader(program, shader);
 }
+
 void GLWidget::glLinkProgram(GLuint program)
 {
     QOpenGLFunctions::glLinkProgram(program);
@@ -739,6 +740,7 @@ void GLWidget::glDetachShader(GLuint program, GLuint shader)
 {
     QOpenGLFunctions::glDetachShader(program, shader);
 }
+
 void GLWidget::glDeleteShader(GLuint shader)
 {
     QOpenGLFunctions::glDeleteShader(shader);
@@ -748,6 +750,7 @@ GLuint GLWidget::glCreateShader(GLenum type)
 {
     return QOpenGLFunctions::glCreateShader(type);
 }
+
 GLuint GLWidget::glCreateProgram()
 {
     return QOpenGLFunctions::glCreateProgram();

@@ -4,7 +4,8 @@
 #include <cstdio>
 #include "openglinterface.h"
 
-struct ShaderLoader{
+struct ShaderLoader
+{
     void getErrorInfo(unsigned int handle);
     void checkShader(unsigned int shader, const char *message);
     void checkLinking(unsigned int program);

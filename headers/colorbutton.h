@@ -11,12 +11,9 @@
 class ColorButton : public QPushButton
 {
     Q_OBJECT
-public:
-    explicit ColorButton(QWidget *parent = 0,const QColor & color = Qt::yellow);
-    QColor getColor();
 
-signals:
-    void colorChanged(QColor);
+private:
+    QColor currentColor;
 
 public slots:
     void setColor(const QColor);
@@ -24,8 +21,13 @@ public slots:
     void paintEvent(QPaintEvent *event);
     void resizeEvent(QResizeEvent *event);
 
-private:
-    QColor currentColor;
+signals:
+    void colorChanged(QColor);
+
+public:
+    explicit ColorButton(QWidget *parent = 0,const QColor & color = Qt::yellow);
+    QColor getColor();
+
 };
 
 #endif // COLORBUTTON_H

@@ -16,11 +16,18 @@
 
 class TreeItem;
 
-
-//! [0]
 class CustomFileSystemModel : public QAbstractItemModel
 {
     Q_OBJECT
+
+private:
+    QStringList m_extensions;
+    QMap<QString,SortingType> sortingTypes;
+
+    QStringList fileNames;
+    TreeItem *rootItem;
+    QFileIconProvider iconProvider;
+    EntryType m_lastClickState;
 
 public:
     explicit CustomFileSystemModel(QStringList extensions,QObject *parent = 0);
@@ -38,16 +45,7 @@ public:
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
     void setup(QString directoryPath);
-private:
-    QStringList m_extensions;
-    QMap<QString,SortingType> sortingTypes;
-
-    QStringList fileNames;
-    TreeItem *rootItem;
-    QFileIconProvider iconProvider;
-    EntryType m_lastClickState;
 
 };
-//! [0]
 
 #endif // CUSTOMFILESYSTEMMODEL_H

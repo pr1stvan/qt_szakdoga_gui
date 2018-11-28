@@ -9,18 +9,20 @@
 class MaterialColoringComboBox : public QComboBox
 {
     Q_OBJECT
-public:
-    MaterialColoringComboBox(QWidget *parent);
-    ColorMode getColorMode();
-    void setAvailableColorModes(bool solid, bool velocity, bool area);
-signals:
-    void colorModeChanged(ColorMode mode);
+private:
+    ColorMode colorMode;
 
 public slots:
     void setColorMode(ColorMode mode);
     void changeColorMode(int idx);
-private:
-    ColorMode colorMode;
+
+signals:
+    void colorModeChanged(ColorMode mode);
+
+public:
+    MaterialColoringComboBox(QWidget *parent);
+    ColorMode getColorMode();
+    void setAvailableColorModes(bool solid, bool velocity, bool area);
 };
 
 #endif // MATERIALCOLORINGCOMBOBOX_H

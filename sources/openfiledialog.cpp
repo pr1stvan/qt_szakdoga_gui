@@ -243,7 +243,6 @@ void OpenFileDialog::on_actionUpDirectory_triggered()
     }
 }
 
-
 void OpenFileDialog::on_actionPrev_triggered()
 {
     if(pathStackIdx-1 >= 0)

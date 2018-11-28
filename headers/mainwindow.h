@@ -14,6 +14,11 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+private:
+    Ui::MainWindow *ui;
+    QSpinBox *frameIdxSpinBox;
+    QSpinBox *fpsSpinBox;
+
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -30,11 +35,6 @@ private slots:
     void on_actionreplay_triggered();
     void on_materialColoringComboBox_colorModeChanged(ColorMode mode);
     void on_glWidget_colorModeChanged(ColorMode mode);
-
-private:
-    Ui::MainWindow *ui;
-    QSpinBox *frameIdxSpinBox;
-    QSpinBox *fpsSpinBox;
 };
 
 #endif // MAINWINDOW_H

@@ -75,30 +75,76 @@ class GLWidget : public QOpenGLWidget, protected QOpenGLExtraFunctions
 {
     Q_OBJECT
 
-public:
-    GLWidget(QWidget *parent = 0);
-    ~GLWidget();
+private:
+    QString loadFile(QString path);
+    void lightPositionChanged();
+    void loadFrameToBuffers();
+    void setupVertexAttribs();
+    void allocateBuffers();
+    void animate(int frameCount);
 
-    QSize minimumSizeHint() const override;
-    QSize sizeHint() const override;
+    int elapsed;
+    bool m_core;
+    int m_xRot;
+    int m_yRot;
+    int m_zRot;
+    QPoint m_lastPos;
 
-    void updateSignal();
-    int loadFrameDirectory(QStringList filePaths);
-    bool velocityDataExist();
-    bool areaDataExist();
+    unsigned int m_vaoID;
+    unsigned int m_vertexBufferID;
+    unsigned int m_ambientBufferID;
+    unsigned int m_diffuseBufferID;
+    unsigned int m_specularBufferID;
+    unsigned int m_indexBufferID;
 
-    //OpenGL functions
-    void glGetShaderiv(GLuint shader, GLenum pname, GLint* params);
-    void glGetShaderInfoLog(GLuint shader, GLsizei bufsize, GLsizei* length, char* infolog);
-    void glGetProgramiv(GLuint program, GLenum pname, GLint* params);
-    void glShaderSource(GLuint shader, GLsizei count, const char** string, const GLint* length);
-    void glCompileShader(GLuint shader);
-    void glAttachShader(GLuint program, GLuint shader);
-    void glLinkProgram(GLuint program);
-    void glDetachShader(GLuint program, GLuint shader);
-    void glDeleteShader(GLuint shader);
-    GLuint glCreateShader(GLenum type);
-    GLuint glCreateProgram();
+    unsigned int m_programID;
+
+    int m_MVPMatrixLoc;
+    int m_VMatrixLoc;
+    int m_MMatrixLoc;
+    int m_lightPosLoc;
+    int m_lightPowerLoc;
+    int m_specularPowerLoc;
+    int m_ambientPowerLoc;
+    int m_smoothnessLoc;
+    int m_lightColorLoc;
+    QMatrix4x4 M;
+    QMatrix4x4 V;
+    QMatrix4x4 P;
+    bool m_transparent;
+
+    Camera camera;
+
+    QVector3D lightPosition;
+    int lightPower;
+    int specularPower;
+    int smoothness;
+    int ambientPower;
+
+    ColorMode colorMode;
+    QColor lightColor;
+    QColor backgroundColor;
+    QColor solidColor;
+    QColor startColor;
+    QColor endColor;
+
+    FrameSystem frameSystem;
+    bool autoReplay;
+    bool paused;
+    int frameIdx;
+    int fps;
+    bool areFramesLoaded;
+    bool drawingTriangles;
+    OpenGLInterface openGLInterface;
+    ShaderLoader loader;
+
+protected:
+    void initializeGL() override;
+    void paintGL() override;
+    void resizeGL(int width, int height) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void wheelEvent(QWheelEvent *event) override;
 
 public slots:
     void cameraSetHorizontalAngleDegrees(int degrees);
@@ -167,81 +213,31 @@ signals:
 
     void drawingTrianglesChanged(bool state);
 
-protected:
-    void initializeGL() override;
-    void paintGL() override;
-    void resizeGL(int width, int height) override;
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void wheelEvent(QWheelEvent *event) override;
+public:
+    GLWidget(QWidget *parent = 0);
+    ~GLWidget();
 
-private:
-    QString loadFile(QString path);
-    void lightPositionChanged();
-    void loadFrameToBuffers();
-    void setupVertexAttribs();
-    void allocateBuffers();
-    void animate(int frameCount);
+    QSize minimumSizeHint() const override;
+    QSize sizeHint() const override;
 
-//    void getErrorInfo(unsigned int handle);
-//    void checkShader(unsigned int shader, const char *message);
-//    void checkLinking(unsigned int program);
-//    unsigned int createShaderProgramFromSource(const char * vertexSource, const char* fragmentSource);
+    void updateSignal();
+    int loadFrameDirectory(QStringList filePaths);
+    bool velocityDataExist();
+    bool areaDataExist();
 
-    int elapsed;
-    bool m_core;
-    int m_xRot;
-    int m_yRot;
-    int m_zRot;
-    QPoint m_lastPos;
+    //OpenGL functions
+    void glGetShaderiv(GLuint shader, GLenum pname, GLint* params);
+    void glGetShaderInfoLog(GLuint shader, GLsizei bufsize, GLsizei* length, char* infolog);
+    void glGetProgramiv(GLuint program, GLenum pname, GLint* params);
+    void glShaderSource(GLuint shader, GLsizei count, const char** string, const GLint* length);
+    void glCompileShader(GLuint shader);
+    void glAttachShader(GLuint program, GLuint shader);
+    void glLinkProgram(GLuint program);
+    void glDetachShader(GLuint program, GLuint shader);
+    void glDeleteShader(GLuint shader);
+    GLuint glCreateShader(GLenum type);
+    GLuint glCreateProgram();
 
-    unsigned int m_vaoID;
-    unsigned int m_vertexBufferID;
-    unsigned int m_ambientBufferID;
-    unsigned int m_diffuseBufferID;
-    unsigned int m_specularBufferID;
-    unsigned int m_indexBufferID;
-
-    unsigned int m_programID;
-
-    int m_MVPMatrixLoc;
-    int m_VMatrixLoc;
-    int m_MMatrixLoc;
-    int m_lightPosLoc;
-    int m_lightPowerLoc;
-    int m_specularPowerLoc;
-    int m_ambientPowerLoc;
-    int m_smoothnessLoc;
-    int m_lightColorLoc;
-    QMatrix4x4 M;
-    QMatrix4x4 V;
-    QMatrix4x4 P;
-    bool m_transparent;
-
-    Camera camera;
-
-    QVector3D lightPosition;
-    int lightPower;
-    int specularPower;
-    int smoothness;
-    int ambientPower;
-
-    ColorMode colorMode;
-    QColor lightColor;
-    QColor backgroundColor;
-    QColor solidColor;
-    QColor startColor;
-    QColor endColor;
-
-    FrameSystem frameSystem;
-    bool autoReplay;
-    bool paused;
-    int frameIdx;
-    int fps;
-    bool areFramesLoaded;
-    bool drawingTriangles;
-    OpenGLInterface openGLInterface;
-    ShaderLoader loader;
 };
 
 #endif

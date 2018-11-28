@@ -3,12 +3,10 @@
 #include "ui_mainwindow.h"
 #include "openfiledialog.h"
 
-
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QGuiApplication>
 #include <QScreen>
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -176,13 +174,10 @@ void MainWindow::on_actionprev_triggered()
     ui->glWidget->prevFrame();
 }
 
-
-
 void MainWindow::on_actionreplay_triggered()
 {
     ui->glWidget->setAutoReplay(ui->actionreplay->isChecked());
 }
-
 
 void MainWindow::on_materialColoringComboBox_colorModeChanged(ColorMode mode)
 {

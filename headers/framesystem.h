@@ -6,6 +6,18 @@
 
 class FrameSystem
 {
+private:
+    QVector<Frame> frames;
+
+    ColorMode colorMode;
+    QVector3D solidColor;
+    QVector3D startColor;
+    QVector3D endColor;
+
+    bool prefer_drawing_points;
+    bool velocity_data_exist,area_data_exist;
+
+    QStringList getDirectoryFiles(QString directoryPath);
 public:
 
     const QVector<float> &getPoints(int i);
@@ -32,19 +44,17 @@ public:
     QColor getEndColor();
 
     FrameSystem();
-    QVector3D getStartColorVector(){
-        return startColor;
-    }
-    QVector3D getEndColorVector(){
-        return endColor;
-    }
-
+    QVector3D getStartColorVector();
+    QVector3D getEndColorVector();
+    int size();
+    bool velocityDataExist();
+    bool areaDataExist();
+    ColorMode getColorMode();
+    bool preferDrawingPoints();
     int getVertexAllocationSize();
     int getIndexAllocationSize();
 
-    int size(){
-        return frames.size();
-    }
+
     void loadFiles(QStringList filePaths);
     void setUpFrameColors();
     QVector3D getPointsAvgAfterLoading();
@@ -55,34 +65,6 @@ public:
 
     float getMinPointCoord(int xyz);
     float getMaxPointCoord(int xyz);
-
-    bool velocityDataExist(){
-        return velocity_data_exist;
-    }
-    bool areaDataExist(){
-        return area_data_exist;
-    }
-
-    ColorMode getColorMode(){
-        return colorMode;
-    }
-    bool preferDrawingPoints(){
-        return prefer_drawing_points;
-    }
-private:
-    QVector<Frame> frames;
-
-    ColorMode colorMode;
-    QVector3D solidColor;
-    QVector3D startColor;
-    QVector3D endColor;
-
-    bool prefer_drawing_points;
-    bool velocity_data_exist,area_data_exist;
-
-    QStringList getDirectoryFiles(QString directoryPath);
-
-
 };
 
 

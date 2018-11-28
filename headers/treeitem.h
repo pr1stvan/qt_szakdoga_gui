@@ -57,10 +57,19 @@
 
 #include "fileentry.h"
 
-
-//! [0]
 class TreeItem
 {
+
+private:
+    void setSortingType(SortingType type);
+    void setChildsSortingType(SortingType type);
+
+    QList<TreeItem*> m_childItems;
+    QList<QVariant> m_itemData;
+    TreeItem *m_parentItem;
+
+    FileEntry m_file;
+
 public:
     explicit TreeItem(const QList<QVariant> &data,FileEntry file, TreeItem *parentItem = 0);
 
@@ -82,17 +91,6 @@ public:
 
     FileEntry file();
     QList<TreeItem*> getChildItems();
-
-private:
-    void setSortingType(SortingType type);
-    void setChildsSortingType(SortingType type);
-
-    QList<TreeItem*> m_childItems;
-    QList<QVariant> m_itemData;
-    TreeItem *m_parentItem;
-
-    FileEntry m_file;
 };
-//! [0]
 
 #endif // TREEITEM_H

@@ -20,6 +20,41 @@ FrameSystem::FrameSystem():
 
 }
 
+QVector3D FrameSystem::getStartColorVector()
+{
+    return startColor;
+}
+
+QVector3D FrameSystem::getEndColorVector()
+{
+    return endColor;
+}
+
+int FrameSystem::size()
+{
+    return frames.size();
+}
+
+bool FrameSystem::velocityDataExist()
+{
+    return velocity_data_exist;
+}
+
+bool FrameSystem::areaDataExist()
+{
+    return area_data_exist;
+}
+
+ColorMode FrameSystem::getColorMode()
+{
+    return colorMode;
+}
+
+bool FrameSystem::preferDrawingPoints()
+{
+    return prefer_drawing_points;
+}
+
 QColor vectorTocolor(QVector3D vec)
 {
     QColor color;
@@ -287,10 +322,12 @@ const QVector<unsigned int> &FrameSystem::getIndices(int i)
 {
     return frames[i].getIndices();
 }
+
 const QVector<float> &FrameSystem::getAmbients(int i)
 {
     return frames[i].getAmbients();
 }
+
 const QVector<float> &FrameSystem::getDiffuses(int i)
 {
     return frames[i].getDiffuses();
@@ -323,6 +360,7 @@ void FrameSystem::setStartColor(QColor color)
 
     setUpFrameColors();
 }
+
 void FrameSystem::setEndColor(QColor color)
 {
     endColor=QVector3D((float)color.redF(),
@@ -354,6 +392,7 @@ int FrameSystem::getVertexAllocationSize()
     }
     return 0;
 }
+
 int FrameSystem::getIndexAllocationSize()
 {
     if(frames.size()>0)
@@ -362,5 +401,3 @@ int FrameSystem::getIndexAllocationSize()
     }
     return 0;
 }
-
-

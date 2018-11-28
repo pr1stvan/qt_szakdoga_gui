@@ -23,10 +23,21 @@ class OpenFileDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-    static QStringList getFiles(QStringList extensions, QString startDirectory);
-    explicit OpenFileDialog(QStringList extensions, QString directoryPath, QWidget *parent = 0);
-    ~OpenFileDialog();
+private:
+    QStringList selectedFiles();
+    void setupCombobox(QString path);
+    void openDirectory(QString directoryPath);
+
+    Ui::OpenFileDialog *ui;
+
+    CustomFileSystemModel *treeViewModel;
+    QFileSystemModel *listViewModel;
+
+    QStringList m_selectedFiles;
+    QString m_directoryPath;
+    //for the next and prev buttons
+    QStringList pathStack;
+    int pathStackIdx;
 
 private slots:
     void addPathToStack(QString path);
@@ -43,21 +54,10 @@ private slots:
 
     void mySelectionChanged(const QModelIndex &index, const QModelIndex &previous);
 
-private:
-    QStringList selectedFiles();
-    void setupCombobox(QString path);
-    void openDirectory(QString directoryPath);
-
-    Ui::OpenFileDialog *ui;
-
-    CustomFileSystemModel *treeViewModel;
-    QFileSystemModel *listViewModel;
-
-    QStringList m_selectedFiles;
-    QString m_directoryPath;
-    //for the next and prev buttons
-    QStringList pathStack;
-    int pathStackIdx;
+public:
+    static QStringList getFiles(QStringList extensions, QString startDirectory);
+    explicit OpenFileDialog(QStringList extensions, QString directoryPath, QWidget *parent = 0);
+    ~OpenFileDialog();
 
 };
 

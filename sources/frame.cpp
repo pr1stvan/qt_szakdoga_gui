@@ -267,5 +267,4 @@ void Frame::setUpColors(ColorMode mode, QVector3D startColor, QVector3D endColor
     Ambients=newAmbients;
     Diffuses=newDiffuses;
     Speculars=newSpeculars;
-
 }

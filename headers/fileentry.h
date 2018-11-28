@@ -23,6 +23,18 @@ enum SortingType
 
 class FileEntry
 {
+private:
+    SortingType m_sortingType;
+    bool valid;
+
+    QString m_name;
+    QString m_type;
+    int m_size;
+    QDateTime m_dateModified;
+    EntryType m_entryType;
+
+    QString m_path;
+
 public:
     FileEntry();
     FileEntry(QString name, QString type, int size, QDateTime dateModified, EntryType entryType, QString path);
@@ -41,17 +53,6 @@ public:
     SortingType sortingType();
 
     QString path();
-private:
-    SortingType m_sortingType;
-    bool valid;
-
-    QString m_name;
-    QString m_type;
-    int m_size;
-    QDateTime m_dateModified;
-    EntryType m_entryType;
-
-    QString m_path;
 };
 
 #endif // FILEENTRY_H
