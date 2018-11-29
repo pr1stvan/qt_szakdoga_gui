@@ -70,7 +70,7 @@
                          </base-DElement>
                          <object>{45c1c6af-a518-4a06-b5cb-cad7e3b6429b}</object>
                          <name>CustomFileSystemModel</name>
-                         <pos>x:830;y:790</pos>
+                         <pos>x:690;y:975</pos>
                          <rect>x:-165;y:-115;w:330;h:230</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -91,7 +91,7 @@
                          </base-DElement>
                          <object>{68883cfc-c235-4d1c-a44f-171be172fe83}</object>
                          <name>ColorButton</name>
-                         <pos>x:765;y:140</pos>
+                         <pos>x:520;y:1200</pos>
                          <rect>x:-105;y:-80;w:210;h:160</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -112,7 +112,7 @@
                          </base-DElement>
                          <object>{b0ebc28d-faef-41d6-b470-6d599b71e059}</object>
                          <name>FileEntry</name>
-                         <pos>x:110;y:795</pos>
+                         <pos>x:700;y:195</pos>
                          <rect>x:-100;y:-160;w:200;h:320</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -154,7 +154,7 @@
                          </base-DElement>
                          <object>{ccd719b8-0373-46df-9f24-6e63071499ca}</object>
                          <name>FrameReader</name>
-                         <pos>x:490;y:320</pos>
+                         <pos>x:490;y:280</pos>
                          <rect>x:-90;y:-130;w:180;h:260</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -216,7 +216,7 @@
                          </base-DElement>
                          <object>{40c779ee-6b61-4466-917e-129d5ff9d0bd}</object>
                          <name>MaterialColoringComboBox</name>
-                         <pos>x:410;y:1040</pos>
+                         <pos>x:210;y:710</pos>
                          <rect>x:-165;y:-70;w:330;h:140</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
@@ -238,7 +238,7 @@
                          </base-DElement>
                          <object>{8e379b5e-1880-4077-adb2-334ccf8ccb02}</object>
                          <name>OpenFileDialog</name>
-                         <pos>x:830;y:440</pos>
+                         <pos>x:220;y:980</pos>
                          <rect>x:-180;y:-175;w:360;h:350</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -259,7 +259,7 @@
                          </base-DElement>
                          <object>{f43a7386-2eaf-451f-ab34-3e678078be53}</object>
                          <name>ShaderLoader</name>
-                         <pos>x:310;y:565</pos>
+                         <pos>x:315;y:560</pos>
                          <rect>x:-210;y:-55;w:420;h:110</rect>
                          <auto-sized>false</auto-sized>
                          <visual-role>0</visual-role>
@@ -281,7 +281,7 @@
                          </base-DElement>
                          <object>{be897146-939b-43e1-a949-20e290a7ca18}</object>
                          <name>TreeItem</name>
-                         <pos>x:420;y:790</pos>
+                         <pos>x:695;y:665</pos>
                          <rect>x:-145;y:-145;w:290;h:290</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -472,7 +472,7 @@
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1543453851913</last-modified>
+                  <last-modified>1543455451149</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -1051,7 +1051,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{ab14b49c-7548-42c5-adaa-f704d7940025}</uid>
+                    <uid>{a414441c-4fb9-42ca-8746-e84cb9b5feb8}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_extensions: QStringList</declaration>
@@ -1059,7 +1059,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{0400fe13-4772-42c9-97fe-56d2effc38aa}</uid>
+                    <uid>{fb1cdabb-8200-4772-8a1c-ce16881000bf}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>fileNames: QStringList</declaration>
@@ -1067,7 +1067,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{700917df-3428-441b-a268-74861b4c3300}</uid>
+                    <uid>{3c1b9767-4c53-4e56-9df1-2617dba72c9d}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>iconProvider: QFileIconProvider</declaration>
@@ -1075,7 +1075,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{94015ac3-25a9-4f2a-a4ea-def3142349bc}</uid>
+                    <uid>{35ee24bc-2264-49aa-8e67-09aa3d50adf7}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>data(index: QModelIndex, role: int)</declaration>
@@ -1083,7 +1083,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{665241f5-5c91-4a76-bee6-cedfc12ff63b}</uid>
+                    <uid>{2fda5627-9314-4f04-8546-2520836ac965}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>flags(index: QModelIndex)</declaration>
@@ -1091,7 +1091,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c353ec22-59f2-4c64-89cb-aeacd9bcb0a7}</uid>
+                    <uid>{e8f4957e-f5fc-4dba-b94d-b88189406a9b}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>headerData(section: int, orientation: Qt::Orientation, role: int)</declaration>
@@ -1099,7 +1099,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f5774f91-a78f-4049-b00d-f19dd054ffaa}</uid>
+                    <uid>{258260fa-1d30-4733-85e4-9f12666e3d9c}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>index(row: int, column: int,parent: QModelIndex)</declaration>
@@ -1107,7 +1107,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{edc39049-6a11-4c4a-b506-5c2e9ca97c56}</uid>
+                    <uid>{6a42b1ef-4e2c-42a4-9917-8038f3c0464a}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>parent(index: QModelIndex)</declaration>
@@ -1115,7 +1115,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{5bf2635e-ed0c-45e2-92f8-50b6e9b517d3}</uid>
+                    <uid>{3a3fbcc5-88a2-4088-893e-10a9e54f675a}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>rowCount(parent: QModelIndex)</declaration>
@@ -1123,7 +1123,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{11f79bb2-cf3c-4076-809a-c93c47ee5049}</uid>
+                    <uid>{c019f8aa-7c6e-40f0-8532-a6f7d8bcd630}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>columnCount(parent: QModelIndex)</declaration>
@@ -1131,7 +1131,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b01846b5-ede0-4994-92f6-300a97e72646}</uid>
+                    <uid>{5d8dc4eb-383d-4313-bf26-1d7c4b3466d6}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>sort(column: int, order: Qt::SortOrder)</declaration>
@@ -1139,7 +1139,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d76730c3-2406-4f9f-9651-531f5c286814}</uid>
+                    <uid>{643fd639-c669-47cb-9195-eadca388e7d2}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>setup(directoryPath: QString)</declaration>
@@ -1172,7 +1172,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{61aee534-4cab-40f0-b4c1-ec01aed8e9aa}</uid>
+                    <uid>{296c2187-9d95-45c7-9e59-b92973b9ebaa}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>currentColor: QColor</declaration>
@@ -1180,7 +1180,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{929a0aed-28f4-4eb3-a65c-80f839e3bc44}</uid>
+                    <uid>{15094d62-89fd-412d-9fcb-e64359bcfa76}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getColor()</declaration>
@@ -1188,7 +1188,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ba7dbe65-f676-4d40-a6aa-d4d1c264edc6}</uid>
+                    <uid>{2e740cc6-4a75-4125-aae9-b3856224e303}</uid>
                     <visibility>4</visibility>
                     <type>2</type>
                     <declaration>colorChanged(QColor)</declaration>
@@ -1196,7 +1196,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{65139b8b-659c-4433-a465-24bca37f0707}</uid>
+                    <uid>{ef79c487-a0ac-40aa-947d-55e317f2eeeb}</uid>
                     <visibility>7</visibility>
                     <type>2</type>
                     <declaration>setColor(color: QColor)</declaration>
@@ -1204,7 +1204,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{efa5e765-59b7-4b9e-98a5-92f653469562}</uid>
+                    <uid>{6a4a188f-5dd9-41a8-a3d2-40ecefec0740}</uid>
                     <visibility>7</visibility>
                     <type>2</type>
                     <declaration>chooseColor()</declaration>
@@ -1212,7 +1212,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{83b57085-e76a-48b2-97da-2626ab59b8a3}</uid>
+                    <uid>{2c3aa8bd-c33b-4eab-bf97-f906d836b06a}</uid>
                     <visibility>7</visibility>
                     <type>2</type>
                     <declaration>paintEvent(event: QPaintEvent*)</declaration>
@@ -1220,7 +1220,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{526f2920-527e-4610-ba88-1864a391e12c}</uid>
+                    <uid>{a18c79ea-fb0b-467c-9e96-527863f6654f}</uid>
                     <visibility>7</visibility>
                     <type>2</type>
                     <declaration>resizeEvent(*event: QResizeEvent)</declaration>
@@ -1409,7 +1409,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{58e2125c-3379-437d-8a82-973f0ae0fa93}</uid>
+                    <uid>{368bdcc7-e4c8-492c-ba5e-c22ae331afb3}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_sortingType: SortingType</declaration>
@@ -1417,7 +1417,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{62566e36-2f4b-4c4c-95cb-1fd94f21b0a6}</uid>
+                    <uid>{726cd08c-3c0d-442f-a67d-c374fac008f4}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>valid: bool</declaration>
@@ -1425,7 +1425,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a4c2672c-1fe8-4530-a22c-de6d4f5f6e7e}</uid>
+                    <uid>{022c1577-698f-498d-b27a-f7c507480e66}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_name: QString</declaration>
@@ -1433,7 +1433,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{47b08da4-97ff-4ed1-b547-8406f26e6d10}</uid>
+                    <uid>{239f160c-5a34-4786-b7d0-6dd0297c79a4}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_type: QString</declaration>
@@ -1441,7 +1441,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{af4966a6-fc3a-4777-84cf-7a15606a826e}</uid>
+                    <uid>{fe9210d9-a372-471c-944a-fe5151354e00}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_size: int</declaration>
@@ -1449,7 +1449,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a10130d3-7670-4b44-b775-5e344f82684e}</uid>
+                    <uid>{93a059a2-7170-424a-bffa-c1e932964a25}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_dateModified: QDateTime</declaration>
@@ -1457,7 +1457,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ee6e866c-330c-4567-8038-f4f5bafa2f4d}</uid>
+                    <uid>{3f507f46-e350-4129-8266-b99d2903bbc7}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_entryType: EntryType</declaration>
@@ -1465,7 +1465,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{4c6e8d5a-2366-4eb3-bb5a-ccad4afa14dd}</uid>
+                    <uid>{4bd52328-3cd0-4c55-b362-396064cc167a}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_path: QString</declaration>
@@ -1473,7 +1473,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1137ba0e-8821-4fec-a3b4-c132aa3080e0}</uid>
+                    <uid>{961c861c-4c71-4d1a-bf95-21821b4c0e9e}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>isValid()</declaration>
@@ -1481,7 +1481,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d3a63d7e-38e9-453f-ae4e-38aea6bf6abc}</uid>
+                    <uid>{5f70b2bb-9d3c-42b7-bb2f-297e286a4f19}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>name()</declaration>
@@ -1489,7 +1489,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{fb5f0903-0ac6-4ad0-8e96-ef87374cc4f9}</uid>
+                    <uid>{f1731a50-7b3e-480c-9bdb-70be649d1f65}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>type()</declaration>
@@ -1497,7 +1497,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{cb52f790-4796-4646-9a87-d3f9132f74d6}</uid>
+                    <uid>{5ec4dd3e-a414-47a2-97b7-f211e6eecd91}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>dateModified()</declaration>
@@ -1505,7 +1505,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7f7ecab0-cf67-4a4f-b36e-ef63d97dad34}</uid>
+                    <uid>{605d5d90-29d1-4af3-8069-71ffdb28266e}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>setSortingType(type: SortingType)</declaration>
@@ -1513,7 +1513,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f63a5ef2-a106-4d18-9a66-b7ef2f640aef}</uid>
+                    <uid>{3af6c704-e72f-4bae-98b2-89e144b7066c}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <properties>4</properties>
@@ -1522,7 +1522,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{331ae541-adb3-452e-81ad-49b64bfb7f50}</uid>
+                    <uid>{7b26a8f9-326a-4c89-899b-73b5664952e4}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>size()</declaration>
@@ -1530,7 +1530,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{4b2d8aa9-a5ff-49d7-90a8-0f088abd64bf}</uid>
+                    <uid>{a0541e71-66ef-447e-90f5-5794ad61f82c}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>entryType()</declaration>
@@ -1538,7 +1538,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{208ebd9c-78a9-4feb-ab91-d208db49918a}</uid>
+                    <uid>{0aa1e144-b1e6-4a15-b12f-ea4e8f920325}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>sortingType()</declaration>
@@ -1546,7 +1546,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{24c052f3-7b86-4f74-a00c-4a61f28d562f}</uid>
+                    <uid>{08885b44-df9c-44c9-a840-a7222cedba9c}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>path()</declaration>
@@ -1970,7 +1970,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{5836a118-4bab-472a-bf58-c9eadd475238}</uid>
+                    <uid>{e340656e-a118-4d79-9fdf-ce084d2f3aff}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>points: QVector&lt;float&gt;</declaration>
@@ -1978,7 +1978,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{962530fd-0ee0-4958-a283-9f4e70318c35}</uid>
+                    <uid>{b20cbcfe-7209-4325-90fe-7dffd6f8b777}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>velocities: QVector&lt;float&gt;</declaration>
@@ -1986,7 +1986,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7a4243c4-3850-4ee4-a7ab-bc0b0a1e4861}</uid>
+                    <uid>{5112da6e-4685-4218-bd22-6dc22d4f0486}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>areas: QVector&lt;float&gt;</declaration>
@@ -1994,7 +1994,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{aa863249-b5fe-44b9-8fca-317583421302}</uid>
+                    <uid>{bcea2be8-f4f3-40a0-89db-f5baf1551fa9}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>indices: QVector&lt;unsigned int&gt;</declaration>
@@ -2002,7 +2002,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{339994f8-0042-4288-9bd1-81d28d15f6b5}</uid>
+                    <uid>{32b65b35-47dd-4685-88fc-b02047933151}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getPoints()</declaration>
@@ -2010,7 +2010,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{42336e6c-a4b3-4d9a-9fa3-8b5d78032400}</uid>
+                    <uid>{69a62fda-5e98-4055-b67d-0e9c040f7edf}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getVelocities()</declaration>
@@ -2018,7 +2018,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{bc6f9592-bc68-4623-afb9-e734c276adcd}</uid>
+                    <uid>{c0b6705c-d267-4abe-b433-b43c8910c919}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getAreas()</declaration>
@@ -2026,7 +2026,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b1da1665-6e40-4515-975b-6e3b203908e0}</uid>
+                    <uid>{72c1eefd-4d24-4382-8509-1be2ee97007b}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getIndices()</declaration>
@@ -2034,7 +2034,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{13e6d166-a7e0-47e6-9dc8-b881c2275fe7}</uid>
+                    <uid>{eb0ac002-f186-4140-a02a-21f3c4a0b5b0}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getPointsSize()</declaration>
@@ -2042,7 +2042,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9aaa1ec9-3d55-471f-aa90-e48048a0155d}</uid>
+                    <uid>{b11672bc-446b-4ab8-8d6e-50a59201e31a}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getIndexSize()</declaration>
@@ -2050,7 +2050,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9f720c90-bfc9-4bf4-a966-134851b6f469}</uid>
+                    <uid>{c2c0dec7-4f3b-42e7-85be-ed47374c77f5}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>loadFile(fileName: QString)</declaration>
@@ -2058,7 +2058,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{46b393f7-db43-494d-9c6e-b9c3d335aafe}</uid>
+                    <uid>{987ab452-e66c-46fd-b2cb-bd582688472e}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>velocityDataExist()</declaration>
@@ -2066,7 +2066,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e794a471-df5f-4753-8dd5-d40cbb18353a}</uid>
+                    <uid>{3510846e-3c97-4d2a-a28a-136ee37b1dfa}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>areaDataExist()</declaration>
@@ -2074,7 +2074,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{10dc5bb9-baa0-4fa0-ab39-6a89408ff96d}</uid>
+                    <uid>{2ebef781-2e5e-4c56-9def-b534de3e914e}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>indexDataExist()</declaration>
@@ -2445,7 +2445,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{5390740c-c5f7-4207-92f2-f9434447e912}</uid>
+                    <uid>{3673a5c4-84d5-4b3d-9704-003726775fb9}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>MaterialColoringComboBox(parent: QWidget*)</declaration>
@@ -2453,7 +2453,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f4d729df-f95f-4c18-a097-9b5dc1d3325f}</uid>
+                    <uid>{70ec8c92-c867-48b0-88af-1889dc3225fd}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getColorMode()</declaration>
@@ -2461,7 +2461,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{0a53bd76-0b76-4ee0-850c-70f3576f6c2f}</uid>
+                    <uid>{99078996-f62e-4ffb-998e-e81460a6488a}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>setAvailableColorModes(solid: bool, velocity: bool, area: bool)</declaration>
@@ -2469,7 +2469,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e1d66aa9-0608-4de8-bf8e-fbe4660c2d1c}</uid>
+                    <uid>{954d256e-3f52-47ad-84d9-430d0c764aaf}</uid>
                     <visibility>4</visibility>
                     <type>2</type>
                     <declaration>colorModeChanged(mode: ColorMode)</declaration>
@@ -2477,7 +2477,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{cfcb858e-c375-4790-a93b-8f30c4fc2eb2}</uid>
+                    <uid>{fed80fde-5214-46c1-9035-296c80e8c12d}</uid>
                     <visibility>7</visibility>
                     <type>2</type>
                     <declaration>setColorMode(mode: ColorMode)</declaration>
@@ -2485,7 +2485,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{eb10f654-6cba-44c2-91da-05941094ce12}</uid>
+                    <uid>{0e5c38c3-7ab8-40dc-8af6-cf16844a35f1}</uid>
                     <visibility>7</visibility>
                     <type>2</type>
                     <declaration>changeColorMode(idx: int)</declaration>
@@ -2553,7 +2553,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{60dae35a-1d08-4739-a82a-9f16748c0a5d}</uid>
+                    <uid>{e395cf5a-cde2-435f-b55b-1fe818393501}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>ui: Ui::OpenFileDialog*</declaration>
@@ -2561,7 +2561,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{aab01410-cd29-4e9f-85b2-76e48de4ea53}</uid>
+                    <uid>{eae56e73-8d6d-403d-982c-ff852c4dfddb}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>listViewModel: QFileSystemModel*</declaration>
@@ -2569,7 +2569,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a7a10609-d979-45a6-a902-ce516c28a43b}</uid>
+                    <uid>{75f237e7-0a2a-489e-8b05-143dcbe28ae0}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_selectedFiles: QStringList</declaration>
@@ -2577,7 +2577,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{fc6f1f66-bba3-4de8-8630-26e04b4ce5f4}</uid>
+                    <uid>{9b5f626e-31e3-42c3-a086-b414dda7ed5a}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_directoryPath: QString</declaration>
@@ -2585,7 +2585,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{2e69a61b-1b10-4bc7-a2e5-6cd7212c3023}</uid>
+                    <uid>{8d5a72ca-dcf0-4927-9316-e37bd0502a50}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>pathStack: QStringList</declaration>
@@ -2593,7 +2593,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{138bb9d6-622d-4167-b071-2913838d43e5}</uid>
+                    <uid>{1b241bef-7e2a-482c-be0a-62023651d5ba}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>pathStackIdx: int</declaration>
@@ -2601,7 +2601,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{cdc19d9a-8bda-4c5a-8f17-6dc934df13b1}</uid>
+                    <uid>{63044978-cb05-45de-8a2a-b7af2641a4c0}</uid>
                     <visibility>3</visibility>
                     <type>2</type>
                     <declaration>selectedFiles()</declaration>
@@ -2609,7 +2609,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a2a14dcb-90ca-43e2-9a29-ef4381a157a6}</uid>
+                    <uid>{d76a5f6b-a520-41a5-88f9-da216aeb1e50}</uid>
                     <visibility>3</visibility>
                     <type>2</type>
                     <declaration>setupCombobox(path: QString)</declaration>
@@ -2617,7 +2617,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{fb945168-4a92-4f0d-b01d-a22535d2b794}</uid>
+                    <uid>{09bcfec4-6246-4b81-b908-453ea36ca2e8}</uid>
                     <visibility>3</visibility>
                     <type>2</type>
                     <declaration>openDirectory(directoryPath: QString)</declaration>
@@ -2625,7 +2625,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{a46488e0-9df8-4e36-9443-2e1c3a24755e}</uid>
+                    <uid>{868b352f-4237-44a9-a419-1f77599d8091}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>addPathToStack(path: QString)</declaration>
@@ -2633,7 +2633,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{7f4afc5a-23ac-479e-a5c4-52f92abcd951}</uid>
+                    <uid>{7d267b4b-18fb-4634-bee8-e7aef84649dd}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_okButton_clicked()</declaration>
@@ -2641,7 +2641,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{409e12fc-d673-419a-8fd3-5344b2609633}</uid>
+                    <uid>{a93364d3-3f99-492f-9216-0d2ab99c70a2}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_pathComboBox_activated(directoryPath: QString)</declaration>
@@ -2649,7 +2649,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{ad89d990-d946-4a1a-98ee-af107c029746}</uid>
+                    <uid>{a0d23849-39d6-47bc-b28e-140d8cce64f2}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_actionUpDirectory_triggered()</declaration>
@@ -2657,7 +2657,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9b290217-cc7e-4ead-ba8d-6297a855f9bc}</uid>
+                    <uid>{f15df4e9-bfa2-4343-b7aa-39cdf431d81d}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_actionPrev_triggered()</declaration>
@@ -2665,7 +2665,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9b87e085-9e0f-48e6-83c8-cf2a98adadc3}</uid>
+                    <uid>{e1cb030f-ab6f-423c-9f7d-e0cbdd1260c3}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_actionNext_triggered()</declaration>
@@ -2673,7 +2673,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{e2f4b0c9-c343-4d20-ac85-54e83505ad20}</uid>
+                    <uid>{c5949044-1cf3-4843-bd6a-730de420cb5d}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_listWidget_itemActivated(item: QListWidgetItem*)</declaration>
@@ -2681,7 +2681,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{b0ac4ef0-b49f-4ee5-a9ce-4fb5c41f50c8}</uid>
+                    <uid>{2f529e81-56a9-4f80-831e-bc1d909f33ed}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_cancelButton_clicked()</declaration>
@@ -2689,7 +2689,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{20b47438-7035-4c89-b1ad-b20fd5a12446}</uid>
+                    <uid>{13c8c211-9441-4008-9680-93830e3f5765}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_textBox1_textEdited(text: QString)</declaration>
@@ -2697,7 +2697,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f65169e9-170d-4f14-9237-c8a89ff70690}</uid>
+                    <uid>{9308c224-c776-4762-9133-e3ca348c01a5}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>on_treeView_doubleClicked(index: QModelIndex)</declaration>
@@ -2705,7 +2705,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{762aafcf-a983-4e12-a50c-ea6d70bb1a1d}</uid>
+                    <uid>{b5f35550-715e-46e1-86bf-88f47789ec64}</uid>
                     <visibility>5</visibility>
                     <type>2</type>
                     <declaration>mySelectionChanged(index: QModelIndex, previous: QModelIndex)</declaration>
@@ -2738,7 +2738,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{c20fbeb3-ed4b-44aa-a976-e8c6b1eac99e}</uid>
+                    <uid>{686917f3-acbd-4b02-b4ec-e476dee5b646}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getErrorInfo(handle: int)</declaration>
@@ -2746,7 +2746,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{74d92529-5f71-4940-98ff-2d0cb60a6f34}</uid>
+                    <uid>{4cd8004c-4386-4e01-a973-01ff1556ea1b}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>checkShader(shader: int, message: char*)</declaration>
@@ -2754,7 +2754,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{1bb191cc-7192-4c56-9c06-08c1cd82cc76}</uid>
+                    <uid>{2442ef55-9ce6-489f-b77b-724bf8f4e3e4}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>checkLinking(program: int)</declaration>
@@ -2762,7 +2762,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9eaf61e2-8728-456d-9ebc-7b592a400938}</uid>
+                    <uid>{dc291aa7-9822-4515-b336-1a01c30d959d}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>createShaderProgramFromSource(vertexSource: char*, char* fragmentSource)</declaration>
@@ -2830,7 +2830,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{9fddd33a-5657-4c52-82b8-8c3759ab71f8}</uid>
+                    <uid>{d323980c-7bfb-49e4-bcf0-fc66ca3713c5}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_childItems: QList&lt;TreeItem*&gt;</declaration>
@@ -2838,7 +2838,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{6db53a3e-e948-4c59-80dd-94f17635335e}</uid>
+                    <uid>{e764a770-89b7-45f3-b079-1a28a18a285b}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_itemData: QList&lt;QVariant&gt;</declaration>
@@ -2846,7 +2846,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{42396f37-365f-47ac-b02c-e1db914dd8fc}</uid>
+                    <uid>{d3b6a19c-3d15-4f66-aa40-306851987848}</uid>
                     <visibility>3</visibility>
                     <type>1</type>
                     <declaration>m_parentItem: TreeItem*</declaration>
@@ -2854,7 +2854,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{41d521a0-09ba-4c4f-bedd-1d7cd82a7701}</uid>
+                    <uid>{091d8097-3059-400e-b88b-0a355141ab75}</uid>
                     <visibility>3</visibility>
                     <type>2</type>
                     <declaration>setSortingType(type: SortingType)</declaration>
@@ -2862,7 +2862,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{9d44d286-23d2-468d-b355-9bf97cd20707}</uid>
+                    <uid>{69bd3bd4-f5fa-4c89-83a2-d0611675d85b}</uid>
                     <visibility>3</visibility>
                     <type>2</type>
                     <declaration>setChildsSortingType(type: SortingType)</declaration>
@@ -2870,7 +2870,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{d5dac5ca-d975-4b05-a432-5bf22d747e10}</uid>
+                    <uid>{f28a6cb1-c390-416a-b8cf-40662864fc62}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>void appendChild(child: TreeItem*)</declaration>
@@ -2878,7 +2878,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{dce12117-9c90-4051-a84a-3278d879d6d7}</uid>
+                    <uid>{28564df9-e8f9-487b-9e1f-05452eaf78f4}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>child(row: int)</declaration>
@@ -2886,7 +2886,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{21e6a2d4-c4db-4c40-aafe-098487ccf3e5}</uid>
+                    <uid>{8380ca17-6fcd-412b-a573-e08266d14aa9}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>childCount()</declaration>
@@ -2894,7 +2894,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{c21fa476-fa2e-4e12-8771-bc3c381ceb92}</uid>
+                    <uid>{39c1ea5e-f33c-4b5f-ad42-c5c54d6c8484}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>columnCount()</declaration>
@@ -2902,7 +2902,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{392b6ad9-211e-44fc-a785-8c8ffc7bdc96}</uid>
+                    <uid>{42b303ff-4eef-40a9-b7e2-7c2acdd9ec12}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>data(column: int)</declaration>
@@ -2910,7 +2910,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{59ea057f-bc81-41ce-87ef-fa51daeea0b3}</uid>
+                    <uid>{7a239c15-0856-457a-b43a-c0da6f2ba90f}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>row()</declaration>
@@ -2918,7 +2918,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{68c49708-bec9-40aa-aa24-d0b16b8736c7}</uid>
+                    <uid>{278cdec3-bbe4-4b07-8952-416def66cfb0}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>parentItem()</declaration>
@@ -2926,7 +2926,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{6aedc27e-7d48-4e01-a60c-62a734148272}</uid>
+                    <uid>{691e579b-7a35-49b6-bd80-344d6876522a}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>operator&lt;(other: TreeItem)</declaration>
@@ -2934,7 +2934,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{0624bb23-6625-4cc9-9290-60e9ef4fae12}</uid>
+                    <uid>{4b471265-9cb2-4bd7-92b4-93039461087e}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>sort(sortingType: SortingType, order: Qt::SortOrder)</declaration>
@@ -2942,7 +2942,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{f5e2d935-7344-4ec3-ab8a-1c558c320001}</uid>
+                    <uid>{59d5a083-97b1-4991-bc39-b372f5713a6e}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>file()</declaration>
@@ -2950,7 +2950,7 @@
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{470afb28-7188-44be-b360-9715d8b37b49}</uid>
+                    <uid>{486be7c1-0d48-42b8-8c9b-7ef0e3c9cd8f}</uid>
                     <visibility>1</visibility>
                     <type>2</type>
                     <declaration>getChildItems()</declaration>
