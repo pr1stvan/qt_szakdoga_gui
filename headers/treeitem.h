@@ -61,14 +61,14 @@ class TreeItem
 {
 
 private:
-    void setSortingType(SortingType type);
-    void setChildsSortingType(SortingType type);
-
     QList<TreeItem*> m_childItems;
     QList<QVariant> m_itemData;
     TreeItem *m_parentItem;
 
     FileEntry m_file;
+
+    void setSortingType(SortingType type);
+    void setChildsSortingType(SortingType type);
 
 public:
     explicit TreeItem(const QList<QVariant> &data,FileEntry file, TreeItem *parentItem = 0);
@@ -83,10 +83,7 @@ public:
     QVariant data(int column) const;
     int row() const;
     TreeItem *parentItem();
-
     bool operator<(const TreeItem& other)const;
-
-
     void sort(SortingType sortingType, Qt::SortOrder order = Qt::AscendingOrder);
 
     FileEntry file();
