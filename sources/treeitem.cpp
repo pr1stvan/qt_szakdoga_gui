@@ -177,20 +177,20 @@ void TreeItem::sort(SortingType sortingType,Qt::SortOrder order)
     switch(sortingType)
     {
     case SortingType::name:
-        qSort(directories.begin(),directories.end(),compareFunction);
-        qSort(files.begin(),files.end(),compareFunction);
+        std::sort(directories.begin(),directories.end(),compareFunction);
+        std::sort(files.begin(),files.end(),compareFunction);
         break;
     case SortingType::type:
-        qSort(directories.begin(),directories.end(),PComp<TreeItem>);
-        qSort(files.begin(),files.end(),compareFunction);
+        std::sort(directories.begin(),directories.end(),PComp<TreeItem>);
+        std::sort(files.begin(),files.end(),compareFunction);
         break;
     case SortingType::size:
-        qSort(directories.begin(),directories.end(),PComp<TreeItem>);
-        qSort(files.begin(),files.end(),compareFunction);
+        std::sort(directories.begin(),directories.end(),PComp<TreeItem>);
+        std::sort(files.begin(),files.end(),compareFunction);
         break;
     case SortingType::dateModified:
-        qSort(directories.begin(),directories.end(),compareFunction);
-        qSort(files.begin(),files.end(),compareFunction);
+        std::sort(directories.begin(),directories.end(),compareFunction);
+        std::sort(files.begin(),files.end(),compareFunction);
         break;
     }
     m_childItems=directories + files;
